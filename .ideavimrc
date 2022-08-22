@@ -1,0 +1,20 @@
+set sneak
+set easymotion
+set surround
+set which-key
+
+" increase timeout for the which-key thing
+set timeoutlen=5000
+
+" switch tabs with H and L
+nnoremap H gT
+nnoremap L gt
+
+" intellimacs style goto bindings [experiment]
+nnoremap <Space>ff :action GotoFile<CR>
+nnoremap <Space>fr :action RecentFiles<CR>
+nnoremap <Space>ft :action GotoClass<CR>
+nnoremap <Space>fs :action GotoSymbol<CR>
+nnoremap <Space>fa :action GotoAction<CR>
+nnoremap <Space>fw :action tasks.goto<CR>
+

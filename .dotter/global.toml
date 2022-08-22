@@ -1,0 +1,15 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+".gitconfig" = "~/.gitconfig"
+".vimrc" = "~/.vimrc"
+".bash_profile" = "~/.bash_profile"
+".bashrc" = "~/.bashrc"
+".ideavimrc" = "~/.ideavimrc"
+"powershell" = "~/.powershell"
+
+[default.variables]
+

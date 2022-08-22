@@ -1,0 +1,26 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	editor = vim
+	autocrlf = input
+[gui]
+	recentrepo = C:/Users/Q0/prtb
+[credential]
+	helper = manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[user]
+	email = ditsuke@protonmail.com
+	name = ditsuke
+	signingkey = 8fd2153f4889541a54f1e09e71b6c31c8a5a9d21
+[gpg]
+	program = c:\\\\program files (x86)\\gnupg\\bin\\gpg.exe
+[commit]
+	gpgsign = true
+[credential "helperselector"]
+	selected = manager-core
+[merge]
+	conflictStyle = zdiff3

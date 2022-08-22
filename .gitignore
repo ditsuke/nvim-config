@@ -1,0 +1,6 @@
+# machine-local
+.dotter/local.toml
+
+# cache
+.dotter/cache.toml
+.dotter/cache
