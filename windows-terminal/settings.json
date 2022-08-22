@@ -46,7 +46,7 @@
             "command": 
             {
                 "action": "splitPane",
-                "split": "down"
+                "split": "vertical"
             },
             "keys": "alt+shift+minus"
         },
@@ -161,7 +161,7 @@
             "command": 
             {
                 "action": "splitPane",
-                "split": "right"
+                "split": "vertical"
             },
             "keys": "alt+shift+plus"
         },
@@ -493,7 +493,7 @@
                 "antialiasingMode": "grayscale",
                 "backgroundImageOpacity": 0.40000000000000002,
                 "backgroundImageStretchMode": "uniformToFill",
-                "bellStyle": "taskbar",
+                "bellStyle": "visual",
                 "closeOnExit": "graceful",
                 "colorScheme": "Campbell",
                 "commandline": "powershell.exe -NoLogo",
@@ -999,4 +999,3 @@
     "windowingBehavior": "useExisting",
     "wordDelimiters": " /\\()\"'-.,:;<>~!@#$%^&*|+=[]{}~?\u2502"
 }
-
