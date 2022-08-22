@@ -10,6 +10,7 @@ depends = []
 ".bashrc" = "~/.bashrc"
 ".ideavimrc" = "~/.ideavimrc"
 "powershell" = "~/.powershell"
+"nvim" = "~/AppData/local/nvim"
 
 [default.variables]
 
