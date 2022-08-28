@@ -14,8 +14,11 @@ Function Update-File {
   }
 }
 
-# Copy pwd to clipboard
-Function pwdcp {
+<#
+.Synopsis
+	Yank working directory to system clipboard
+#>
+Function ywd {
   (Get-Location).path | Set-Clipboard
 }
 
@@ -37,13 +40,14 @@ Function wtpwd() {
 .Synopsis
     Compile and run an isolated C++ file.
 #>
-Function cpprun {
+Function Run-Cpp {
   param (
     [Parameter(Mandatory = $true, Position = 0)]
     [string]$file
   )
 
-  if (($file -match "\.cpp$") -and [System.IO.File]::exists($file)) {
+  # Strip extension
+  if (($file -match "\.cpp$") -or [System.IO.File]::exists($file)) {
     $file = $file.Substring(0, $file.lastIndexOf('.'))
   }
   elseif (![System.IO.File]::exists((Get-ChildItem "$file").FullName)) {
@@ -57,7 +61,7 @@ Function cpprun {
   }
 }
 
-Function javarun {
+Function Run-Java {
   param (
     [Parameter(Mandatory = $true, Position = 0)]
     [string]$file
@@ -78,36 +82,40 @@ Function javarun {
   # Run
   java -cp "$directory" "$class"
 }
-
-<#
-#>
-Function Load-Posh-Git() {
-   Import-Module posh-git
-}
  
+<#
+  .Synopsis
+    Reset mIRC, re-use to trial
+#>
 Function reset-mIRC {
    Remove-Item HKCU:\SOFTWARE\mIRC\LastRun
    Remove-Item -Recurse "$Env:USERPROFILE\AppData\Roaming\mIRC"
 }
 
+<#
+	Create shim to an executable. A "shim" acts as a proxy to an executable and works better than symlinks for binaries
+	dependant on bundled DLLs for example.
+	- Dependency: `scoop-shim` installed with `scoop`
+	- Platform: Windows
+#>
 Function Create-Shim {
   Param (
     [Parameter(Mandatory = $true, Position = 0)]
-    [string]$file,
+    [string]$File,
     [Parameter(Mandatory = $false, Position = 1)]
-    [string]$alias
+    [string]$Alias
   )
 
-   $EXEC_DIR = "C:/sympath"
-   $SCOOP_SHIM = "C:/Users/Q0/scoop/apps/scoop-shim/current/shim.exe"
+   $EXEC_DIR = "${HOME}/bin/shims"
+   $SCOOP_SHIM = "${HOME}/scoop/apps/scoop-shim/current/shim.exe"
 
-   $execBase = if ($alias) {"$alias.exe"} Else {$(Split-Path $file -Leaf)}
+   $execBase = if ($Alias) {"$Alias.exe"} Else {(Split-Path $File -Leaf)}
 
    Copy-Item $SCOOP_SHIM "$EXEC_DIR/$execBase"
    Out-File -FilePath "$EXEC_DIR/$($execBase.SubString(0, $execBase.lastIndexOf('.'))).shim" -InputObject "path = $((Get-ChildItem "$file").FullName)" 
 }
 
-Function Set-Shortcut {
+Function Create-Shortcut {
 	Param (
 		[Parameter(Mandatory = $true, Position = 0)]
 		[string]$ShortcutPath,
