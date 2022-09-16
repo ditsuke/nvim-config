@@ -31,6 +31,7 @@ $apps = @(
 	"9NBLGGH556L3", # PowerPlanSwitcher
 	"Postman.Postman",
 	"VB-Audio.Voicemeeter.Banana",
+	"Microsoft.VisualStudio.2022.BuildTools" # MSVC for Rust -- because managing the GNU toolchain with MINGW can be a pain :/
 )
 
 foreach ($app in $apps) { winget install --id=$app -e --accept-package-agreements --scope user }
@@ -52,3 +53,4 @@ Update-Help
 
 # ! Manual: HEVC Codec for device manufacturers
 # ms-windows-store://pdp/?ProductId=9n4wgh0z6vhq
+
