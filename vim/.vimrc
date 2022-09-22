@@ -7,6 +7,13 @@ set autoindent
 " Allow backspace to function as usual
 set backspace=indent,eol,start
 
+" Enable full 24-bit color support
+" vim 7.4.1799+
+set termguicolors
+
+" Colorscheme: not sure if this works in vim
+colorscheme murphy
+
 " helpful if using 'set ruler' and 'colorscheme shine', makes lineNumbers grey
 " Same example from http://vim.wikia.com/wiki/Display_line_numbers
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
