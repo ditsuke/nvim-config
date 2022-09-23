@@ -5,4 +5,5 @@ packages = ["default"]
 [files]
 
 [variables]
-gpgbinary = 'C:\\Users\\dt\\scoop\\apps\\gpg\\current\\bin\\gpg.exe'
+gpg_binary = 'C:\\Users\\dt\\scoop\\apps\\gpg\\current\\bin\\gpg.exe'
+

@@ -11,4 +11,8 @@ depends = []
 "nvim" = "~/.config/nvim"
 
 [default.variables]
-gpgbinary = "/usr/bin/gpg"
+git_name = "ditsuke"
+git_email = "ditsuke@protonmail.com"
+gpg_key_id = "8fd2153f4889541a54f1e09e71b6c31c8a5a9d21"
+gpg_binary = "/usr/bin/gpg"
+

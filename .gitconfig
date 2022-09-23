@@ -15,11 +15,11 @@
 [credential "https://dev.azure.com"]
 	useHttpPath = true
 [user]
-	email = ditsuke@protonmail.com
-	name = ditsuke
-	signingkey = 8fd2153f4889541a54f1e09e71b6c31c8a5a9d21
+	name = {{ git_name }}
+	email = {{ git_email }}
+	signingkey = {{ gpg_key_id }}
 [gpg]
-	program = {{ gpgbinary }}
+	program = {{ gpg_binary }}
 [commit]
 	gpgsign = true
 [credential "helperselector"]
