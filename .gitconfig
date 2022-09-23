@@ -8,8 +8,6 @@
 	autocrlf = input
 	eol = lf
 	pager = less
-[gui]
-	recentrepo = C:/Users/Q0/prtb
 [credential]
 	helper = manager-core
 [credential "https://dev.azure.com"]
