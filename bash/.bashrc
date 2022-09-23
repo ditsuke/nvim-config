@@ -18,3 +18,8 @@ PS1='\[\e[35m\][\W]:\[\e[0m\] '
 eval "$(zoxide init bash)"
 #eval "$(starship init bash)"
 
+# hook script for the broot cli file explorer
+broot_bash=~/AppData/Roaming/dystroy/broot/config/launcher/bash/br
+if test -f $broot_bash ; then
+	source $broot_bash
+fi
