@@ -6,6 +6,8 @@
 [core]
 	editor = vim
 	autocrlf = input
+	eol = lf
+	pager = less
 [gui]
 	recentrepo = C:/Users/Q0/prtb
 [credential]
@@ -24,3 +26,6 @@
 	selected = manager-core
 [merge]
 	conflictStyle = zdiff3
+[pager]
+	diff = true
+
