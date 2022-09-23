@@ -1,5 +1,4 @@
 # Get stuff from winget
-
 $apps = @(
 	"9NHL4NSC67WM",
 	"Loom.Loom",

@@ -17,4 +17,3 @@ nnoremap <Space>ft :action GotoClass<CR>
 nnoremap <Space>fs :action GotoSymbol<CR>
 nnoremap <Space>fa :action GotoAction<CR>
 nnoremap <Space>fw :action tasks.goto<CR>
-
