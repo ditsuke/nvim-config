@@ -9,3 +9,6 @@ depends = []
 ".ideavimrc" = "~/.ideavimrc"
 "powershell" = "~/.powershell"
 "nvim" = "~/.config/nvim"
+
+[default.variables]
+gpgbinary = "/usr/bin/gpg"

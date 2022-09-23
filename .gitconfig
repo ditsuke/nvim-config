@@ -19,7 +19,7 @@
 	name = ditsuke
 	signingkey = 8fd2153f4889541a54f1e09e71b6c31c8a5a9d21
 [gpg]
-	program = C:\\Users\\dt\\scoop\\apps\\gpg\\current\\bin\\gpg.exe
+	program = {{ gpgbinary }}
 [commit]
 	gpgsign = true
 [credential "helperselector"]
