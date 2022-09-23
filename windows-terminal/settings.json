@@ -6,6 +6,13 @@
         {
             "command": 
             {
+                "action": "scrollUp"
+            },
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "command": 
+            {
                 "action": "switchToTab",
                 "index": 6
             },
@@ -26,13 +33,6 @@
                 "direction": "left"
             },
             "keys": "alt+left"
-        },
-        {
-            "command": 
-            {
-                "action": "scrollUp"
-            },
-            "keys": "ctrl+shift+up"
         },
         {
             "command": 
@@ -66,28 +66,19 @@
             "keys": "ctrl+alt+1"
         },
         {
-            "command": "openNewTabDropdown",
-            "keys": "ctrl+shift+space"
-        },
-        {
             "command": "toggleFocusMode",
             "keys": "ctrl+f"
         },
         {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "right"
-            },
-            "keys": "alt+shift+minus"
+            "command": "openNewTabDropdown",
+            "keys": "ctrl+shift+space"
         },
         {
             "command": 
             {
-                "action": "splitPane",
-                "split": "right"
+                "action": "prevTab"
             },
-            "keys": "alt+shift+plus"
+            "keys": "ctrl+shift+tab"
         },
         {
             "command": 
@@ -108,17 +99,26 @@
         {
             "command": 
             {
-                "action": "prevTab"
+                "action": "splitPane",
+                "split": "right"
             },
-            "keys": "ctrl+shift+tab"
+            "keys": "alt+shift+minus"
         },
         {
             "command": 
             {
-                "action": "openSettings",
-                "target": "defaultsFile"
+                "action": "splitPane",
+                "split": "right"
             },
-            "keys": "ctrl+alt+comma"
+            "keys": "alt+shift+plus"
+        },
+        {
+            "command": 
+            {
+                "action": "adjustFontSize",
+                "delta": -1
+            },
+            "keys": "ctrl+minus"
         },
         {
             "command": 
@@ -131,10 +131,10 @@
         {
             "command": 
             {
-                "action": "adjustFontSize",
-                "delta": -1
+                "action": "openSettings",
+                "target": "defaultsFile"
             },
-            "keys": "ctrl+minus"
+            "keys": "ctrl+alt+comma"
         },
         {
             "command": "find",
@@ -149,7 +149,8 @@
             "keys": "ctrl+shift+5"
         },
         {
-            "command": "toggleAlwaysOnTop"
+            "command": "duplicateTab",
+            "keys": "ctrl+shift+d"
         },
         {
             "command": 
@@ -160,15 +161,7 @@
             "keys": "ctrl+shift+9"
         },
         {
-            "command": "duplicateTab",
-            "keys": "ctrl+shift+d"
-        },
-        {
-            "command": 
-            {
-                "action": "openSettings"
-            },
-            "keys": "ctrl+comma"
+            "command": "toggleAlwaysOnTop"
         },
         {
             "command": 
@@ -181,10 +174,9 @@
         {
             "command": 
             {
-                "action": "switchToTab",
-                "index": 7
+                "action": "openSettings"
             },
-            "keys": "ctrl+alt+8"
+            "keys": "ctrl+comma"
         },
         {
             "command": 
@@ -195,7 +187,12 @@
             "keys": "ctrl+shift+3"
         },
         {
-            "command": "unbound"
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 7
+            },
+            "keys": "ctrl+alt+8"
         },
         {
             "command": 
@@ -206,15 +203,18 @@
             "keys": "ctrl+alt+3"
         },
         {
+            "command": "unbound"
+        },
+        {
+            "command": "scrollUpPage",
+            "keys": "ctrl+shift+pgup"
+        },
+        {
             "command": 
             {
                 "action": "commandPalette"
             },
             "keys": "ctrl+shift+p"
-        },
-        {
-            "command": "scrollUpPage",
-            "keys": "ctrl+shift+pgup"
         },
         {
             "command": 
@@ -225,18 +225,18 @@
         {
             "command": 
             {
-                "action": "switchToTab",
-                "index": 4
-            },
-            "keys": "ctrl+alt+5"
-        },
-        {
-            "command": 
-            {
                 "action": "adjustFontSize",
                 "delta": 1
             },
             "keys": "ctrl+plus"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 4
+            },
+            "keys": "ctrl+alt+5"
         },
         {
             "command": 
@@ -262,18 +262,10 @@
         {
             "command": 
             {
-                "action": "newTab",
-                "index": 1
+                "action": "moveFocus",
+                "direction": "up"
             },
-            "keys": "ctrl+shift+2"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 5
-            },
-            "keys": "ctrl+alt+6"
+            "keys": "alt+up"
         },
         {
             "command": 
@@ -286,10 +278,22 @@
         {
             "command": 
             {
-                "action": "moveFocus",
-                "direction": "up"
+                "action": "switchToTab",
+                "index": 5
             },
-            "keys": "alt+up"
+            "keys": "ctrl+alt+6"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab",
+                "index": 1
+            },
+            "keys": "ctrl+shift+2"
+        },
+        {
+            "command": "resetFontSize",
+            "keys": "ctrl+0"
         },
         {
             "command": 
@@ -298,10 +302,6 @@
                 "index": 3
             },
             "keys": "ctrl+shift+4"
-        },
-        {
-            "command": "resetFontSize",
-            "keys": "ctrl+0"
         },
         {
             "command": 
@@ -329,17 +329,17 @@
         {
             "command": 
             {
-                "action": "switchToTab",
-                "index": 3
+                "action": "scrollDown"
             },
-            "keys": "ctrl+alt+4"
+            "keys": "ctrl+shift+down"
         },
         {
             "command": 
             {
-                "action": "scrollDown"
+                "action": "switchToTab",
+                "index": 3
             },
-            "keys": "ctrl+shift+down"
+            "keys": "ctrl+alt+4"
         },
         {
             "command": "closePane",
@@ -355,18 +355,18 @@
         {
             "command": 
             {
-                "action": "resizePane",
-                "direction": "left"
-            },
-            "keys": "alt+shift+left"
-        },
-        {
-            "command": 
-            {
                 "action": "moveFocus",
                 "direction": "down"
             },
             "keys": "alt+down"
+        },
+        {
+            "command": 
+            {
+                "action": "resizePane",
+                "direction": "left"
+            },
+            "keys": "alt+shift+left"
         },
         {
             "command": 
@@ -391,6 +391,26 @@
         {
             "command": "paste",
             "keys": "shift+insert"
+        },
+        // Other commands
+        {
+            "commands": 
+            [
+                {
+                    "command": 
+                    {
+                        "action": "setColorScheme",
+                        "colorScheme": "${scheme.name}"
+                    },
+                    "iterateOn": "schemes",
+                    "name": "${scheme.name}"
+                }
+            ],
+            // Select color scheme...
+            "name": 
+            {
+                "key": "SetColorSchemeParentCommandName"
+            }
         },
         {
             "commands": 
@@ -432,26 +452,6 @@
             "name": 
             {
                 "key": "SplitPaneParentCommandName"
-            }
-        },
-        // Other commands
-        {
-            "commands": 
-            [
-                {
-                    "command": 
-                    {
-                        "action": "setColorScheme",
-                        "colorScheme": "${scheme.name}"
-                    },
-                    "iterateOn": "schemes",
-                    "name": "${scheme.name}"
-                }
-            ],
-            // Select color scheme...
-            "name": 
-            {
-                "key": "SetColorSchemeParentCommandName"
             }
         },
         {
@@ -576,6 +576,18 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{76d0e2de-46e0-5885-8a72-ec4694a0874a}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2019",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{b476ead9-912e-5575-b337-9b41455b9041}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2019",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
