@@ -5,12 +5,17 @@ depends = []
 
 [default.files]
 ".gitconfig" = "~/.gitconfig"
-".vimrc" = "~/.vimrc"
+"vim/.vimrc" = "~/.vimrc"
 ".bash_profile" = "~/.bash_profile"
 ".bashrc" = "~/.bashrc"
 ".ideavimrc" = "~/.ideavimrc"
 "powershell" = "~/.powershell"
 "nvim" = "~/AppData/local/nvim"
+
+[windows]
+depends = []
+
+[windows.files]
 "windows-terminal" = "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState"
 
 [default.variables]
