@@ -9,14 +9,3 @@ depends = []
 ".ideavimrc" = "~/.ideavimrc"
 "powershell" = "~/.powershell"
 "nvim" = "~/.config/nvim"
-
-[windows]
-depends = ["default"]
-
-[windows.files]
-"windows-terminal" = "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState"
-"bash/.bash_profile" = "~/.bash_profile" # not portable yet
-"bash/.bashrc" = "~/.bashrc" # not portable yet
-"nvim" = "~/AppData/local/nvim" # override
-
-[default.variables]
