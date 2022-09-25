@@ -4,8 +4,17 @@ depends = []
 [default.files]
 # widows only
 "windows-terminal" = "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState"
+"everything.ini" = "~/AppData/Roaming/Everything/Everything.ini"
 # not portable yet
 "bash/.bash_profile" = "~/.bash_profile"
 "bash/.bashrc" = "~/.bashrc"
 # overrides
 "nvim" = "~/AppData/local/nvim"
+## TOOD: add unix paths in global.toml
+"gitui" = "~/AppData/Roaming/gitui"
+"fselect/config.toml" = "~/AppData/Roaming/jhspetersson/fselect/config.toml"
+"discord/settings.json" = "~/AppData/Roaming/discord/settings.json"
+"broot" = "~/AppData/Roaming/dystroy/broot/config"
+"github-cli/config.yml" = "~/AppData/Roaming/Github CLI/config.yml"
+"ripcord/settings.ini" = "~/AppData/Local/Ripcord/settings.ini"
+
