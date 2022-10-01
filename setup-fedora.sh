@@ -22,10 +22,23 @@ brew_stuff=(
     "sd"
     "wireshark"
     "zoxide" # `z` in rust -- navigate the filesystem fast
+    "zsh-completions"
+    "postgresql@14"
+    ## build tools
+    "cmake"
+    "ninja"
+    "meson"
+    ## compilers
+    "protobuf"
+    "openjdk@17"
 )
 
 cargo_stuff=(
     "dotter" # dotfiles manager
+    "just"
+    "cargo-make"
+    "cargo-update"
+    "topgrade" # system updater on steroids
 )
 
 dnf_stuff=(
@@ -35,10 +48,28 @@ dnf_stuff=(
     "sqlite3" # some dnf shell-completions need sqlite
     "gnome-tweaks"
     "gnome-extensions-app"
+    "gnome-shell-extension-user-theme"
     "ulauncher"
     "ffmpeg"
     "xsel" # interface with the system clipboard. neovim uses this as the clipboard provider.
     "pop-shell" # tiling extension from Pop OS!
+    "evolution" # mail client
+    "ripcord" # a lightweight native discord client
+    "cronie" # crontab
+    "gammastep" # color temp, brightness control
+    "docker"
+    "docker-compose"
+    "tlp" # Optimise better life
+    "perl"
+    
+    ## build deps
+    "gcc-c++"
+    "libinput-devel"
+    "systemd-devel"
+    "libgtop2-devel"
+    "openssl-devel"
+    "lm_sensors"
+    "lld"
 )
 
 pipx_stuff=(
@@ -49,6 +80,8 @@ flathub_stuff=(
     "md.obsidian.Obsidian"
     "com.discordapp.Discord"
     "org.gnome.Extensions"
+    "com.slack.Slack"
+    "com.sublimemerge.App"
 )
 
 ####################################################################
@@ -61,8 +94,11 @@ flathub_stuff=(
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
-### RPM Free (for ffmpeg)
+### RPM Fusion Free
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm
+
+### RPM Fusion Non-free
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
 
 ## Installs
 for stuff in "${dnf_stuff[@]}"; do
@@ -104,3 +140,18 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 for stuff in "${flathub_stuff[@]}"; do
     flatpak install flathub "${stuff}"
 done
+
+# AppImages
+
+## AppImageLauncher
+APPIMAGELAUNCHER="appimagelauncher.rpm"
+wget
+"https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.$(uname
+-m).rpm" --output-document /tmp/$APPIMAGELAUNCHER
+sudo dnf install /tmp/$APPIMAGELAUNCHER
+
+# Misc
+
+## ngrok -- sadly not on fedora repos/flathub
+wget "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz" --output-document /tmp/ngrok.tgz # TODO: modularize arch?
+tar xvzf /tmp/ngrok.tgz -C ~/.local/bin
