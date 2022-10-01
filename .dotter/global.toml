@@ -9,6 +9,7 @@ depends = []
 ".ideavimrc" = "~/.ideavimrc"
 "powershell" = "~/.powershell"
 "nvim" = "~/.config/nvim"
+"tmux.conf" = "~/.tmux.conf"
 
 [default.variables]
 git_name = "ditsuke"
