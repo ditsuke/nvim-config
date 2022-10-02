@@ -106,7 +106,7 @@ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfre
 
 ## Installs
 for stuff in "${dnf_stuff[@]}"; do
-    sudo dnf install "${stuff}"
+    sudo dnf install "${stuff}" -y
 done
 
 # ohmyzsh for a _delightful_ ZSH experience. In all seriousness consider alternatives like prezto
@@ -153,8 +153,7 @@ done
 ## AppImageLauncher
 APPIMAGELAUNCHER="appimagelauncher.rpm"
 wget
-"https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.$(uname
--m).rpm" --output-document /tmp/$APPIMAGELAUNCHER
+"https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.$(uname -m).rpm" --output-document /tmp/$APPIMAGELAUNCHER
 sudo dnf install /tmp/$APPIMAGELAUNCHER
 
 # Misc
