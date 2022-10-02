@@ -159,3 +159,7 @@ sudo dnf install /tmp/$APPIMAGELAUNCHER
 ## ngrok -- sadly not on fedora repos/flathub
 wget "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz" --output-document /tmp/ngrok.tgz # TODO: modularize arch?
 tar xvzf /tmp/ngrok.tgz -C ~/.local/bin
+
+## tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
