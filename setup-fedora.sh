@@ -37,9 +37,9 @@ brew_stuff=(
 	"go"
 )
 
-cargo_stuff=(
+cargo_binstall_stuff=(
     "dotter" # dotfiles manager
-    "just"
+    "just" # just a command runner
     "cargo-make"
     "cargo-update"
     "topgrade" # system updater on steroids
@@ -125,9 +125,12 @@ done
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+## One tool to get all (most) of those binaries without compiling
+cargo install cargo-binstall
+
 ## Binaries with cargo
-for stuff in "${cargo_stuff[@]}"; do
-    cargo install "${stuff}"
+for stuff in "${cargo_binstall_stuff[@]}"; do
+    cargo binstall "${stuff}" --no-confirm
 done
 
 # Brew
