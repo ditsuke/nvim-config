@@ -22,8 +22,11 @@ brew_stuff=(
     "sd"
     "wireshark"
     "zoxide" # `z` in rust -- navigate the filesystem fast
+	"kondo" # save space by cleaning up dev files (node_modules et al)
     "zsh-completions"
     "postgresql@14"
+	## devops
+	"flyctl"
     ## build tools
     "cmake"
     "ninja"
@@ -31,6 +34,7 @@ brew_stuff=(
     ## compilers
     "protobuf"
     "openjdk@17"
+	"go"
 )
 
 cargo_stuff=(
