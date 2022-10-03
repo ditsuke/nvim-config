@@ -10,11 +10,11 @@ depends = []
 "bash/.bashrc" = "~/.bashrc"
 # overrides
 "nvim" = "~/AppData/local/nvim"
-## TOOD: add unix paths in global.toml
 "gitui" = "~/AppData/Roaming/gitui"
-"fselect/config.toml" = "~/AppData/Roaming/jhspetersson/fselect/config.toml"
 "discord/settings.json" = "~/AppData/Roaming/discord/settings.json"
+"fselect/config.toml" = "~/AppData/Roaming/jhspetersson/fselect/config.toml"
 "broot" = "~/AppData/Roaming/dystroy/broot/config"
 "github-cli/config.yml" = "~/AppData/Roaming/Github CLI/config.yml"
+## TOOD: add unix paths in global.toml
 "ripcord/settings.ini" = "~/AppData/Local/Ripcord/settings.ini"
 
