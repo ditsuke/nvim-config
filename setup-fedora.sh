@@ -54,6 +54,7 @@ dnf_stuff=(
     "gnome-extensions-app"
     "gnome-shell-extension-user-theme"
     "ulauncher"
+	"howdy"
     "ffmpeg"
     "xsel" # interface with the system clipboard. neovim uses this as the clipboard provider.
     "pop-shell" # tiling extension from Pop OS!
@@ -103,6 +104,9 @@ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-rele
 
 ### RPM Fusion Non-free
 sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
+
+### COPR Repo for Howdy
+sudo dnf copr enable principis/howdy
 
 ## Installs
 for stuff in "${dnf_stuff[@]}"; do
