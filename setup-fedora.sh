@@ -3,12 +3,14 @@
 #################-- Stuff we're going to install --#################
 brew_stuff=(
     "gh"
+	"fx"
     "neovim"
     "micro"
     "croc"
     "gitui"
     "bat" # cat clone with syntax highlighting
     "bit"
+	"htop" # interactive top -- process monitor
     "bottom" # system monitor
     "broot"
     "dust" # An intuitive `du` alternative
@@ -22,11 +24,15 @@ brew_stuff=(
     "sd"
     "wireshark"
     "zoxide" # `z` in rust -- navigate the filesystem fast
+	"isacikgoz/taps/tldr" # tldr -- simplified manpages
 	"kondo" # save space by cleaning up dev files (node_modules et al)
+	"neofetch" # quick system info
     "zsh-completions"
     "postgresql@14"
+	"direnv" # load environment variables from .envrc and .env files, recursively from CWD
 	## devops
 	"flyctl"
+	## dev-deps
     ## build tools
     "cmake"
     "ninja"
@@ -65,10 +71,13 @@ dnf_stuff=(
     "docker"
     "docker-compose"
     "tlp" # Optimise better life
+	"bluez" # bluetooth from the cli (?)
     "perl"
+	"kolourpaint" # KDE's image editor
     
     ## build deps
     "gcc-c++"
+	"cyrus-sasl-devel"
     "libinput-devel"
     "systemd-devel"
     "libgtop2-devel"
@@ -139,6 +148,9 @@ done
 
 # Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+## Taps
+brew tap isacikgoz/taps
 
 ## Installs with brew
 for stuff in "${brew_stuff[@]}"; do
