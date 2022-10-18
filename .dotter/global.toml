@@ -12,7 +12,7 @@ depends = []
 "tmux.conf" = "~/.tmux.conf"
 "gitui" = "~/.config/gitui"
 # discord with flatpak -- probably should be factored to a project
-"discord/settings.json" = "./.var/app/com.discordapp.Discord/config/discord/settings.json"
+"discord/settings.json" = { target = "~/.var/app/com.discordapp.Discord/config/discord/settings.json", type = "template" }
 "fselect/config.toml" = "~/.config/fselect/config.toml"
 "broot" = "~/.config/broot/config.hjson"
 "github-cli/config.yml" = "~/.config/gh/config.yaml"
