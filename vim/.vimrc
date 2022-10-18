@@ -60,7 +60,7 @@ set backspace=indent,eol,start
 
 " Autoswitch hybrid/absolute line numbers
 " source: https://jeffkreeftmeijer.com/vim-number/
-:set number relativenumber
+set number relativenumber
 
 " :augroup numbertoggle
 " :  autocmd!
