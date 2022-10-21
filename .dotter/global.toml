@@ -16,10 +16,10 @@ depends = []
 "fselect/config.toml" = "~/.config/fselect/config.toml"
 "broot" = "~/.config/broot/config.hjson"
 "github-cli/config.yml" = "~/.config/gh/config.yaml"
+"glow" = "~/.config/glow"
 
 [default.variables]
 git_name = "ditsuke"
 git_email = "ditsuke@protonmail.com"
 gpg_key_id = "8fd2153f4889541a54f1e09e71b6c31c8a5a9d21"
 gpg_binary = "/usr/bin/gpg"
-
