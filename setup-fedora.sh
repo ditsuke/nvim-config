@@ -15,6 +15,7 @@ brew_stuff=(
     "broot"
     "dust" # An intuitive `du` alternative
     "fd"
+	"exa" # modern alternative to ls -- better colors, more attributes and git-aware
     "fselect" # file-finder with SQL-like queries
     "fzf"
     "glow"
@@ -74,6 +75,7 @@ dnf_stuff=(
 	"bluez" # bluetooth from the cli (?)
     "perl"
 	"kolourpaint" # KDE's image editor
+	"strace" # trace processes
     
     ## build deps
     "gcc-c++"
@@ -87,7 +89,8 @@ dnf_stuff=(
 )
 
 pipx_stuff=(
-    "tldr" # simplified `man` for cli apps.
+	"grip" # preview github-flavored markdown
+	"awscli" # TODO: update to awscli-v2 (either that, or official installation -- can't do with pipx)
 )
 
 flathub_stuff=(
