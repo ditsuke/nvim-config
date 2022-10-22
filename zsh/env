@@ -1,0 +1,26 @@
+# Environment
+
+## ZSH Config Path
+#export ZDOTDIR="$HOME/.config/zsh"
+
+## Prefs
+export EDITOR="$(which nvim)"
+export PAGER=less
+
+## PATH
+
+### Homebrew
+HOMEBREW_DIR=/home/linuxbrew/.linuxbrew
+PATH="$PATH:${HOMEBREW_DIR}/bin:${HOMEBREW_DIR}/sbin"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+### Cargo
+. "$HOME/.cargo/env"
+
+## Local env
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
