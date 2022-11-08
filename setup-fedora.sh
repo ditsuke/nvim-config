@@ -3,19 +3,19 @@
 #################-- Stuff we're going to install --#################
 brew_stuff=(
     "gh"
-	"fx"
+    "fx"
     "neovim"
     "micro"
     "croc"
     "gitui"
     "bat" # cat clone with syntax highlighting
     "bit"
-	"htop" # interactive top -- process monitor
+    "htop" # interactive top -- process monitor
     "bottom" # system monitor
     "broot"
     "dust" # An intuitive `du` alternative
     "fd"
-	"exa" # modern alternative to ls -- better colors, more attributes and git-aware
+    "exa" # modern alternative to ls -- better colors, more attributes and git-aware
     "fselect" # file-finder with SQL-like queries
     "fzf"
     "glow"
@@ -25,23 +25,26 @@ brew_stuff=(
     "sd"
     "wireshark"
     "zoxide" # `z` in rust -- navigate the filesystem fast
-	"isacikgoz/taps/tldr" # tldr -- simplified manpages
-	"kondo" # save space by cleaning up dev files (node_modules et al)
-	"neofetch" # quick system info
+    "isacikgoz/taps/tldr" # tldr -- simplified manpages
+    "kondo" # save space by cleaning up dev files (node_modules et al)
+    "neofetch" # quick system info
     "zsh-completions"
     "postgresql@14"
-	"direnv" # load environment variables from .envrc and .env files, recursively from CWD
-	## devops
-	"flyctl"
-	## dev-deps
+    "direnv" # load environment variables from .envrc and .env files, recursively from CWD
+    ## devops
+    "flyctl"
+    "awscli"
+    "terraform"
+    ## dev-deps
     ## build tools
     "cmake"
     "ninja"
     "meson"
     ## compilers
     "protobuf"
+    "bufbuild/buf/buf" # Tooling for protobufs -- dep management, linting and generation all in one binary.
     "openjdk@17"
-	"go"
+    "go"
 )
 
 cargo_binstall_stuff=(
@@ -61,7 +64,7 @@ dnf_stuff=(
     "gnome-extensions-app"
     "gnome-shell-extension-user-theme"
     "ulauncher"
-	"howdy"
+    "howdy"
     "ffmpeg"
     "xsel" # interface with the system clipboard. neovim uses this as the clipboard provider.
     "pop-shell" # tiling extension from Pop OS!
@@ -72,14 +75,15 @@ dnf_stuff=(
     "docker"
     "docker-compose"
     "tlp" # Optimise better life
-	"bluez" # bluetooth from the cli (?)
+    "bluez" # bluetooth from the cli (?)
     "perl"
-	"kolourpaint" # KDE's image editor
-	"strace" # trace processes
+    "kolourpaint" # KDE's image editor
+    "strace" # trace processes
+    "tailscale" # easy mesh VPN++
     
     ## build deps
     "gcc-c++"
-	"cyrus-sasl-devel"
+    "cyrus-sasl-devel"
     "libinput-devel"
     "systemd-devel"
     "libgtop2-devel"
@@ -89,8 +93,8 @@ dnf_stuff=(
 )
 
 pipx_stuff=(
-	"grip" # preview github-flavored markdown
-	"awscli" # TODO: update to awscli-v2 (either that, or official installation -- can't do with pipx)
+    "grip" # preview github-flavored markdown
+    "howdoi"
 )
 
 flathub_stuff=(
@@ -99,6 +103,7 @@ flathub_stuff=(
     "org.gnome.Extensions"
     "com.slack.Slack"
     "com.sublimemerge.App"
+    "com.getpostman.Postman"
 )
 
 ####################################################################
@@ -120,10 +125,16 @@ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfre
 ### COPR Repo for Howdy
 sudo dnf copr enable principis/howdy
 
+### Tailscale
+sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+
 ## Installs
 for stuff in "${dnf_stuff[@]}"; do
     sudo dnf install "${stuff}" -y
 done
+
+### Services
+sudo systemctl enable --now tailscaled
 
 # ohmyzsh for a _delightful_ ZSH experience. In all seriousness consider alternatives like prezto
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
