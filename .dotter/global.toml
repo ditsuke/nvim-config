@@ -10,7 +10,8 @@ depends = []
 "powershell" = "~/.powershell"
 "zsh/rc" = "~/.zshrc"
 "zsh/env" = "~/.zshenv"
-"nvim" = "~/.config/nvim"
+# "nvim" = "~/.config/nvim" -- astronvim takes over the main vim config
+"astronvim" = "~/.config/astronvim"
 "tmux.conf" = "~/.tmux.conf"
 "gitui" = "~/.config/gitui"
 # discord with flatpak -- probably should be factored to a project
