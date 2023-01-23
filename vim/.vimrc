@@ -48,6 +48,8 @@ set cursorline
 " Style line highlight
 highlight CursorLine	cterm=NONE ctermbg=darkred ctermfg=white
 
+" Style for matching paranthesis
+highlight MatchParen gui=bold guibg=#666666 guifg=#cfafbf cterm=bold ctermbg=NONE
 " 4 spaces/tab by default
 set tabstop=4
 set shiftwidth=4
@@ -69,6 +71,24 @@ set number relativenumber
 " :augroup END
 
 " Switch tabs with H and L
-nnoremap H gT
-nnoremap L gt
+" nnoremap H gT
+" nnoremap L gt
 
+" Switch tabs with alt-right/left
+
+" Remaps
+
+" Move selected lines up and down OMG
+vnoremap J :move '>+1<CR><CR>gv
+vnoremap K :move '<-2<CR><CR>gv
+
+" Center after up/down
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Keep cursor in place on line join
+nnoremap J mzJ`z
+
+" Center on search browse`
+nnoremap n nzzzv
+nnoremap N Nzzzv
