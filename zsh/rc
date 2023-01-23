@@ -83,6 +83,8 @@ plugins=(
 	sudo
 	themes # TODO: remove. allows switching zsh themes on-the-fly with `lstheme` and `theme [name]`
 	zsh-interactive-cd
+	aws
+	docker
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -122,7 +124,8 @@ alias l="exa --long --all --header"
 alias dust="dust --reverse"
 alias fzf="fzf --layout=reverse --height='30%'"
 alias fzfp="fzf --preview='bat {}'"
-alias fzf-edit="$EDITOR \"\$(fzf)\""
+alias edit-fzf="$EDITOR \"\$(fzf)\""
+alias e="$EDITOR"
 
 ### Habits from windows land and more
 alias where="which"
@@ -160,9 +163,29 @@ eval "$(starship init zsh)"
 source "$HOME/.config/broot/launcher/bash/br"
 
 ## Completions
+### Brew
 if type brew &>/dev/null; then
 	FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 	autoload -Uz compinit
 	compinit
 fi
+### pipx
+eval "$(register-python-argcomplete pipx)"
+
+## Functions
+
+### Download a m3u8 playlist
+function download_m3u8 {
+  # $1 is the URL of the m3u8 playlist
+  # $2 is the output file name
+
+  # Check if the URL and output file name are provided
+  if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: download_m3u8 <URL of m3u8 playlist> <output file name>"
+    return
+  fi
+
+  # Download the m3u8 playlist using ffmpeg with the protocol whitelist flag
+  ffmpeg -protocol_whitelist "file,http,https,tcp,tls,crypto" -i $1 -c copy -bsf:a aac_adtstoasc $2
+}
 
