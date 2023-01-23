@@ -2,17 +2,20 @@
 
 #################-- Stuff we're going to install --#################
 brew_stuff=(
-    "gh"
-    "fx"
+    "7zip"
+    "gh" # GitHub CLI
+    "fx" # Interactive JSON browser
     "neovim"
-    "micro"
+    "micro" # Simple(r) CLI text editor
+    "tmate" # Instant terminal sharing :-:
     "croc"
-    "gitui"
+    "gitui" # Intuitive TUI for git.
     "bat" # cat clone with syntax highlighting
     "bit"
     "htop" # interactive top -- process monitor
     "bottom" # system monitor
-    "broot"
+    "broot" # CLI filesystem explorer and launcher
+    "llama" # CLI file manager, quick launcher. Very simple, very nice
     "dust" # An intuitive `du` alternative
     "fd"
     "exa" # modern alternative to ls -- better colors, more attributes and git-aware
@@ -31,20 +34,23 @@ brew_stuff=(
     "zsh-completions"
     "postgresql@14"
     "direnv" # load environment variables from .envrc and .env files, recursively from CWD
+    "ghq" # Manage remote git repositories
     ## devops
     "flyctl"
     "awscli"
     "terraform"
-    ## dev-deps
     ## build tools
     "cmake"
     "ninja"
     "meson"
+    "docker-buildx" # TODO: remove this
     ## compilers
     "protobuf"
     "bufbuild/buf/buf" # Tooling for protobufs -- dep management, linting and generation all in one binary.
     "openjdk@17"
     "go"
+    ## dev-deps
+    "golangci-lint"
 )
 
 cargo_binstall_stuff=(
@@ -57,29 +63,49 @@ cargo_binstall_stuff=(
 
 dnf_stuff=(
     "zsh"
-    "code"
-    "python3-pip" # use pip to install pipx
+    "python3-pip" # use pip to install pipx :D
     "sqlite3" # some dnf shell-completions need sqlite
-    "gnome-tweaks"
-    "gnome-extensions-app"
-    "gnome-shell-extension-user-theme"
-    "ulauncher"
-    "howdy"
+    "howdy" # Windows Hello-like facial recognition for Linux
     "ffmpeg"
     "xsel" # interface with the system clipboard. neovim uses this as the clipboard provider.
-    "pop-shell" # tiling extension from Pop OS!
-    "evolution" # mail client
-    "ripcord" # a lightweight native discord client
     "cronie" # crontab
-    "gammastep" # color temp, brightness control
+    "gammastep" # color temp, brightness control | ! Mark
     "docker"
     "docker-compose"
     "tlp" # Optimise better life
     "bluez" # bluetooth from the cli (?)
-    "perl"
-    "kolourpaint" # KDE's image editor
     "strace" # trace processes
     "tailscale" # easy mesh VPN++
+    "wev" # wayland input viewer -- installed while I'm debugging the input lag/misses on AC
+    "dconf-editor" # Edit the dconf k-v store with a GUI
+    "qalc" # CLI calculator, hooks up to frontends. Used by pop-launcher
+    "xprop" # Manage window and font properties on X servers. Needed by the Unite shell extension.
+
+    ## TUIs
+    "powertop" # Monitor and diagnose issues with battery usage.
+    "joshuto" # Ranger-like file management TUI written in Rust
+
+    ## Language support
+    "perl"
+
+    ## Gnome shell extensions
+    "gnome-shell-extension-user-theme"
+    "pop-shell" # tiling extension from Pop OS!
+
+    ## GUI apps
+    "code" # VSCode, because yes
+    "kolourpaint" # KDE's image editor | ! mark for removal
+    "gnome-tweaks"
+    "gnome-extensions-app"
+    "gnome-power-manager"
+    "ulauncher"
+    "evolution" # mail client
+    "ripcord" # a lightweight native discord client
+    "kdiskmark" # SSD benchmarking tool, like CrystalDiskMark but on Linux
+    "kitty" # A better terminal emulator
+    "nsxiv" # Simple, suckless image viewer (GUI)
+    "uget" # Download manager
+
     
     ## build deps
     "gcc-c++"
@@ -95,15 +121,20 @@ dnf_stuff=(
 pipx_stuff=(
     "grip" # preview github-flavored markdown
     "howdoi"
+    "poetry"
 )
 
 flathub_stuff=(
     "md.obsidian.Obsidian"
     "com.discordapp.Discord"
+    "org.telegram.desktop"
     "org.gnome.Extensions"
     "com.slack.Slack"
     "com.sublimemerge.App"
     "com.getpostman.Postman"
+    "io.bassi.Amberol"
+    "gg.guilded.Guilded"
+    "com.mattjakeman.ExtensionManager" # Manage gnome shell extensions?
 )
 
 ####################################################################
@@ -123,7 +154,13 @@ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-rele
 sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
 
 ### COPR Repo for Howdy
-sudo dnf copr enable principis/howdy
+sudo dnf copr enable principis/howdy -y
+
+### COPR Repo for Jushuto
+sudo dnf copr enable atim/joshuto -y
+
+### COPR Repo for nsxiv
+sudo dnf copr enable mamg22/nsxiv
 
 ### Tailscale
 sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
@@ -185,6 +222,9 @@ APPIMAGELAUNCHER="appimagelauncher.rpm"
 wget
 "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.$(uname -m).rpm" --output-document /tmp/$APPIMAGELAUNCHER
 sudo dnf install /tmp/$APPIMAGELAUNCHER
+
+## Jetbrains Toolbox
+curl -fsSL https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh | sudo bash
 
 # Misc
 
