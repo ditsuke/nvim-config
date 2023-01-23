@@ -208,10 +208,16 @@ local config = {
                         ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
                         -- quick save
                         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+                        ["<leader>fs"] = { "<cmd>Telescope lsp_workspace_symbols<cr>",
+                                desc = "Search and preview workspace symbols provided by LSP" },
+                        ["<leader>fa"] = { "<cmd>Telescope commands<cr>",
+                                desc = "Search commands (like the command palette?)" },
+                        ["<F60>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
                 },
                 t = {
                         -- setting a mapping to false will disable it
                         -- ["<esc>"] = false,
+                        ["<F60>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
                 },
         },
 
@@ -254,6 +260,28 @@ local config = {
                         },
                         {
                                 "justinmk/vim-sneak"
+                        },
+                        {
+                                "Djancyp/better-comments.nvim",
+                                config = function()
+                                        require("better-comment").Setup()
+                                end,
+                        },
+                        {
+                                "wakatime/vim-wakatime"
+                        },
+                        {
+                                "zbirenbaum/copilot.lua",
+                                cmd = "Copilot",
+                                event = "VimEnter",
+                                config = function()
+                                        vim.defer_fn(function()
+                                                require("copilot").setup()
+                                        end, 100)
+                                end,
+                        },
+                        {
+                                "zbirenbaum/copilot-cmp"
                         }
                 },
                 -- All other entries override the require("<key>").setup({...}) call for default plugins
@@ -375,6 +403,8 @@ local config = {
                 -- }
                 vim.cmd('source ' .. '~/.vimrc')
                 vim.cmd('colorscheme default_theme')
+                local copilot_options = { silent = true, expr = true, script = true }
+                vim.api.nvim_set_keymap("i", "<M-CR>", "copilot#Accept(<Tab>)", copilot_options)
         end,
 }
 
