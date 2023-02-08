@@ -10,8 +10,8 @@ depends = []
 "powershell" = "~/.powershell"
 "zsh/rc" = "~/.zshrc"
 "zsh/env" = "~/.zshenv"
-# "nvim" = "~/.config/nvim" -- astronvim takes over the main vim config
-"astronvim" = "~/.config/astronvim"
+"nvim" = "~/.config/nvim"
+# "astronvim" = "~/.config/astronvim"
 "tmux.conf" = "~/.tmux.conf"
 "gitui" = "~/.config/gitui"
 # discord with flatpak -- probably should be factored to a project
@@ -20,9 +20,17 @@ depends = []
 "broot" = "~/.config/broot/config.hjson"
 "github-cli/config.yml" = "~/.config/gh/config.yaml"
 "glow" = "~/.config/glow"
+"ipython/ipython_config.py" = "~/.ipython/profile_default/ipython_config.py"
 
 [default.variables]
 git_name = "ditsuke"
 git_email = "ditsuke@protonmail.com"
 gpg_key_id = "8fd2153f4889541a54f1e09e71b6c31c8a5a9d21"
 gpg_binary = "/usr/bin/gpg"
+
+[fedora-gnome]
+depends = []
+
+[fedora-gnome.files]
+"dconf/settings.ini" = "~/.config/dconf/settings.ini"
+
