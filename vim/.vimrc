@@ -30,14 +30,15 @@ set ruler
 " Cursor movements wrap
 set whichwrap=<,>,h,l
 
+" TODO: cmd to enable wrap and textwidth (basically a note mode)
 " Wrap by default
-set wrap
+" set wrap
+"
+" Force wrap on 80 chars
+"set textwidth=80
 
 " No wrapping in the middle of a word
 set linebreak
-
-" Force wrap on 80 chars -- @todo disable by default?
-set textwidth=80
 
 " Enable syntax highlighting
 syntax on
@@ -82,13 +83,21 @@ set number relativenumber
 vnoremap J :move '>+1<CR><CR>gv
 vnoremap K :move '<-2<CR><CR>gv
 
-" Center after up/down
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
+" " Center after up/down
+" nnoremap <C-d> <C-d>zz
+" nnoremap <C-u> <C-u>zz
+"
+" " Center on search browse`
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
 
 " Keep cursor in place on line join
 nnoremap J mzJ`z
 
+" Center after up/down
+nnoremap <C-d> <Cmd>call smoothie#do("\<C-D>zz")<CR>
+nnoremap <C-u> <Cmd>call smoothie#do("\<C-U>zz")<CR>
 " Center on search browse`
-nnoremap n nzzzv
-nnoremap N Nzzzv
+nnoremap n <Cmd>call smoothie#do('nzzzv')<CR>
+nnoremap N <Cmd>call smoothie#do('Nzzzv')<CR>
+
