@@ -1,5 +1,8 @@
 return {
   "nvim-telescope/telescope.nvim",
+  keys = {
+    { "<leader>bs", require("telescope.builtin").buffers, desc = "Buffer Search" },
+  },
   opts = function(_, opts)
     local actions = require("telescope.actions")
     if opts.defaults == nil then
