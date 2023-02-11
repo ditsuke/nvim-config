@@ -10,6 +10,7 @@ brew_stuff=(
     "tmate" # Instant terminal sharing :-:
     "croc"
     "gitui" # Intuitive TUI for git.
+    "lazygit" # Another TUI for git, even more powerful than `gitui`
     "bat" # cat clone with syntax highlighting
     "bit"
     "htop" # interactive top -- process monitor

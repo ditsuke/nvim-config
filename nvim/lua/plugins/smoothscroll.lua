@@ -7,5 +7,7 @@ return {
     { "<C-U>", '<Cmd>call smoothie#do("<C-U>zz")<CR>' },
     { "n", '<Cmd>call smoothie#do("nzz")<CR>' },
     { "N", '<Cmd>call smoothie#do("Nzz")<CR>' },
+    { "gg", '<Cmd>call smoothie#do("gg")<CR>' },
+    { "G", '<Cmd>call smoothie#do("G")<CR>' },
   },
 }
