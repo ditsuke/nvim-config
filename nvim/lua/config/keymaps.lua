@@ -16,8 +16,13 @@ vim.keymap.set("n", "N", "Nzz")
 -- ===================
 
 -- Navigate tab completion w/ <C-j> and <C-k>
-vim.keymap.set("c", "<C-j>", 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true })
-vim.keymap.set("c", "<C-k>", 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true })
+-- TODO: noremap = true
+vim.keymap.set("c", "<C-k>", function()
+  return vim.fn.pumvisible() == 1 and "<C-p>" or "<Up>"
+end, { expr = true })
+vim.keymap.set("c", "<C-j>", function()
+  return vim.fn.pumvisible() == 1 and "<C-n>" or "<Down>"
+end, { expr = true })
 
 -- ===================
 -- Behavior
