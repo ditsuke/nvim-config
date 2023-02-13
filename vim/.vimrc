@@ -51,6 +51,7 @@ highlight CursorLine	cterm=NONE ctermbg=darkred ctermfg=white
 
 " Style for matching paranthesis
 highlight MatchParen gui=bold guibg=#666666 guifg=#cfafbf cterm=bold ctermbg=NONE
+
 " 4 spaces/tab by default
 set tabstop=4
 set shiftwidth=4
@@ -61,10 +62,11 @@ set smarttab
 " Allow backspace to function as usual
 set backspace=indent,eol,start
 
-" Autoswitch hybrid/absolute line numbers
 " source: https://jeffkreeftmeijer.com/vim-number/
 set number relativenumber
 
+" TODO: refine this autocmd for use with vim,nvim
+" !: Autoswitch hybrid/absolute line numbers
 " :augroup numbertoggle
 " :  autocmd!
 " :  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
@@ -72,8 +74,8 @@ set number relativenumber
 " :augroup END
 
 " Switch tabs with H and L
-" nnoremap H gT
-" nnoremap L gt
+nnoremap H gT
+nnoremap L gt
 
 " Switch tabs with alt-right/left
 
@@ -83,21 +85,13 @@ set number relativenumber
 vnoremap J :move '>+1<CR><CR>gv
 vnoremap K :move '<-2<CR><CR>gv
 
-" " Center after up/down
-" nnoremap <C-d> <C-d>zz
-" nnoremap <C-u> <C-u>zz
-"
-" " Center on search browse`
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
+" Center after up/down
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Center on search browse`
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " Keep cursor in place on line join
 nnoremap J mzJ`z
-
-" Center after up/down
-nnoremap <C-d> <Cmd>call smoothie#do("\<C-D>zz")<CR>
-nnoremap <C-u> <Cmd>call smoothie#do("\<C-U>zz")<CR>
-" Center on search browse`
-nnoremap n <Cmd>call smoothie#do('nzzzv')<CR>
-nnoremap N <Cmd>call smoothie#do('Nzzzv')<CR>
-
