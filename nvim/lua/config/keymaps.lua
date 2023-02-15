@@ -23,17 +23,23 @@ vim.keymap.set("n", "N", "Nzz")
 --- @param mode string  Mode shortstring
 --- @param lhs  string  LHS
 --- @param rhs  string  RHS
+--- @param fb   string|nil  Fallback key triggered on popup absence.
+---                         If `nil`, `lhs` is triggered instead.
 ---
 --- @see https://vim.fandom.com/wiki/Improve_completion_popup_menu
-local function map_if_pumvisible(mode, lhs, rhs)
+local function map_if_pumvisible_else(mode, lhs, rhs, fb)
   vim.keymap.set(mode, lhs, function()
-    return vim.fn.pumvisible() == 1 and rhs or lhs
+    return vim.fn.pumvisible() == 1 and rhs or fb or lhs
   end, { expr = true, noremap = true })
 end
 
+local function map_if_pumvisible(mode, lhs, rhs)
+  map_if_pumvisible_else(mode, lhs, rhs, nil)
+end
+
 -- Better command-completion mappings
-map_if_pumvisible("c", "<C-k>", "<C-p>")
-map_if_pumvisible("c", "<C-j>", "<C-n>")
+map_if_pumvisible_else("c", "<C-k>", "<C-p>", "<Up>")
+map_if_pumvisible_else("c", "<C-j>", "<C-n>", "<Down>")
 map_if_pumvisible("c", "<Esc>", "<C-e>")
 map_if_pumvisible("c", "<CR>", "<C-y>")
 

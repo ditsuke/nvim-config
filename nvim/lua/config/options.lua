@@ -5,3 +5,4 @@
 local opt = vim.opt
 
 opt.clipboard = "" -- **Do not** sync with the system clipboard
+opt.mouse = "v" -- Disable mouse support by default
