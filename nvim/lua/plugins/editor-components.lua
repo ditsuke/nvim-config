@@ -28,10 +28,30 @@ return {
   {
     -- Extensible fuzzy searcher for files, buffers, and virtually everything else
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && \
+        cmake --build build --config Release && \
+        cmake --install build --prefix build",
+      },
+    },
     keys = {
       { "<leader>bs", require("telescope.builtin").buffers, desc = "Buffer Search" },
     },
     opts = function(_, opts)
+      local extensions = {
+        fzf = {
+          fuzzy = true, -- false will only do exact matching
+          override_generic_sorter = true, -- override the generic sorter
+          override_file_sorter = true, -- override the file sorter
+          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+          -- the default case_mode is "smart_case"
+        },
+      }
+      vim.tbl_extend("force", extensions, opts.extensions or {})
+      opts.extensions = extensions
+
       local actions = require("telescope.actions")
       if opts.defaults == nil then
         opts.defaults = {}
@@ -48,6 +68,9 @@ return {
       mappings.i["<C-p>"] = actions.cycle_history_prev
       mappings.i["<C-J>"] = actions.move_selection_next
       mappings.i["<C-K>"] = actions.move_selection_previous
+    end,
+    init = function()
+      require("telescope").load_extension("fzf")
     end,
   },
   {
