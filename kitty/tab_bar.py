@@ -66,10 +66,10 @@ def _draw_left_status(
     draw_data: DrawData,
     screen: Screen,
     tab: TabBarData,
-    before: int,
-    max_title_length: int,
+    _before: int,
+    _max_title_length: int,
     index: int,
-    is_last: bool,
+    _is_last: bool,
     extra_data: ExtraData,
 ) -> int:
     if screen.cursor.x >= screen.columns - right_status_length:
@@ -128,33 +128,29 @@ def _redraw_tab_bar(_):
 
 
 def get_battery_cells() -> list:
+    def status_comparator(x):
+        return abs(x - percent)
+
     try:
-        with open("/sys/class/power_supply/BAT0/status", "r") as f:
+        with open("/sys/class/power_supply/CMB0/status", "r") as f:
             status = f.read()
-        with open("/sys/class/power_supply/BAT0/capacity", "r") as f:
+        with open("/sys/class/power_supply/CMB0/capacity", "r") as f:
             percent = int(f.read())
         if status == "Discharging\n":
-            # TODO: declare the lambda once and don't repeat the code
             icon_color = UNPLUGGED_COLORS[
-                min(UNPLUGGED_COLORS.keys(), key=lambda x: abs(x - percent))
+                min(UNPLUGGED_COLORS.keys(), key=status_comparator)
             ]
-            icon = UNPLUGGED_ICONS[
-                min(UNPLUGGED_ICONS.keys(), key=lambda x: abs(x - percent))
-            ]
+            icon = UNPLUGGED_ICONS[min(UNPLUGGED_ICONS.keys(), key=status_comparator)]
         elif status == "Not charging\n":
             icon_color = UNPLUGGED_COLORS[
-                min(UNPLUGGED_COLORS.keys(), key=lambda x: abs(x - percent))
+                min(UNPLUGGED_COLORS.keys(), key=status_comparator)
             ]
-            icon = PLUGGED_ICONS[
-                min(PLUGGED_ICONS.keys(), key=lambda x: abs(x - percent))
-            ]
+            icon = PLUGGED_ICONS[min(PLUGGED_ICONS.keys(), key=status_comparator)]
         else:
             icon_color = PLUGGED_COLORS[
-                min(PLUGGED_COLORS.keys(), key=lambda x: abs(x - percent))
+                min(PLUGGED_COLORS.keys(), key=status_comparator)
             ]
-            icon = PLUGGED_ICONS[
-                min(PLUGGED_ICONS.keys(), key=lambda x: abs(x - percent))
-            ]
+            icon = PLUGGED_ICONS[min(PLUGGED_ICONS.keys(), key=status_comparator)]
         percent_cell = (bat_text_color, str(percent) + "% ")
         icon_cell = (icon_color, icon)
         return [percent_cell, icon_cell]
@@ -164,6 +160,7 @@ def get_battery_cells() -> list:
 
 timer_id = None
 right_status_length = -1
+
 
 def draw_tab(
     draw_data: DrawData,
@@ -182,6 +179,7 @@ def draw_tab(
     clock = datetime.now().strftime(" %H:%M")
     date = datetime.now().strftime(" %d.%m.%Y")
     cells = get_battery_cells()
+    print(f"cells gotten from get_battery_cells: {cells}")
     cells.append((clock_color, clock))
     cells.append((date_color, date))
     right_status_length = RIGHT_MARGIN
@@ -205,4 +203,3 @@ def draw_tab(
         cells,
     )
     return screen.cursor.x
-
