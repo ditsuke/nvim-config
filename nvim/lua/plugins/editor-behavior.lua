@@ -13,4 +13,12 @@ return {
       { "G", '<Cmd>call smoothie#do("G")<CR>' },
     },
   },
+  {
+    -- Only highlight cursorline of the active window
+    -- Makes it easier to tell what window is active in the
+    -- Absence of a prominent cursor (such as with lighter-colored themes)
+    "tummetott/reticle.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }
