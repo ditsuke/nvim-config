@@ -79,12 +79,17 @@ return {
     "katawful/kat.nvim",
     event = "VeryLazy",
   },
+  {
+    "catppuccin/nvim",
+    event = "VeryLazy",
+    name = "catppuccin",
+  },
 
   -- Configure LazyVim to load oxocarbon
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oxocarbon",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
