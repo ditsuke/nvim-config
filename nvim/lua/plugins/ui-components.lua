@@ -12,8 +12,8 @@ return {
     opts = function(_, lop)
       local NON_LSP_CLIENTS = { "", "copilot", "null-ls" }
       local FILESTATUS_SYMBOLS = { modified = "  ", readonly = "", unnamed = "" }
-
       local navic = require("nvim-navic")
+
       local cwd = function()
         local path = vim.split(vim.fn.getcwd(), "/", {})
         return path[#path]
@@ -27,6 +27,10 @@ return {
         end
       end
 
+      local window_number = function()
+        return "Win: " .. vim.api.nvim_win_get_number(0)
+      end
+
       local winbar = {
         lualine_a = {
           { "filename", path = 0, symbols = FILESTATUS_SYMBOLS },
@@ -34,10 +38,14 @@ return {
         lualine_b = {
           { navic.get_location, cond = navic.is_available },
         },
+        lualine_x = {
+          window_number,
+        },
       }
 
       local inactive_winbar = {
         lualine_a = winbar.lualine_a,
+        lualine_x = winbar.lualine_x,
       }
 
       local sections = {

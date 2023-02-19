@@ -12,6 +12,13 @@ vim.keymap.set("n", "n", "nzz")
 vim.keymap.set("n", "N", "Nzz")
 
 -- ===================
+-- Window navigation
+-- ===================
+for i = 1, 6 do
+  vim.keymap.set("n", "<leader>" .. i, i .. "<C-w>W", { desc = "Jump to window " .. i })
+end
+
+-- ===================
 -- QoL and consistency
 -- ===================
 
