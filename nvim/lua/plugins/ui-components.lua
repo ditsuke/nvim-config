@@ -1,10 +1,10 @@
 return {
-  -- TODO: review placement of diagnostics
-  -- TODO: figure out a better strategy for filename -- currently
-  --       winbar carries the bare filename while the statusline
-  --       carries the full path
-  -- TODO: add copilot button/icon that checks for activity
   {
+    -- TODO: review placement of diagnostics
+    -- TODO: figure out a better strategy for filename -- currently
+    --       winbar carries the bare filename while the statusline
+    --       carries the full path
+    -- TODO: add copilot button/icon that checks for activity
     "nvim-lualine/lualine.nvim",
     dependencies = {
       { "nvim-navic" },
@@ -78,5 +78,26 @@ return {
       lop.sections = sections
       return lop
     end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+      {
+        -- Scope buffers to tabs
+        "tiagovla/scope.nvim",
+        opts = true,
+      },
+    },
+    opts = {
+      options = {
+        separator_style = "slant",
+        always_show_bufferline = true,
+      },
+    },
+    keys = {
+      { "<leader>bj", "<Cmd>BufferLinePick<CR>", desc = "[b]uffer [j]ump" },
+      { "<S-Right>", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer right" },
+      { "<S-Left>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer left" },
+    },
   },
 }
