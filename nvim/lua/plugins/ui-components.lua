@@ -73,6 +73,14 @@ return {
         },
       }
 
+      -- On top of lazyvim's config, we disable the winbar for `neo-tree` (because lazyvim has no winbar)
+      local options = {
+        theme = "auto",
+        globalstatus = true,
+        disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" }, winbar = { "neo-tree" } },
+      }
+
+      lop.options = options
       lop.winbar = winbar
       lop.inactive_winbar = inactive_winbar
       lop.sections = sections
