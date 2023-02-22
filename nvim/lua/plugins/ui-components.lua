@@ -19,46 +19,62 @@ return {
         return path[#path]
       end
 
-      local get_active_lsp = function()
+      local get_filetype_plus_lsp = function()
+        local ft = vim.bo.filetype
         for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
           if not vim.tbl_contains(NON_LSP_CLIENTS, client.name) then
-            return "LSP: " .. client.name
+            return string.format("%s (%s)", ft, client.name)
           end
         end
+        return ft
       end
 
       local window_number = function()
-        return "Win: " .. vim.api.nvim_win_get_number(0)
+        return vim.api.nvim_win_get_number(0)
       end
 
       local winbar = {
         lualine_a = {
-          { "filename", path = 0, symbols = FILESTATUS_SYMBOLS },
+          {
+            separator = "󱋱",
+            window_number,
+            icons_enabled = true,
+            icon = { "", align = "left" },
+          },
+          {
+            "filename",
+            path = 0,
+            symbols = FILESTATUS_SYMBOLS,
+          },
         },
         lualine_b = {
           { navic.get_location, cond = navic.is_available },
-        },
-        lualine_x = {
-          window_number,
         },
       }
 
       local inactive_winbar = {
         lualine_a = winbar.lualine_a,
-        lualine_x = winbar.lualine_x,
       }
 
       local sections = {
         -- Mode
-        lualine_a = lop.sections.lualine_a,
+        lualine_a = {
+          {
+            "mode",
+            fmt = function(str)
+              return str:sub(1, 1)
+            end,
+            separator = { right = "|" },
+          },
+        },
         lualine_b = {
-          { cwd },
           -- Branch
           -- HACK: might break if lazyvim changes the order of sections
           lop.sections.lualine_b,
-          { "filename", path = 1, symbols = FILESTATUS_SYMBOLS },
+          { cwd, icons_enabled = true, icon = { "", align = "left" } },
+          { "filename", path = 1, symbols = FILESTATUS_SYMBOLS, icon = { "", align = "left" } },
         },
-        -- -- File info
+        -- File info
         lualine_c = {
           -- Diagnostics
           -- HACK: might break if lazyvim changes the order of the diagnostics
@@ -67,17 +83,16 @@ return {
 
         -- Workspace and git state
         lualine_x = lop.sections.lualine_x,
-        -- Location and filetype
         lualine_y = {
-          "progress",
-          "location",
-          "encoding",
-          "fileformat",
+          -- LSP status
+          get_filetype_plus_lsp,
         },
-        -- LSP status
+        -- Location and filetype
         lualine_z = {
-          "filetype",
-          get_active_lsp,
+          { "fileformat", separator = "" },
+          { "encoding", separator = "󰇝", padding = { right = 1 } },
+          { "location", separator = "", padding = { left = 1, right = 1 } },
+          { "progress", separator = "", padding = { right = 1 } },
         },
       }
 
@@ -85,7 +100,7 @@ return {
       local options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" }, winbar = { "neo-tree" } },
+        disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" }, winbar = { "neo-tree", "alpha" } },
       }
 
       lop.options = options
