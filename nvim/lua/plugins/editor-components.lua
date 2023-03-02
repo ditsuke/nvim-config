@@ -1,9 +1,17 @@
 return {
   {
-    -- TODO: setup
     -- Jump between files and terminals
     "ThePrimeagen/harpoon",
     event = "VeryLazy",
+    keys = function()
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      return {
+        { "m", mark.add_file },
+        { "`", ui.toggle_quick_menu },
+      }
+    end,
   },
   {
     -- File tree
