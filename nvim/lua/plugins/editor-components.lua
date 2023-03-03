@@ -302,4 +302,13 @@ return {
       }
     end,
   },
+  {
+    -- Zen mode for when I can't care for distractions
+    -- TODO: keymap for toggle
+    "folke/zen-mode.nvim",
+    dependencies = { { "folke/twilight.nvim" } },
+    opts = true,
+    -- stylua: ignore
+    keys = { { "<leader>zz", function() require("zen-mode").toggle() end } },
+  },
 }
