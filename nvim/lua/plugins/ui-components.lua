@@ -48,7 +48,7 @@ return {
           },
         },
         lualine_b = {
-          { navic.get_location, cond = navic.is_available },
+          { navic.get_location, cond = navic.is_available, separator = { right = "" } },
         },
       }
 
