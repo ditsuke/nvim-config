@@ -123,7 +123,7 @@ return {
       "f3fora/cmp-spell",
       "ray-x/cmp-treesitter",
       "saadparwaiz1/cmp_luasnip",
-      "tamago324/cmp-zsh",
+      -- "tamago324/cmp-zsh",
       "uga-rosa/cmp-dictionary",
       "amarakon/nvim-cmp-fonts",
       "onsails/lspkind.nvim",
@@ -146,9 +146,9 @@ return {
         },
       }
 
-      if vim.fn.has("win32") ~= 1 then
-        table.insert(sources[2], { name = "zsh" })
-      end
+      -- if vim.fn.has("win32") ~= 1 then
+      --   table.insert(sources[2], { name = "zsh" })
+      -- end
 
       local winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:Search"
 
@@ -291,7 +291,7 @@ return {
               treesitter = "ts",
               spell = "spel",
               dictionary = "dict",
-              zsh = "zsh",
+              -- zsh = "zsh",
               ["vim-dadbod-completion"] = "db",
             },
             symbol_map = CMP_SYMBOLS,
