@@ -1,5 +1,14 @@
 return {
   {
+    "folke/noice.nvim",
+    opts = {
+      presets = {
+        bottom_search = false,
+        lsp_doc_border = true,
+      },
+    },
+  },
+  {
     -- TODO: review placement of diagnostics
     -- TODO: figure out a better strategy for filename -- currently
     --       winbar carries the bare filename while the statusline
