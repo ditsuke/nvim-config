@@ -84,6 +84,10 @@ return {
     event = "VeryLazy",
     name = "catppuccin",
   },
+  {
+    "rose-pine/neovim",
+    event = "VeryLazy",
+  },
 
   -- Configure LazyVim to load oxocarbon
   {
