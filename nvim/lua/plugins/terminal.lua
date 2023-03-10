@@ -10,7 +10,7 @@ return {
         {
           "<F60>",
           function()
-            toggleterm.toggle(1, nil, nil, nil)
+            toggleterm.toggle(1, nil, nil, "float")
           end,
           mode = { "n", "t" },
         },
