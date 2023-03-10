@@ -88,7 +88,14 @@ return {
     "rose-pine/neovim",
     event = "VeryLazy",
   },
-
+  {
+    "hachy/eva01.vim",
+    event = "VeryLazy",
+  },
+  {
+    "igorgue/danger",
+    event = "VeryLazy",
+  },
   -- Configure LazyVim to load oxocarbon
   {
     "LazyVim/LazyVim",
