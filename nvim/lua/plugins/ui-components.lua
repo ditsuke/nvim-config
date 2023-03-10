@@ -81,7 +81,16 @@ return {
           -- HACK: might break if lazyvim changes the order of sections
           lop.sections.lualine_b,
           { cwd, icons_enabled = true, icon = { "", align = "left" } },
-          { "filename", path = 1, symbols = FILESTATUS_SYMBOLS, icon = { "", align = "left" } },
+          {
+            "filename",
+            path = 1,
+            symbols = FILESTATUS_SYMBOLS,
+            icon = { "", align = "left" },
+            -- For the love of god, don't show filepath for toggleterm buffers
+            cond = function()
+              return vim.opt.filetype["_value"] ~= "toggleterm"
+            end,
+          },
         },
         -- File info
         lualine_c = {
