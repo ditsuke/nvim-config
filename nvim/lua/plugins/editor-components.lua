@@ -1,3 +1,5 @@
+local lazyUtils = require("lazyvim.util")
+
 return {
   {
     -- Jump between files and terminals
@@ -43,9 +45,30 @@ return {
           cmake --build build --config Release && \
           cmake --install build --prefix build",
       },
+      {
+        "nvim-telescope/telescope-frecency.nvim",
+        dependencies = { { "kkharji/sqlite.lua" } },
+        config = function()
+          require("telescope").load_extension("frecency")
+        end,
+      },
+      {
+        -- Find terminals :devilous:
+        "tknightz/telescope-termfinder.nvim",
+        config = function()
+          require("telescope").load_extension("termfinder")
+        end,
+      },
     },
     keys = {
       { "<leader>bs", require("telescope.builtin").buffers, desc = "Buffer Search" },
+      {
+        "<leader>st",
+        function()
+          require("telescope").extensions.termfinder.find({})
+        end,
+        desc = "[t]erminals",
+      },
       {
         "<leader>sS",
         lazyUtils.telescope("lsp_dynamic_workspace_symbols", {
@@ -63,10 +86,20 @@ return {
         }),
       },
       {
+        "<leader>fr",
+        function()
+          require("telescope").extensions.frecency.frecency({
+            workspace = "CWD",
+          })
+        end,
+        desc = "[r]ecent",
+      },
+      {
         "<leader>tr",
         function()
           require("telescope.builtin").resume()
         end,
+        desc = "[r]esume",
       },
     },
     opts = function(_, opts)
@@ -80,9 +113,14 @@ return {
         -- the default case_mode is "smart_case"
       }
 
+      local frecency_opts = {
+        db_root = "~/.local/share/nvim",
+      }
+
       local overrides = {
         extensions = {
           fzf = fzf_opts,
+          frecency = frecency_opts,
         },
         pickers = {
           lsp_dynamic_workspace_symbols = {
