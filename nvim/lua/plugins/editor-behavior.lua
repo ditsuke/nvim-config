@@ -3,6 +3,7 @@ return {
   {
     -- Smooth-scrolling!
     "psliwka/vim-smoothie",
+    enabled = false,
     event = "BufReadPost",
     keys = {
       { "<C-D>", '<Cmd>call smoothie#do("<C-D>zz")<CR>' },
@@ -20,5 +21,10 @@ return {
     "tummetott/reticle.nvim",
     event = "VeryLazy",
     opts = {},
+  },
+  {
+    -- Jump to previous/next *buffer* in the jumplist with <C-p> & <C-n>
+    "kwkarlwang/bufjump.nvim",
+    opts = true,
   },
 }
