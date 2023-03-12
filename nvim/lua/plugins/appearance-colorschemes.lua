@@ -33,10 +33,6 @@ return {
     event = "VeryLazy",
   },
   {
-    "lalitmee/cobalt2.nvim",
-    event = "VeryLazy",
-  },
-  {
     "phha/zenburn.nvim",
     event = "VeryLazy",
   },
@@ -95,6 +91,26 @@ return {
   {
     "igorgue/danger",
     event = "VeryLazy",
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "arturgoms/moonbow.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    event = "VeryLazy",
+    opts = {
+      palette_overrides = {},
+    },
+    {
+      -- Tons of awesome color schemes in base16. Really nice!
+      "RRethy/nvim-base16",
+      event = "VeryLazy",
+    },
   },
   -- Configure LazyVim to load oxocarbon
   {
