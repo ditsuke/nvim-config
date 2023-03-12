@@ -6,7 +6,25 @@ local function has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-SYMBOL_MAP = {
+---@param completion lsp.CompletionItem
+---@param source cmp.Source
+local function get_completion_context(completion, source)
+  local ok, source_name = pcall(function()
+    return source.source.client.config.name
+  end)
+  if not ok then
+    return nil
+  end
+  if source_name == "tsserver" then
+    return completion.detail
+  elseif source_name == "pyright" then
+    if completion.labelDetails ~= nil then
+      return completion.labelDetails.description
+    end
+  end
+end
+
+local SYMBOL_MAP = {
   Text = " ",
   Method = " ",
   Function = "",
@@ -54,7 +72,7 @@ M.config = function(_, _)
     },
   }
 
-  local winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:Search"
+  local WIN_HIGHLIGHT = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:Search"
 
   -- <Tab> is used by Copilot, I found the plugin doesn't work
   -- if I use <Tab> for nvim-cmp or any other plugin
@@ -146,12 +164,12 @@ M.config = function(_, _)
       end,
     },
     window = {
-      max_width = 50,
+      max_width = 40,
       col_offset = -3,
       side_padding = 0,
-      completion = cmp.config.window.bordered({ winhighlight = winhighlight }),
-      documentation = cmp.config.window.bordered({ winhighlight = winhighlight }),
-      preview = cmp.config.window.bordered({ winhighlight = winhighlight }),
+      completion = cmp.config.window.bordered({ winhighlight = WIN_HIGHLIGHT }),
+      documentation = cmp.config.window.bordered({ winhighlight = WIN_HIGHLIGHT }),
+      preview = cmp.config.window.bordered({ winhighlight = WIN_HIGHLIGHT }),
     },
     formatting = {
       fields = { "kind", "abbr", "menu" },
@@ -164,10 +182,10 @@ M.config = function(_, _)
         item_with_kind.menu = "    (" .. (kind_s_menu[2] or "") .. ")"
         item_with_kind.menu = vim.trim(item_with_kind.menu)
 
-        local completion_detail = entry.completion_item.detail
         -- vim.pretty_print(entry.completion_item)
+        local completion_detail = get_completion_context(entry.completion_item, entry.source)
         if completion_detail ~= nil and completion_detail ~= "" then
-          item_with_kind.menu = item_with_kind.menu .. [[    | "]] .. completion_detail .. [["]]
+          item_with_kind.menu = item_with_kind.menu .. [[ -> ]] .. completion_detail
         end
 
         return item_with_kind
