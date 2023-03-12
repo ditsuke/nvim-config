@@ -19,21 +19,20 @@ return {
       { "nvim-navic" },
     },
     opts = function(_, lop)
-      local NON_LSP_CLIENTS = { "", "copilot", "null-ls" }
+      local shared = require("config.shared")
       local FILESTATUS_SYMBOLS = { modified = "  ", readonly = "", unnamed = "" }
       local navic = require("nvim-navic")
 
-      local cwd = function()
+      local root_base = function()
         local path = vim.split(vim.fn.getcwd(), "/", {})
         return path[#path]
       end
 
-      local get_filetype_plus_lsp = function()
+      local filetype_plus_lsp = function()
         local ft = vim.bo.filetype
-        for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-          if not vim.tbl_contains(NON_LSP_CLIENTS, client.name) then
-            return string.format("%s (%s)", ft, client.name)
-          end
+        local lsp = shared.get_active_lsp()
+        if lsp ~= nil then
+          return string.format("%s (%s)", ft, lsp)
         end
         return ft
       end
@@ -80,7 +79,7 @@ return {
           -- Branch
           -- HACK: might break if lazyvim changes the order of sections
           lop.sections.lualine_b,
-          { cwd, icons_enabled = true, icon = { "", align = "left" } },
+          { root_base, icons_enabled = true, icon = { "", align = "left" } },
           {
             "filename",
             path = 1,
@@ -103,7 +102,7 @@ return {
         lualine_x = lop.sections.lualine_x,
         lualine_y = {
           -- LSP status
-          get_filetype_plus_lsp,
+          filetype_plus_lsp,
         },
         -- Location and filetype
         lualine_z = {
@@ -114,10 +113,10 @@ return {
         },
       }
 
-      -- On top of lazyvim's config, we disable the winbar for `neo-tree` (because lazyvim has no winbar)
       local options = {
         theme = "auto",
         globalstatus = true,
+        -- On top of lazyvim's config, we disable the winbar for `neo-tree` (because lazyvim has no winbar)
         disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" }, winbar = { "neo-tree", "alpha" } },
       }
 
