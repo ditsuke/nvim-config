@@ -1,4 +1,6 @@
-# 💤 LazyVim
+# 💤 ditsuke's `nvim` config, based on [LazyVim](https://github.com/lazyvim/lazyvim)
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+Requirements:
+- Neovim Nightly
+- Terminal emulator w/ Kitty graphics protocol.
+
