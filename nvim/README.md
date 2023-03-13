@@ -7,7 +7,7 @@
 
 ## Features
 - [x] IDE experience, out of the box
-- [x] Automatic session management (including reloads!)
+- [x] Automatic session management (including reloads!) with flag (`+NoSession`) to disable it.
 - [x] Floating, persistent terminal
 - [x] Better _marks_ with [Harpoon](https://github.com/ThePrimeagen/harpoon).
 - [x] Editor context awareness and more powered by Treesitter. Checked for performance on large (>5000LOC) files!
@@ -15,7 +15,6 @@
 - [x] A ton of themes
 
 ## Wants
-- [ ] feat: flag to disable sessions
 - [ ] fix: session reload conflicts with lazy.nvim float
 - [ ] feat: LSPSaga for code outline, better references and action previews etc
 - [ ] fix: disable colorizer for `lazy` ft
