@@ -2,7 +2,6 @@ local M = {}
 
 local FILESTATUS_SYMBOLS = { modified = "  ", readonly = "", unnamed = "" }
 
-local navic = require("nvim-navic")
 local shared = require("config.shared")
 
 local function root_base()
@@ -13,37 +12,11 @@ end
 local function filetype_plus_lsp()
   local ft = vim.bo.filetype
   local lsp = shared.get_active_lsp()
-  if lsp ~= nil then
-    return string.format("%s (%s)", ft, lsp)
-  end
+  if lsp ~= nil then return string.format("%s (%s)", ft, lsp) end
   return ft
 end
 
-local function window_number()
-  return vim.api.nvim_win_get_number(0)
-end
-
 M.config = function(_, og_opts)
-  local winbar = {
-    lualine_a = {
-      {
-        window_number,
-        separator = "󱋱",
-        icons_enabled = true,
-        icon = { "", align = "left" },
-      },
-      {
-        "filename",
-        path = 0,
-        symbols = FILESTATUS_SYMBOLS,
-        separator = { right = "|" },
-      },
-    },
-    lualine_b = {
-      { navic.get_location, cond = navic.is_available, separator = { right = "" } },
-    },
-  }
-
   local overrides = {
     -- winbar = winbar,
     -- inactive_winbar = {
@@ -54,9 +27,7 @@ M.config = function(_, og_opts)
       lualine_a = {
         {
           "mode",
-          fmt = function(str)
-            return str:sub(1, 1)
-          end,
+          fmt = function(str) return str:sub(1, 1) end,
           separator = { right = "|" },
         },
       },
@@ -77,6 +48,11 @@ M.config = function(_, og_opts)
       lualine_x = og_opts.sections.lualine_x,
       lualine_y = {
         -- LSP status
+        -- {function() return vim.cmd.Waka},
+        {
+          function() return require("lazyvim.config.init").icons.kinds.Copilot end,
+          cond = function() return package.loaded["copilot"] ~= nil end,
+        },
         filetype_plus_lsp,
       },
       -- Location and filetype

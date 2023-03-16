@@ -18,7 +18,7 @@ return {
     dependencies = {
       { "nvim-navic" },
     },
-    opts = require("opts.lualine").config,
+    opts = require("opts.lualine_evil").config,
   },
   {
     -- Winbar
