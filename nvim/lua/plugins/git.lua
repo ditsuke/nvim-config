@@ -10,29 +10,23 @@ return {
     end,
     keys = function()
       local telescope_worktree = require("telescope").extensions.git_worktree
-      print("returning keys")
-      -- if require("lazyvim.util").has("which-key.nvim") then
       require("which-key").register({
         mode = { "n", "v" },
+        -- TODO: clean up this which-key mess :(
         ["<leader>t"] = { name = "+telescope" },
-        ["<leader>tw"] = { name = "git-worktree" },
+        ["<leader>gw"] = { name = "git-worktree" },
       }, nil)
-      -- end
 
       return {
         {
-          "<leader>tws",
-          function()
-            telescope_worktree.git_worktrees()
-          end,
+          "<leader>gws",
+          function() telescope_worktree.git_worktrees() end,
           desc = "[s]witch",
         },
         {
-          "<leader>twc",
-          function()
-            telescope_worktree.create_git_worktree()
-          end,
-          desc = "[c]reate",
+          "<leader>gwa",
+          function() telescope_worktree.create_git_worktree() end,
+          desc = "[a]dd",
         },
       }
     end,
