@@ -53,4 +53,14 @@ map_if_pumvisible("c", "<CR>", "<C-y>")
 -- ===================
 -- Behavior
 -- ===================
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z") -- Retain cursor position on line join w J
+
+-- Yank to system clipboard with `<leader>y`
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- Delete into oblivion 😈
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
+-- Replace selection, sending it into oblivion 🙈
+vim.keymap.set("x", "<leader>p", [["_dP]])
