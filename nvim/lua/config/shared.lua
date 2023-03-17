@@ -18,4 +18,20 @@ M.get_active_lsp = function()
   return nil
 end
 
+M.get_wakatime_time = function()
+  local tx, rx = async.control.channel.oneshot()
+  local ok, job = pcall(Job.new, Job, {
+    command = os.getenv("HOME") .. "/.wakatime/wakatime-cli",
+    args = { "--today" },
+    on_exit = function(j, _) tx(j:result()[1] or "") end,
+  })
+  if not ok then
+    print("Bad WakaTime call: " .. job)
+    return ""
+  end
+
+  -- if data then return "🅆  " .. data:sub(1, #data - 2) .. " " end
+  job:start()
+  return rx()
+end
 return M

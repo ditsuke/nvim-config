@@ -5,7 +5,7 @@
 -- Eviline-ish configuration for lualine
 
 local shared = require("config.shared")
-local icons = require("lazyvim.config.init").icons
+local uv = vim.loop
 
 local COLORS = {
   bg = "#202328",
@@ -54,6 +54,10 @@ local conditions = {
   end,
 }
 
+local state = {
+  comp_wakatime_time = "",
+}
+
 local components = {
   filetype_plus_lsp = function()
     local ft = vim.bo.filetype
@@ -61,7 +65,21 @@ local components = {
     if lsp ~= nil then return string.format("%s ( %s)", ft, lsp) end
     return ft
   end,
-  copilot_icon = function() return icons.kinds.Copilot end,
+  wakatime = function()
+    local WAKATIME_UPDATE_INTERVAL = 10000
+
+    if not Wakatime_routine_init then
+      local timer = uv.new_timer()
+      if timer == nil then return "" end
+      -- Update wakatime every some some
+      uv.timer_start(timer, 500, WAKATIME_UPDATE_INTERVAL, function()
+        require("plenary.async").run(shared.get_wakatime_time, function(time) state.comp_wakatime_time = time end)
+      end)
+      Wakatime_routine_init = true
+    end
+
+    return state.comp_wakatime_time
+  end,
 }
 
 local M = {}
@@ -107,6 +125,12 @@ M.config = function()
           color = { fg = COLORS.violet, gui = "bold" },
         },
         {
+          components.wakatime,
+          cond = function() return vim.g["loaded_wakatime"] == 1 end,
+          icon = "󱑆",
+          color = { bg = COLORS.bg, fg = COLORS.cyan },
+        },
+        {
           "filename",
           cond = conditions.buffer_not_empty,
           color = { fg = COLORS.magenta, gui = "bold" },
@@ -144,17 +168,16 @@ M.config = function()
           cond = function() return package.loaded["copilot"] ~= nil end,
           color = { bg = COLORS.cyan, fg = "white" },
         },
-        -- TODO: wakatime
         {
-          "o:encoding", -- option component same as &encoding in viml
-          fmt = string.upper, -- I'm not sure why it's upper case either ;)
+          "encoding",
+          -- fmt = string.upper,
           cond = conditions.hide_in_width,
           color = { fg = COLORS.green, gui = "bold" },
         },
         {
           "fileformat",
           fmt = string.upper,
-          icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+          -- icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
           color = { fg = COLORS.green, gui = "bold" },
         },
         { "location" },
