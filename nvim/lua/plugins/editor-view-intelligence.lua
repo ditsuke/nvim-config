@@ -38,6 +38,20 @@ return {
       { "<leader>ux", "<Cmd>TSHighlightCapturesUnderCursor<CR>", desc = "Show highlight groups" },
     },
   },
+  {
+    "folke/todo-comments.nvim",
+    enabled = false,
+    opts = {
+      keywords = {
+        QUESTION = { icon = "?", color = "warning", alt = { "Q" } },
+      },
+    },
+  },
+  {
+    "Djancyp/better-comments.nvim",
+    name = "better-comment.nvim",
+    config = function(_, opts)
+      require("better-comment").Setup(opts)
     end,
   },
 }
