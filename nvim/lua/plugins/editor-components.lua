@@ -21,9 +21,7 @@ return {
     keys = function(_, keys)
       keys[#keys + 1] = {
         "<leader>o",
-        function()
-          require("neo-tree.command").execute({ focus = true })
-        end,
+        function() require("neo-tree.command").execute({ focus = true }) end,
         desc = "Focus Neotree",
       }
       return keys
@@ -48,25 +46,19 @@ return {
       {
         "nvim-telescope/telescope-frecency.nvim",
         dependencies = { { "kkharji/sqlite.lua" } },
-        config = function()
-          require("telescope").load_extension("frecency")
-        end,
+        config = function() require("telescope").load_extension("frecency") end,
       },
       {
         -- Find terminals :devilous:
         "tknightz/telescope-termfinder.nvim",
-        config = function()
-          require("telescope").load_extension("termfinder")
-        end,
+        config = function() require("telescope").load_extension("termfinder") end,
       },
     },
     keys = {
       { "<leader>bs", require("telescope.builtin").buffers, desc = "Buffer Search" },
       {
         "<leader>st",
-        function()
-          require("telescope").extensions.termfinder.find({})
-        end,
+        function() require("telescope").extensions.termfinder.find({}) end,
         desc = "[t]erminals",
       },
       {
@@ -96,9 +88,7 @@ return {
       },
       {
         "<leader>tr",
-        function()
-          require("telescope.builtin").resume()
-        end,
+        function() require("telescope.builtin").resume() end,
         desc = "[r]esume",
       },
     },
@@ -142,9 +132,7 @@ return {
 
       return vim.tbl_deep_extend("force", opts, overrides)
     end,
-    init = function()
-      require("telescope").load_extension("fzf")
-    end,
+    init = function() require("telescope").load_extension("fzf") end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -176,8 +164,39 @@ return {
     -- TODO: keymap for toggle
     "folke/zen-mode.nvim",
     dependencies = { { "folke/twilight.nvim" } },
-    opts = true,
+    opts = {
+      window = {
+        options = {
+          signcolumn = "no", -- disable signcolumn
+          number = false, -- disable number column
+          relativenumber = false, -- disable relative numbers
+          cursorline = false, -- disable cursorline
+          cursorcolumn = false, -- disable cursor column
+          foldcolumn = "0", -- disable fold column
+          list = false, -- disable whitespace characters
+        },
+      },
+      plugins = {
+        options = {
+          enabled = true,
+          ruler = true,
+          showcmd = true,
+        },
+        twilight = {
+          enabled = false, -- NOTE: performs poorly
+        },
+        gitsigns = {
+          enabled = true,
+        },
+      },
+      on_open = function(_)
+        vim.opt.laststatus = 0
+        vim.opt.winbar = ""
+      end,
+      on_close = function() vim.opt.laststatus = 3 end,
+    },
     -- stylua: ignore
-    keys = { { "<leader>zz", function() require("zen-mode").toggle() end } },
+    -- TODO: which-key leads for these keymaps
+    keys = { { "<leader>zz", function() require("zen-mode").toggle() end, desc = "Toggle [z]enmode"} },
   },
 }
