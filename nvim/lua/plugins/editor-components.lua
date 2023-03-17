@@ -199,4 +199,8 @@ return {
     -- TODO: which-key leads for these keymaps
     keys = { { "<leader>zz", function() require("zen-mode").toggle() end, desc = "Toggle [z]enmode"} },
   },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = true,
+  },
 }

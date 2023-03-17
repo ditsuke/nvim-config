@@ -20,9 +20,7 @@ return {
         "ruff",
       },
     },
-    init = function(_)
-      require("mason-null-ls").setup_handlers({})
-    end,
+    init = function(_) require("mason-null-ls").setup_handlers({}) end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -36,5 +34,13 @@ return {
       }
       return opts
     end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      diagnostics = {
+        virtual_text = false, -- Managed by `lsp_lines``
+      },
+    },
   },
 }
