@@ -54,9 +54,6 @@ local SYMBOL_MAP = {
 
 M.config = function(_, _)
   local cmp = require("cmp")
-  local luasnip = require("luasnip")
-
-  require("luasnip.loaders.from_vscode").load()
 
   local editorSources = {
     {

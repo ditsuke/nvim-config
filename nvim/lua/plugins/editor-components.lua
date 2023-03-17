@@ -42,6 +42,7 @@ return {
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build --config Release && \
           cmake --install build --prefix build",
+        config = function() require("telescope").load_extension("fzf") end,
       },
       {
         "nvim-telescope/telescope-frecency.nvim",
@@ -49,90 +50,16 @@ return {
         config = function() require("telescope").load_extension("frecency") end,
       },
       {
-        -- Find terminals :devilous:
+        -- Find terminals 👿
         "tknightz/telescope-termfinder.nvim",
         config = function() require("telescope").load_extension("termfinder") end,
       },
     },
-    keys = {
-      { "<leader>bs", require("telescope.builtin").buffers, desc = "Buffer Search" },
-      {
-        "<leader>st",
-        function() require("telescope").extensions.termfinder.find({}) end,
-        desc = "[t]erminals",
-      },
-      {
-        "<leader>sS",
-        lazyUtils.telescope("lsp_dynamic_workspace_symbols", {
-          symbols = {
-            "Class",
-            "Function",
-            "Method",
-            "Constructor",
-            "Interface",
-            "Module",
-            "Struct",
-            "Trait",
-            "Field",
-          },
-        }),
-      },
-      {
-        "<leader>fr",
-        function()
-          require("telescope").extensions.frecency.frecency({
-            workspace = "CWD",
-          })
-        end,
-        desc = "[r]ecent",
-      },
-      {
-        "<leader>tr",
-        function() require("telescope.builtin").resume() end,
-        desc = "[r]esume",
-      },
-    },
-    opts = function(_, opts)
-      local actions = require("telescope.actions")
-
-      local fzf_opts = {
-        fuzzy = true, -- false will only do exact matching
-        override_generic_sorter = true, -- override the generic sorter
-        override_file_sorter = true, -- override the file sorter
-        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-        -- the default case_mode is "smart_case"
-      }
-
-      local frecency_opts = {
-        db_root = "~/.local/share/nvim",
-      }
-
-      local overrides = {
-        extensions = {
-          fzf = fzf_opts,
-          frecency = frecency_opts,
-        },
-        pickers = {
-          lsp_dynamic_workspace_symbols = {
-            -- Manually set sorter, for some reason not picked up automatically
-            sorter = require("telescope").extensions.fzf.native_fzf_sorter(fzf_opts),
-          },
-        },
-        defaults = {
-          mappings = {
-            i = {
-              ["<C-n>"] = actions.cycle_history_next,
-              ["<C-p>"] = actions.cycle_history_prev,
-              ["<C-J>"] = actions.move_selection_next,
-              ["<C-K>"] = actions.move_selection_previous,
-            },
-          },
-        },
-      }
-
-      return vim.tbl_deep_extend("force", opts, overrides)
-    end,
-    init = function() require("telescope").load_extension("fzf") end,
+    keys = require("opts.telescope").keys,
+    opts = require("opts.telescope").config,
+    -- TODO: cleanup
+    -- Do I _need_ to do it on init? Probably not
+    -- init = function() require("telescope").load_extension("fzf") end,
   },
   {
     "hrsh7th/nvim-cmp",
