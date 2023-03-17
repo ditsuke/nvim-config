@@ -1,7 +1,28 @@
 local M = {}
 
-M.setTitle = function()
+local async = require("plenary.async")
+local Job = require("plenary.job")
+local uv = vim.loop
+
 M.NON_LSP_CLIENTS = { "", "copilot", "null-ls", "luasnip" }
+
+local LOG_FILE_PATH = "./log_nvim.txt"
+local log_file = io.open(LOG_FILE_PATH, "a")
+local log_count = 0
+
+M.sampled_logger = function(message)
+  log_count = log_count + 1
+  if log_count == 30 then
+    log_count = 0
+    M.logger(message)
+  end
+end
+
+M.logger = function(message)
+  if log_file == nil then return end
+  io.output(log_file)
+  io.write(message .. "\n\n")
+end
 
 M.set_window_title = function()
   local path = vim.split(vim.fn.getcwd(), "/", {})
@@ -11,9 +32,7 @@ end
 
 M.get_active_lsp = function()
   for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-    if not vim.tbl_contains(M.NON_LSP_CLIENTS, client.name) then
-      return client.name
-    end
+    if not vim.tbl_contains(M.NON_LSP_CLIENTS, client.name) then return client.name end
   end
   return nil
 end
