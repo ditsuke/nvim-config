@@ -54,4 +54,8 @@ return {
       require("better-comment").Setup(opts)
     end,
   },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {},
+  },
 }
