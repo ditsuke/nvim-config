@@ -23,6 +23,12 @@ return {
     opts = {},
   },
   {
+    "echasnovski/mini.bufremove",
+    keys = {
+      { "<F28>", function() require("mini.bufremove").delete(0, false) end, desc = "Delete buffer" },
+    },
+  },
+  {
     -- Jump to previous/next *buffer* in the jumplist with <C-p> & <C-n>
     "kwkarlwang/bufjump.nvim",
     opts = true,
