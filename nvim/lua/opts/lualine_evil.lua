@@ -166,7 +166,32 @@ M.config = function()
           -- Copilot icon
           function() return "" end,
           cond = function() return package.loaded["copilot"] ~= nil end,
-          color = { bg = COLORS.cyan, fg = "white" },
+          color = function(_)
+            return { bg = require("copilot.client").is_disabled() and COLORS.fg or COLORS.cyan, fg = "white" }
+          end,
+          on_click = function(clicks, button)
+            local commands = require("copilot.command")
+
+            if button ~= "l" or not vim.tbl_contains({ 1, 2 }, clicks) then
+              vim.notify(
+                [[Usage:
+- **Single click:** Copilot status
+- **Double click:** Toggle copilot
+]],
+                "info",
+                { lang = "markdown" }
+              )
+              return
+            end
+
+            if clicks == 1 then
+              commands.status()
+              return
+            end
+
+            local disabled = require("copilot.client").is_disabled()
+            if clicks == 2 then return disabled == true and commands.enable() == nil or commands.disable() end
+          end,
         },
         {
           "encoding",
