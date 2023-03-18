@@ -63,3 +63,13 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete selection, s
 
 -- Replace selection, sending it into oblivion 🙈
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection, send to NULL register" })
+
+-- Toggle mouse
+local state__mouse = "a"
+
+vim.keymap.set("n", "<leader>um", function()
+  local now = vim.opt.mouse["_value"]
+  vim.opt.mouse = state__mouse
+  vim.notify('Set mouse to "' .. state__mouse .. '"')
+  state__mouse = now
+end, { desc = "Toggle [m]ouse support" })
