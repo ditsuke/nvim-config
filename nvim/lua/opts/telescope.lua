@@ -15,10 +15,20 @@ M.config = function(_, opts)
     db_root = "~/.local/share/nvim",
   }
 
+  local undo_opts = {
+    use_delta = true,
+    side_by_side = true,
+    layout_strategy = "vertical",
+    layout_config = {
+      preview_height = 0.8,
+    },
+  }
+
   local overrides = {
     extensions = {
       fzf = fzf_opts,
       frecency = frecency_opts,
+      undo = undo_opts,
     },
     pickers = {
       lsp_dynamic_workspace_symbols = {
@@ -27,17 +37,7 @@ M.config = function(_, opts)
         sorter = require("telescope").extensions.fzf.native_fzf_sorter(fzf_opts),
       },
     },
-    -- defaults = {
-    --   theme = require("telescope.themes").get_ivy(),
-    --   mappings = {
-    --     i = {
-    --       ["<C-n>"] = actions.cycle_history_next,
-    --       ["<C-p>"] = actions.cycle_history_prev,
-    --       ["<C-J>"] = actions.move_selection_next,
-    --       ["<C-K>"] = actions.move_selection_previous,
-    --     },
-    --   },
-    -- },
+    -- Use the `ivy` theme, inspired by Emacs Ivy!
     defaults = require("telescope.themes").get_ivy({
       mappings = {
         i = {
