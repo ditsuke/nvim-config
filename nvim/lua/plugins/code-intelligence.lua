@@ -11,6 +11,7 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       automatic_setup = true,
       automatic_installation = false,
@@ -20,7 +21,11 @@ return {
         "ruff",
       },
     },
-    init = function(_) require("mason-null-ls").setup_handlers({}) end,
+    config = function(_, opts)
+      local mnls = require("mason-null-ls")
+      mnls.setup(opts)
+      mnls.setup_handlers({})
+    end,
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
