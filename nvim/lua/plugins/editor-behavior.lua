@@ -68,4 +68,17 @@ return {
       },
     },
   },
+  {
+    "echasnovski/mini.indentscope",
+    opts = function(_, og)
+      local overrides = {
+        draw = {
+          animation = require("mini.indentscope").gen_animation.none(),
+          delay = 50,
+        },
+      }
+
+      return vim.tbl_deep_extend("force", og, overrides)
+    end,
+  },
 }
