@@ -128,7 +128,7 @@ M.config = function(_, _)
     }),
   })
 
-  cmp.setup.cmdline("/", {
+  cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = "nvim_lsp" },
@@ -138,7 +138,11 @@ M.config = function(_, _)
     },
   })
 
+  ---@type cmp.ConfigSchema
   cmp.setup.cmdline(":", {
+    completion = {
+      autocomplete = { "InsertEnter" },
+    },
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = "cmdline" },
@@ -151,7 +155,7 @@ M.config = function(_, _)
   return {
     completion = {
       -- autocomplete = false, -- Can turn off autocomplete for ya
-      completeopt = "menu,menuone,noinsert",
+      -- completeopt = "menu,menuone,noinsert", -- No effect, but major SIDE-effect: selects first item visually, impairing `cmp` in command mode
     },
     experimental = {
       ghost_text = {
