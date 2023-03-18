@@ -6,21 +6,21 @@ local function has_words_before()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+--- Get completion context, i.e., auto-import/target module location.
+--- Depending on the LSP this information is stored in different parts of the
+--- lsp.CompletionItem payload. The process to find them is very manual: log the payloads
+--- And see where useful information is stored.
 ---@param completion lsp.CompletionItem
 ---@param source cmp.Source
-local function get_completion_context(completion, source)
-  local ok, source_name = pcall(function()
-    return source.source.client.config.name
-  end)
-  if not ok then
-    return nil
-  end
+---@see Astronvim, because i just discovered they're already doing this thing, too
+--  https://github.com/AstroNvim/AstroNvim
+local function get_lsp_completion_context(completion, source)
+  local ok, source_name = pcall(function() return source.source.client.config.name end)
+  if not ok then return nil end
   if source_name == "tsserver" then
     return completion.detail
   elseif source_name == "pyright" then
-    if completion.labelDetails ~= nil then
-      return completion.labelDetails.description
-    end
+    if completion.labelDetails ~= nil then return completion.labelDetails.description end
   end
 end
 
@@ -60,12 +60,14 @@ M.config = function(_, _)
       { name = "nvim_lsp" },
       { name = "nvim_lua" },
       { name = "luasnip" },
+      { name = "emoji" },
     },
     {
       { name = "treesitter" },
       { name = "path" },
-      { name = "spell" },
-      { name = "dictionary" },
+      -- Distracting!
+      -- { name = "spell" },
+      -- { name = "dictionary" },
     },
   }
 
@@ -151,14 +153,14 @@ M.config = function(_, _)
       -- autocomplete = false, -- Can turn off autocomplete for ya
       completeopt = "menu,menuone,noinsert",
     },
-    -- experimental = {
-    --   ghost_text = true,
-    --   native_menu = true,
-    -- },
+    experimental = {
+      ghost_text = {
+        hl_group = "LspCodeLens",
+      },
+      --   native_menu = true,
+    },
     snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
+      expand = function(args) require("luasnip").lsp_expand(args.body) end,
     },
     window = {
       max_width = 40,
@@ -173,16 +175,20 @@ M.config = function(_, _)
       --- @param entry cmp.Entry
       --- @param vim_item vim.CompletedItem
       format = function(entry, vim_item)
-        local item_with_kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+        local item_with_kind = require("lspkind").cmp_format({
+          mode = "symbol_text",
+          maxwidth = 50,
+          symbol_map = SYMBOL_MAP,
+        })(entry, vim_item)
+
         local kind_s_menu = vim.split(item_with_kind.kind, "%s", { trimempty = true })
         item_with_kind.kind = " " .. (kind_s_menu[1] or "") .. " "
         item_with_kind.menu = "    (" .. (kind_s_menu[2] or "") .. ")"
         item_with_kind.menu = vim.trim(item_with_kind.menu)
 
-        -- vim.pretty_print(entry.completion_item)
-        local completion_detail = get_completion_context(entry.completion_item, entry.source)
-        if completion_detail ~= nil and completion_detail ~= "" then
-          item_with_kind.menu = item_with_kind.menu .. [[ -> ]] .. completion_detail
+        local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
+        if completion_context ~= nil and completion_context ~= "" then
+          item_with_kind.menu = item_with_kind.menu .. [[ -> ]] .. completion_context
         end
 
         return item_with_kind

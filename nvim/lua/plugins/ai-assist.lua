@@ -2,13 +2,8 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "VimEnter",
-    config = function()
-      -- TODO: figure out why tf the LSP complains here
-      vim.defer_fn(function()
-        require("copilot").setup()
-      end, 100)
-    end,
+    event = "VeryLazy",
+    config = true,
   },
   -- TODO: try hooking this up
   {

@@ -10,16 +10,14 @@ return {
     "folke/noice.nvim",
     opts = {
       presets = {
+        command_palette = true,
         bottom_search = false,
         lsp_doc_border = true,
+        long_message_to_split = true, -- long messages will be sent to a split
       },
     },
   },
   {
-    -- TODO: review placement of diagnostics
-    -- TODO: figure out a better strategy for filename -- currently
-    --       winbar carries the bare filename while the statusline
-    --       carries the full path
     -- TODO: add copilot button/icon that checks for activity
     "nvim-lualine/lualine.nvim",
     dependencies = {

@@ -50,12 +50,10 @@ return {
   {
     "Djancyp/better-comments.nvim",
     name = "better-comment.nvim",
-    config = function(_, opts)
-      require("better-comment").Setup(opts)
-    end,
+    config = function(_, opts) require("better-comment").Setup(opts) end,
   },
   {
     "NvChad/nvim-colorizer.lua",
-    opts = {},
+    config = true,
   },
 }

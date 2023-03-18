@@ -1,5 +1,3 @@
-local lazyUtils = require("lazyvim.util")
-
 return {
   {
     -- Jump between files and terminals
