@@ -54,7 +54,7 @@ M.config = function(_, opts)
 end
 
 M.keys = {
-  { "<leader>bs", require("telescope.builtin").buffers, desc = "Buffer Search" },
+  { "<leader>bs", function() require("telescope.builtin").buffers() end, desc = "[s]earch" },
   {
     "<leader>st",
     function() require("telescope").extensions.termfinder.find({}) end,
@@ -81,6 +81,7 @@ M.keys = {
   {
     "<leader>su",
     function() require("telescope").extensions.undo.undo() end,
+    desc = "[u]ndo tree",
   },
   {
     "<leader>fr",

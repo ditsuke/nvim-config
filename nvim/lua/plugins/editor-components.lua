@@ -5,19 +5,20 @@ return {
     -- Jump between files and terminals
     "ThePrimeagen/harpoon",
     event = "VeryLazy",
-    keys = function()
-      local mark = require("harpoon.mark")
-      local ui = require("harpoon.ui")
-
-      return {
-        { "m", mark.add_file },
-        { "`", ui.toggle_quick_menu },
-      }
-    end,
+    keys = {
+      { "m", function() require("harpoon.mark").add_file() end, desc = "Harpoon: [m]ark file" },
+      { "`", function() require("harpoon.ui").toggle_quick_menu() end, desc = "Harpoon: toggle quick menu" },
+    },
   },
   {
     -- File tree
     "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = {
+        width = 30,
+        position = "right",
+      },
+    },
     keys = function(_, keys)
       keys[#keys + 1] = {
         "<leader>o",
@@ -26,12 +27,6 @@ return {
       }
       return keys
     end,
-    opts = {
-      window = {
-        width = 30,
-        position = "right",
-      },
-    },
   },
   {
     -- Extensible fuzzy searcher for files, buffers, and virtually everything else

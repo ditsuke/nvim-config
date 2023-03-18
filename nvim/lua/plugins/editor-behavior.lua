@@ -20,7 +20,7 @@ return {
     -- Absence of a prominent cursor (such as with lighter-colored themes)
     "tummetott/reticle.nvim",
     event = "VeryLazy",
-    opts = {},
+    config = true,
   },
   {
     "echasnovski/mini.bufremove",
@@ -31,7 +31,7 @@ return {
   {
     -- Jump to previous/next *buffer* in the jumplist with <C-p> & <C-n>
     "kwkarlwang/bufjump.nvim",
-    opts = true,
+    config = true,
   },
   {
     "kevinhwang91/nvim-ufo",
