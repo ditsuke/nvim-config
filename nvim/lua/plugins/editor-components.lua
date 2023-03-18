@@ -54,12 +54,13 @@ return {
         "tknightz/telescope-termfinder.nvim",
         config = function() require("telescope").load_extension("termfinder") end,
       },
+      {
+        "debugloop/telescope-undo.nvim",
+        config = function() require("telescope").load_extension("undo") end,
+      },
     },
     keys = require("opts.telescope").keys,
     opts = require("opts.telescope").config,
-    -- TODO: cleanup
-    -- Do I _need_ to do it on init? Probably not
-    -- init = function() require("telescope").load_extension("fzf") end,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -127,6 +128,7 @@ return {
     keys = { { "<leader>zz", function() require("zen-mode").toggle() end, desc = "Toggle [z]enmode"} },
   },
   {
+    -- Diagnostics with virtual text. Does multiline well
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = true,
   },

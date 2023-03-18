@@ -62,19 +62,25 @@ M.keys = {
   },
   {
     "<leader>sS",
-    require("lazyvim.util").telescope("lsp_dynamic_workspace_symbols", {
-      symbols = {
-        "Class",
-        "Function",
-        "Method",
-        "Constructor",
-        "Interface",
-        "Module",
-        "Struct",
-        "Trait",
-        "Field",
-      },
-    }),
+    function()
+      require("lazyvim.util").telescope("lsp_dynamic_workspace_symbols", {
+        symbols = {
+          "Class",
+          "Function",
+          "Method",
+          "Constructor",
+          "Interface",
+          "Module",
+          "Struct",
+          "Trait",
+          "Field",
+        },
+      })()
+    end,
+  },
+  {
+    "<leader>su",
+    function() require("telescope").extensions.undo.undo() end,
   },
   {
     "<leader>fr",
