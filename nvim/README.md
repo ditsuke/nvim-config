@@ -1,9 +1,10 @@
-# 💤 ditsuke's `nvim` config, based on [LazyVim](https://github.com/lazyvim/lazyvim)
+# 💤 ditsuke's `nvim` config
 
+_A tailored prose-writing and programming environment based on @folke's [LazyVim](https://github.com/lazyvim/lazyvim)_
 ## Requirements
 
 - Neovim Nightly
-- Terminal emulator w/ Kitty graphics protocol.
+- Terminal emulator with support for the [Kitty graphics protocol](https://sw.kovidgoyal.net/kitty/graphics-protocol/).
 
 ## Features
 - [x] IDE experience, out of the box
