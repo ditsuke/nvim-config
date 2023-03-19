@@ -11,12 +11,41 @@ return {
   {
     -- File tree
     "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = {
-        width = 30,
-        position = "right",
-      },
-    },
+    opts = function(_, og)
+      local icons = require("icons")
+      local overrides = {
+        auto_clean_after_session_restore = true,
+        close_if_last_window = true,
+        window = {
+          width = 30,
+          position = "right",
+        },
+        default_component_configs = {
+          indent = { padding = 0, indent_size = 1 },
+          icon = {
+            folder_closed = icons.states.folder_closed,
+            folder_open = icons.states.folder_open,
+            folder_empty = icons.states.folder_empty,
+            default = icons.misc.default_file,
+          },
+          modified = { symbol = icons.states.file_modified },
+          git_status = {
+            symbols = {
+              added = icons.git.added,
+              deleted = icons.git.removed,
+              modified = icons.git.modified,
+              renamed = icons.git.renamed,
+              untracked = icons.git.untracked,
+              ignored = icons.git.ignored,
+              unstaged = icons.git.unstaged,
+              staged = icons.git.staged,
+              conflict = icons.git.conflict,
+            },
+          },
+        },
+      }
+      return vim.tbl_deep_extend("force", og, overrides)
+    end,
     keys = function(_, keys)
       keys[#keys + 1] = {
         "<leader>o",
