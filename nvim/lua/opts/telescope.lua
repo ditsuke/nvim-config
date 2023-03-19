@@ -55,6 +55,12 @@ end
 
 M.keys = {
   { "<leader>bs", function() require("telescope.builtin").buffers() end, desc = "[s]earch" },
+  { "<F1>", function() require("telescope.builtin").help_tags() end, desc = "Search :help" },
+  {
+    "<C-`>",
+    function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
+    desc = "Preview and switch colorschemes/themes",
+  },
   {
     "<leader>st",
     function() require("telescope").extensions.termfinder.find({}) end,
