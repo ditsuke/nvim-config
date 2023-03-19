@@ -4,7 +4,7 @@
 	process = git-lfs filter-process
 	required = true
 [core]
-	editor = nvim
+	editor = nvim +NoSession
 	autocrlf = input
 	eol = lf
 	pager = less
