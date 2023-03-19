@@ -20,7 +20,13 @@ return {
     -- Absence of a prominent cursor (such as with lighter-colored themes)
     "tummetott/reticle.nvim",
     event = "VeryLazy",
-    config = true,
+    opts = {
+      always = {
+        cursorline = {
+          "neo-tree", -- reticle messes up with Neo-tree cursorline in search mode
+        },
+      },
+    },
   },
   {
     "echasnovski/mini.bufremove",
