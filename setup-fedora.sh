@@ -3,8 +3,9 @@
 #################-- Stuff we're going to install --#################
 brew_stuff=(
 	"7zip"
-	"gh" # GitHub CLI
-	"fx" # Interactive JSON browser
+	"difftastic" # Structural, syntax-aware difftool
+	"gh"         # GitHub CLI
+	"fx"         # Interactive JSON browser
 	"neovim"
 	"micro" # Simple(r) CLI text editor
 	"tmate" # Instant terminal sharing :-:

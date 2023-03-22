@@ -26,6 +26,8 @@
 	conflictStyle = zdiff3
 [pager]
 	diff = true
+[diff]
+	external = difft
 [init]
 	defaultBranch = main
 
