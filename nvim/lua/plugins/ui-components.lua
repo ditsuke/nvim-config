@@ -33,10 +33,7 @@ return {
     --  _lualine_ winbar, which begs the question if it's a navic bug or a bug
     --  with lazyvim's handling of navic (particularly, how it attaches to a
     --  LSP/buf).
-    "ditsuke/barbecue.nvim", -- Wait for my PR to get merged
-    branch = "chore/pass-winnr-to-custom-sections",
-    name = "barbecue",
-    -- version = "*",
+    "utilyre/barbecue.nvim", -- Wait for my PR to get merged
     dependencies = {
       "SmiteshP/nvim-navic",
       "nvim-tree/nvim-web-devicons", -- optional dependency
