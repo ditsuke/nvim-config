@@ -67,4 +67,5 @@ return {
       { "<S-Left>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer left" },
     },
   },
+  { "kevinhwang91/nvim-bqf", ft = "qf", dependencies = { "junegunn/fzf", build = ":call fzf#install()" } },
 }
