@@ -44,6 +44,14 @@ local MODE_COLOR_MAP = {
   t = COLORS.red,
 }
 
+local function fg(name)
+  return function()
+    ---@type {foreground?:number}?
+    local hl = vim.api.nvim_get_hl_by_name(name, true)
+    return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+  end
+end
+
 local conditions = {
   buffer_not_empty = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
   hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
@@ -158,6 +166,16 @@ M.config = function()
         },
       },
       lualine_x = {
+        {
+          function() return require("noice").api.status.command.get() end,
+          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+          color = fg("Statement"),
+        },
+        {
+          function() return require("noice").api.status.mode.get() end,
+          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+          color = fg("Constant"),
+        },
         {
           components.filetype_plus_lsp,
           color = { fg = "#ffffff", gui = "bold" },
