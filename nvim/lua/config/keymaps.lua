@@ -55,6 +55,14 @@ map_if_pumvisible("c", "<CR>", "<C-y>")
 -- ===================
 vim.keymap.set("n", "J", "mzJ`z") -- Retain cursor position on line join w J
 
+vim.keymap.set("n", "<leader>ud", function()
+  local virtual_lines_enabled = require("lsp_lines").toggle()
+  if virtual_lines_enabled then
+    vim.diagnostic.config({ virtual_text = false })
+  else
+    vim.diagnostic.config({ virtual_text = { spacing = 4, prefix = "⬤" } })
+  end
+end, { desc = "Toggle between virtual line (lsp_lines) and normal extmark [d]iagnostics" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank until EOL to system clipboard" })
 
