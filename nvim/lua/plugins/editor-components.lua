@@ -11,14 +11,19 @@ return {
   {
     -- File tree
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "main", -- override until fuzzy_finder_mappings is in 2.x
     opts = function(_, og)
       local icons = require("icons")
       local overrides = {
-        auto_clean_after_session_restore = true,
+        -- auto_clean_after_session_restore = true,
         close_if_last_window = true,
         window = {
           width = 30,
           position = "right",
+          fuzzy_finder_mappings = {
+            ["<C-j>"] = "move_cursor_down",
+            ["<C-k>"] = "move_cursor_up",
+          },
         },
         default_component_configs = {
           indent = { padding = 0, indent_size = 1 },
@@ -110,7 +115,9 @@ return {
       local luasnip = require("luasnip")
       luasnip.setup(opts)
 
-      -- unlink active snippet on mode change to prevent accidental jumps and frustration
+      -- Unlink active snippet on mode change to prevent accidental jumps and frustration
+      -- Ref: https://github.com/L3MON4D3/LuaSnip/issues/656#issuecomment-1313310146
+      -- Alternative that accounts for cursor position (to consider): https://github.com/L3MON4D3/LuaSnip/issues/747#issuecomment-1406946217
       vim.api.nvim_create_autocmd("ModeChanged", {
         group = vim.api.nvim_create_augroup("UnlinkLuaSnipSnippetOnModeChange", {
           clear = true,
