@@ -112,6 +112,9 @@ return {
       event = "VeryLazy",
     },
   },
+  -- Effortlessly sync the terminal background with Neovim.
+  -- As a side effect, get effortless transparency across color schemes!
+  { "typicode/bg.nvim", lazy = false, cond = function() return os.getenv("NVIM_COLORSYNC") == nil end },
   -- Configure LazyVim to load oxocarbon
   {
     "LazyVim/LazyVim",
