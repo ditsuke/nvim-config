@@ -173,6 +173,10 @@ return {
   {
     -- Diagnostics with virtual text. Does multiline well
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = true,
+    opts = {},
+    config = function(_, _)
+      require("lsp_lines").setup()
+      vim.diagnostic.config({ virtual_lines = false }) -- disable by default
+    end,
   },
 }
