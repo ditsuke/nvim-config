@@ -8,6 +8,8 @@ return {
   },
   {
     "folke/noice.nvim",
+    event = "VimEnter", -- Load on VimEnter to prevent blocking (_press enter to..._) notifications on startup
+    priority = 1000, -- An attempt to make noice load before any blocking message comes in (from lazy).
     opts = {
       presets = {
         command_palette = true,
