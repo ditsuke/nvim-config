@@ -45,7 +45,32 @@ return {
       -- for us, besides `barbecue/issue#35`
       attach_navic = false,
       -- Window number as leading section
-      lead_custom_section = function(_, winnr) return string.format(" %d 󱋱 ", vim.api.nvim_win_get_number(winnr)) end,
+      lead_custom_section = function(_, winnr)
+        return string.format("  %d 󱋱 ", vim.api.nvim_win_get_number(winnr))
+      end,
+
+      exclude_filetypes = {
+        "DressingInput",
+        "neo-tree",
+        "toggleterm",
+        "Trouble",
+      },
+    },
+  },
+  {
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+    },
+    init = function()
+      require("lazyvim.util").on_attach(function(client, buffer)
+        if client.server_capabilities.documentSymbolProvider then require("nvim-navbuddy").attach(client, buffer) end
+      end)
+    end,
+    keys = {
+      { "<leader>cs", function() require("nvim-navbuddy").open() end, desc = "Open document [s]ymbol nagivator" },
     },
   },
   {
