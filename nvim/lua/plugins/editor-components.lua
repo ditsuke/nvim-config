@@ -111,7 +111,31 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
-    config = function(opts)
+    opts = function(_, og_opts)
+      local types = require("luasnip.util.types")
+      return vim.tbl_deep_extend("force", og_opts, {
+        ext_opts = {
+          [types.choiceNode] = {
+            active = {
+              virt_text = { { "●", "GruvboxOrange" } }, -- TODO: these colors only work with gruvbox, so figure a way to have them across themes
+            },
+          },
+          [types.insertNode] = {
+            active = {
+              virt_text = { { "●", "GruvboxBlue" } },
+            },
+            passive = {
+              virt_text = { { "_" } },
+            },
+            snippet_passive = {
+              virt_text = { { "_" } },
+            },
+          },
+        },
+      })
+    end,
+    config = function(_, opts)
+      print("opts to luansip are: ", vim.inspect(opts))
       local luasnip = require("luasnip")
       luasnip.setup(opts)
 
@@ -125,7 +149,9 @@ return {
         pattern = { "s:n", "i:*" },
         desc = "Forget the current snippet when leaving the insert mode",
         callback = function(evt)
+          print("checking if we should unlink luasnip session")
           if luasnip.session and luasnip.session.current_nodes[evt.buf] and not luasnip.session.jump_active then
+            print("unlinking luasnip ")
             luasnip.unlink_current()
           end
         end,

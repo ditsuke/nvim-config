@@ -3,8 +3,9 @@
 _A tailored prose-writing and programming environment based on @folke's [LazyVim](https://github.com/lazyvim/lazyvim)_
 ## Requirements
 
-- Neovim Nightly
+- Neovim Nightly.
 - Terminal emulator with support for the [Kitty graphics protocol](https://sw.kovidgoyal.net/kitty/graphics-protocol/).
+- `sqlite` and `lib-sqlite`. See [instructions](https://github.com/kkharji/sqlite.lua#-installation).
 
 ## Features
 - [x] IDE experience, out of the box
@@ -16,9 +17,23 @@ _A tailored prose-writing and programming environment based on @folke's [LazyVim
 - [x] A ton of themes
 
 ## Wants
-- [ ] fix: session reload conflicts with lazy.nvim float
+- [x] feat: Wakatime in statusbar.
+      **See:** https://github.com/wakatime/vim-wakatime/issues/110.
+      _Also `:WakatimeToday`_ :moon:
+- [x] feat: Keymaps to yank from system clipboard.
+      **Ref:** Primeagen's keymaps
+- [x] feat: smarter winbar
+      **See:** [barbecue.nvim](https://github.com/utilyre/barbecue.nvim).
+- [x] feat: inline git blame
+- [x] fix: session reload conflicts with lazy.nvim float
+- [x] feat: `:UndoTree` alternative in `telescope-undo`
+- [x] feat: cleaner winbar, toggle keymap
+- [x] chore: Improve Neo-tree aesthetics
+- [x] fix: Defuse LuaSnip slots on mode change
+      **Reasoning:** Super duper annoying when `<Tab>` triggers slots and you can't see them.
+- [x] feat: GPT3 integration
+      **See:** https://github.com/jackMort/ChatGPT.nvim
+- [x] feat: Highlight LuaSNIP slots with ext marks
 - [ ] feat: LSPSaga for code outline, better references and action previews etc
 - [ ] fix: disable colorizer for `lazy` ft
 - [ ] fix: disable `indentline` for `noice` ft
-- [ ] feat: tune indentline, keymap for indentline toggle
-- [ ] feat: cleaner winbar
