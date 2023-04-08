@@ -149,10 +149,14 @@ return {
         pattern = { "s:n", "i:*" },
         desc = "Forget the current snippet when leaving the insert mode",
         callback = function(evt)
-          print("checking if we should unlink luasnip session")
-          if luasnip.session and luasnip.session.current_nodes[evt.buf] and not luasnip.session.jump_active then
-            print("unlinking luasnip ")
-            luasnip.unlink_current()
+          -- If we have n active nodes, n - 1 will still remain after a `unlink_current()` call.
+          -- We unlink all of them by wrapping the calls in a loop.
+          while true do
+            if luasnip.session and luasnip.session.current_nodes[evt.buf] and not luasnip.session.jump_active then
+              luasnip.unlink_current()
+            else
+              break
+            end
           end
         end,
       })
