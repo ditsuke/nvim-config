@@ -1,11 +1,21 @@
 return {
   {
+    -- Neogit -- an experimental addition, not yet a part of my workflow
+    "TimUntersberger/neogit",
+    dependencies = {
+      "plenary.nvim",
+    },
+    config = true,
+  },
+  {
     "lewis6991/gitsigns.nvim",
     opts = {
       current_line_blame = true, -- Inline blame for current line w/ virt-text
     },
   },
   {
+    -- STATUS(2023-04-08): I like it, but I've barely ever used it.
+    -- I should consider axing it if it doesn't become a part of my workflow.
     "ThePrimeagen/git-worktree.nvim",
     event = "VeryLazy",
     -- ! For some reason declaring this dependency overrides telescope.nvim setup in lazyvim core
