@@ -135,7 +135,6 @@ return {
       })
     end,
     config = function(_, opts)
-      print("opts to luansip are: ", vim.inspect(opts))
       local luasnip = require("luasnip")
       luasnip.setup(opts)
 
