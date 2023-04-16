@@ -24,7 +24,6 @@ return {
     config = function(_, opts)
       local mnls = require("mason-null-ls")
       mnls.setup(opts)
-      mnls.setup_handlers({})
     end,
   },
   {
@@ -44,7 +43,10 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
-        virtual_text = false, -- Managed by `lsp_lines``
+        virtual_text = false, -- Managed by `lsp_lines`
+      },
+      servers = {
+        marksman = {}, -- For markdown
       },
     },
   },
