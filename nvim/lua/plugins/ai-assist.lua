@@ -22,4 +22,10 @@ return {
       "nvim-telescope/telescope.nvim",
     },
   },
+  {
+    "james1236/backseat.nvim",
+    opts = {
+      openai_model_id = "gpt-3.5-turbo",
+    },
+  },
 }
