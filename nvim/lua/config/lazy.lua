@@ -18,7 +18,10 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.util.project" },
     -- import/override with your plugins
     { import = "plugins" },
+
+    -- Language extensions
     { import = "extras.java" },
+    { import = "extras.go" },
   },
   -- dev = { path = "~/projects", patterns = jit.os:find("Windows") and {} or { "LazyVim" } },
   defaults = {
