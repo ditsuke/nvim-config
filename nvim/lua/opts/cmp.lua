@@ -200,12 +200,8 @@ M.config = function(_, _)
           item_with_kind.menu = item_with_kind.menu .. " " .. truncated_context
         end
 
-        return {
-          abbr = vim_item.abbr,
-          kind = item_with_kind.kind,
-          menu = item_with_kind.menu,
-          menu_hl_group = "CmpItemAbbr",
-        }
+        item_with_kind.menu_hl_group = "CmpItemAbbr"
+        return item_with_kind
       end,
     },
     mapping = cmp.mapping.preset.insert(mapping),
