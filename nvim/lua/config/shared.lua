@@ -2,7 +2,6 @@ local M = {}
 
 local async = require("plenary.async")
 local Job = require("plenary.job")
-local uv = vim.loop
 
 M.NON_LSP_CLIENTS = { "", "copilot", "null-ls", "luasnip" }
 
@@ -10,16 +9,20 @@ local LOG_FILE_PATH = "./log_nvim.txt"
 local log_file = io.open(LOG_FILE_PATH, "a")
 local log_count = 0
 
-M.sampled_logger = function(message)
+M.sampled_logger = function(message, payload)
   log_count = log_count + 1
   if log_count == 30 then
     log_count = 0
-    M.logger(message)
+    M.logger(message, payload)
   end
 end
 
-M.logger = function(message)
+M.logger = function(message, payload)
   if log_file == nil then return end
+  if payload ~= nil then
+    M.logger("payload passed to our logger")
+    message = message .. vim.inspect(payload)
+  end
   io.output(log_file)
   io.write(message .. "\n\n")
 end

@@ -23,38 +23,38 @@ local function get_lsp_completion_context(completion, source)
     if completion.labelDetails ~= nil then return completion.labelDetails.description end
   elseif source_name == "gopls" then
     -- And this, for the record, is how I inspect payloads
-    -- require("config.shared").logger("completion source: ", completion)
+    -- require("config.shared").logger("completion source: ", completion) -- Lazy-serialization of heavy payloads
     -- require("config.shared").logger("completion detail added to gopls")
     return completion.detail
   end
 end
 
 local SYMBOL_MAP = {
-  Text = " ",
-  Method = " ",
-  Function = " ",
-  Constructor = " ",
-  Field = " ",
-  Variable = " ",
-  Class = " ",
-  Interface = " ",
-  Module = " ",
-  Property = " ",
-  Unit = "塞",
-  Value = " ",
-  Enum = " ",
-  Keyword = " ",
-  Snippet = " ",
-  Color = " ",
-  File = " ",
-  Reference = " ",
-  Folder = " ",
-  EnumMember = " ",
-  Constant = " ",
-  Struct = " ",
-  Event = "",
-  Operator = " ",
-  TypeParameter = " ",
+  Text = "  ",
+  Method = "  ",
+  Function = "  ",
+  Constructor = "  ",
+  Field = "  ",
+  Variable = "  ",
+  Class = "  ",
+  Interface = "  ",
+  Module = "  ",
+  Property = "  ",
+  Unit = " 塞",
+  Value = "  ",
+  Enum = "  ",
+  Keyword = "  ",
+  Snippet = "  ",
+  Color = "  ",
+  File = "  ",
+  Reference = "  ",
+  Folder = "  ",
+  EnumMember = "  ",
+  Constant = "  ",
+  Struct = "  ",
+  Event = "  ",
+  Operator = "  ",
+  TypeParameter = "  ",
 }
 
 M.config = function(_, _)
