@@ -56,4 +56,5 @@ M.get_wakatime_time = function()
   job:start()
   return rx()
 end
+
 return M

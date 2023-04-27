@@ -16,7 +16,7 @@ opt.wrap = false
 vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {
   group = vim.api.nvim_create_augroup("update_window_title", { clear = true }),
   callback = function()
-    local scope = vim.v.event.scope
+    local scope = (vim.v["event"] or {})["scope"]
     if scope == nil or scope == "global" then require("config.shared").set_window_title() end
   end,
 })
