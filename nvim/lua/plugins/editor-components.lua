@@ -209,6 +209,16 @@ return {
   {
     -- Diagnostics with virtual text. Does multiline well
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    dependencies = {
+      {
+        "neovim/nvim-lspconfig",
+        opts = {
+          diagnostics = {
+            virtual_text = false, -- Managed by `lsp_lines`
+          },
+        },
+      },
+    },
     opts = {},
     config = function(_, _)
       require("lsp_lines").setup()

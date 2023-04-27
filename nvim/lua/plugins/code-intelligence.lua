@@ -14,12 +14,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       automatic_setup = true,
-      automatic_installation = false,
-      ensure_installed = {
-        "black",
-        "stylua",
-        "ruff",
-      },
+      automatic_installation = true,
     },
     config = function(_, opts)
       local mnls = require("mason-null-ls")
@@ -29,12 +24,11 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
-      local nls = require("null-ls")
+      local null_ls = require("null-ls")
       opts.sources = {
-        nls.builtins.diagnostics.ruff,
-        nls.builtins.formatting.ruff,
-        nls.builtins.formatting.black,
-        nls.builtins.formatting.stylua,
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.buf,
       }
       return opts
     end,
@@ -42,8 +36,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      diagnostics = {
-        virtual_text = false, -- Managed by `lsp_lines`
+      capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          },
+        },
       },
       servers = {
         marksman = {}, -- For markdown
