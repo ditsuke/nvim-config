@@ -23,12 +23,17 @@ return {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
+    dependencies = {
+      -- The Refactoring library based off the Refactoring book by Martin Fowler
+      "ThePrimeagen/refactoring.nvim",
+    },
     opts = function(_, opts)
       local null_ls = require("null-ls")
       opts.sources = {
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.diagnostics.buf,
+        null_ls.builtins.code_actions.refactoring,
       }
       return opts
     end,
