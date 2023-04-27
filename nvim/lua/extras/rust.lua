@@ -15,7 +15,23 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then util.list_insert_unique(opts.ensure_installed, "codelldb") end
+      if type(opts.ensure_installed) == "table" then
+        util.list_insert_unique(opts.ensure_installed, "codelldb")
+      end
+    end,
+  },
+
+  -- Add neotest adapter for rust
+  {
+    "neotest",
+    dependencies = {
+      "rouge8/neotest-rust",
+    },
+    opts = function(_, opts)
+      table.insert(opts.adapters, require("neotest-rust"))
+      util.list_insert_unique(opts.vimtest_ignore, {
+        "rust",
+      })
     end,
   },
 

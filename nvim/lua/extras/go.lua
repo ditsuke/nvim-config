@@ -25,6 +25,19 @@ return {
     config = function(opts) require("go").setup(opts) end,
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
+
+  -- Add neotest adapter for go
+  {
+    "neotest",
+    dependencies = { "nvim-neotest/neotest-go" },
+    opts = function(_, opts)
+      table.insert(opts.adapters, require("neotest-go"))
+      util.list_insert_unique(opts.vimtest_ignore, {
+        "go",
+      })
+    end,
+  },
+
   {
     "jay-babu/mason-null-ls.nvim",
     opts = function(_, opts)
@@ -41,7 +54,9 @@ return {
       {
         "jay-babu/mason-nvim-dap.nvim",
         opts = function(_, opts)
-          if type(opts.ensure_installed) == "table" then util.list_insert_unique(opts.ensure_installed, "delve") end
+          if type(opts.ensure_installed) == "table" then
+            util.list_insert_unique(opts.ensure_installed, "delve")
+          end
         end,
       },
     },

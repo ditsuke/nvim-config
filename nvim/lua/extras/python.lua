@@ -9,6 +9,24 @@ return {
       },
     },
   },
+
+  -- Add neotest adapter for python (pytest/python-unittest)
+  {
+    "neotest",
+    dependencies = { "nvim-neotest/neotest-python" },
+    opts = function(_, opts)
+      table.insert(
+        opts.adapters,
+        require("neotest-python")({
+          dap = { justMyCode = false },
+        })
+      )
+      util.list_insert_unique(opts.vimtest_ignore, {
+        "python",
+      })
+    end,
+  },
+
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)

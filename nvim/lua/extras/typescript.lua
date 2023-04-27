@@ -5,9 +5,29 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then vim.list_extend(opts.ensure_installed, { "typescript", "tsx" }) end
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+      end
     end,
   },
+
+  -- Add neotest adapter for Jest
+  {
+    "neotest",
+    dependencies = { "haydenmeade/neotest-jest", "marilari88/neotest-vitest" },
+    opts = function(_, opts)
+      table.insert(opts.adapters, require("neotest-jest"))
+      table.insert(opts.adapters, require("neotest-vitest"))
+      -- NOTE: for testrunners not covered by our adapters above, this will prevent
+      -- vim-test from taking over. An unfortunate side-effect.
+      util.list_insert_unique(opts.vimtest_ignore, {
+        "javascript",
+        "typescript",
+        "jsx",
+      })
+    end,
+  },
+
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
