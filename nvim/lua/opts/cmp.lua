@@ -20,15 +20,19 @@ local function get_lsp_completion_context(completion, source)
   if source_name == "tsserver" then
     return completion.detail
   elseif source_name == "pyright" or source_name == "vtsls" then
-    -- require("config.shared").logger("completion source: ", completion)
     if completion.labelDetails ~= nil then return completion.labelDetails.description end
+  elseif source_name == "gopls" then
+    -- And this, for the record, is how I inspect payloads
+    -- require("config.shared").logger("completion source: ", completion)
+    -- require("config.shared").logger("completion detail added to gopls")
+    return completion.detail
   end
 end
 
 local SYMBOL_MAP = {
   Text = " ",
   Method = " ",
-  Function = "",
+  Function = " ",
   Constructor = " ",
   Field = " ",
   Variable = " ",
@@ -58,7 +62,7 @@ M.config = function(_, _)
 
   local editorSources = {
     {
-      { name = "nvim_lsp" },
+      { name = "nvim_lsp", dup = 0 },
       { name = "nvim_lua" },
       { name = "luasnip" },
       { name = "emoji" },
@@ -176,27 +180,32 @@ M.config = function(_, _)
       preview = cmp.config.window.bordered({ winhighlight = WIN_HIGHLIGHT }),
     },
     formatting = {
-      fields = { "kind", "abbr", "menu" },
+      --- @type cmp.ItemField[]
+      fields = { "abbr", "kind", "menu" },
+
       --- @param entry cmp.Entry
       --- @param vim_item vim.CompletedItem
       format = function(entry, vim_item)
         local item_with_kind = require("lspkind").cmp_format({
-          mode = "symbol_text",
+          mode = "symbol",
           maxwidth = 50,
           symbol_map = SYMBOL_MAP,
         })(entry, vim_item)
 
-        local kind_s_menu = vim.split(item_with_kind.kind, "%s", { trimempty = true })
-        item_with_kind.kind = " " .. (kind_s_menu[1] or "") .. " "
-        item_with_kind.menu = "    (" .. (kind_s_menu[2] or "") .. ")"
-        item_with_kind.menu = vim.trim(item_with_kind.menu)
-
+        item_with_kind.menu = ""
         local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
         if completion_context ~= nil and completion_context ~= "" then
-          item_with_kind.menu = item_with_kind.menu .. [[ -> ]] .. completion_context
+          local truncated_context = string.sub(completion_context, 1, 30)
+          if truncated_context ~= completion_context then truncated_context = truncated_context .. "..." end
+          item_with_kind.menu = item_with_kind.menu .. " " .. truncated_context
         end
 
-        return item_with_kind
+        return {
+          abbr = vim_item.abbr,
+          kind = item_with_kind.kind,
+          menu = item_with_kind.menu,
+          menu_hl_group = "CmpItemAbbr",
+        }
       end,
     },
     mapping = cmp.mapping.preset.insert(mapping),
