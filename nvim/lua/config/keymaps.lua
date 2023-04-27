@@ -35,14 +35,15 @@ end
 ---
 --- @see https://vim.fandom.com/wiki/Improve_completion_popup_menu
 local function map_if_pumvisible_else(mode, lhs, rhs, fb)
-  vim.keymap.set(mode, lhs, function()
-    return vim.fn.pumvisible() == 1 and rhs or fb or lhs
-  end, { expr = true, noremap = true })
+  vim.keymap.set(
+    mode,
+    lhs,
+    function() return vim.fn.pumvisible() == 1 and rhs or fb or lhs end,
+    { expr = true, noremap = true }
+  )
 end
 
-local function map_if_pumvisible(mode, lhs, rhs)
-  map_if_pumvisible_else(mode, lhs, rhs, nil)
-end
+local function map_if_pumvisible(mode, lhs, rhs) map_if_pumvisible_else(mode, lhs, rhs, nil) end
 
 -- Better command-completion mappings
 map_if_pumvisible_else("c", "<C-k>", "<C-p>", "<Up>")
@@ -54,6 +55,22 @@ map_if_pumvisible("c", "<CR>", "<C-y>")
 -- Behavior
 -- ===================
 vim.keymap.set("n", "J", "mzJ`z") -- Retain cursor position on line join w J
+
+-- ============
+--Utility
+-- ============
+vim.keymap.set("n", "<leader>ub", function()
+  local background = vim.opt.background["_value"]
+  if background == "dark" then
+    print("Switching to light mode")
+    vim.opt.background = "light"
+  elseif background == "light" or background == "" then
+    print("Switching to dark mode")
+    vim.opt.background = "dark"
+  else
+    print("custom `background` set, can't switch modes")
+  end
+end, { desc = "Toggle [b]ackground (dark/light)" })
 
 vim.keymap.del("n", "<leader>ud")
 require("which-key").register({
@@ -85,7 +102,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection, send to 
 
 -- Toggle mouse
 local state__mouse = "a"
-
 vim.keymap.set("n", "<leader>um", function()
   local now = vim.opt.mouse["_value"]
   vim.opt.mouse = state__mouse
