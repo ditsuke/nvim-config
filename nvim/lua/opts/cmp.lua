@@ -19,7 +19,8 @@ local function get_lsp_completion_context(completion, source)
   if not ok then return nil end
   if source_name == "tsserver" then
     return completion.detail
-  elseif source_name == "pyright" then
+  elseif source_name == "pyright" or source_name == "vtsls" then
+    -- require("config.shared").logger("completion source: ", completion)
     if completion.labelDetails ~= nil then return completion.labelDetails.description end
   end
 end
