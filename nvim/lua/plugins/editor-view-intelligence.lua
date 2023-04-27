@@ -77,4 +77,10 @@ return {
     "NvChad/nvim-colorizer.lua",
     config = true,
   },
+  {
+    -- IncRename, like IncSearch but for LSP renaming
+    "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
+    config = true,
+  },
 }
