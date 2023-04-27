@@ -1,9 +1,21 @@
+local util = require("utils")
+
 return {
   -- add typescript to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then vim.list_extend(opts.ensure_installed, { "typescript", "tsx" }) end
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      util.list_insert_unique(opts.sources, {
+        nls.builtins.code_actions.eslint_d,
+      })
+      return opts
     end,
   },
   {
