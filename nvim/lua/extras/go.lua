@@ -1,6 +1,7 @@
 local util = require("utils")
 
 return {
+  -- Configure Go integrations (commands, LSP)
   {
     "ray-x/go.nvim",
     event = { "CmdlineEnter" },
@@ -26,6 +27,16 @@ return {
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 
+  -- Add Go and related file formats to treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        util.list_insert_unique(opts.ensure_installed, { "go", "gomod", "gosum", "gowork" })
+      end
+    end,
+  },
+
   -- Add neotest adapter for go
   {
     "neotest",
@@ -38,6 +49,8 @@ return {
     end,
   },
 
+  -- Configure some formatters/auto-fixers.
+  -- TODO: replace this setup with `null-ls`
   {
     "jay-babu/mason-null-ls.nvim",
     opts = function(_, opts)
@@ -46,8 +59,9 @@ return {
       end
     end,
   },
+
+  -- Configure debug adapter
   {
-    -- DAP
     "leoluz/nvim-dap-go",
     dependencies = {
       "mfussenegger/nvim-dap",
@@ -63,4 +77,9 @@ return {
     ft = "go",
     config = true,
   },
+
+  -- Consider: `olexsmir/gopher.nvim`.
+  --  - Minimal replacement for `go.nvim`
+  --  - Configure DAP on its own.
+  --  - :Go* commands (should be redundant with `go.nvim`'s)
 }
