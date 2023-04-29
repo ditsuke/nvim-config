@@ -3,11 +3,13 @@
 _A tailored prose-writing and programming environment based on @folke's [LazyVim](https://github.com/lazyvim/lazyvim)_
 
 ## Requirements
+
 - Neovim Nightly.
 - Terminal emulator with support for the [Kitty graphics protocol](https://sw.kovidgoyal.net/kitty/graphics-protocol/).
 - `sqlite` and `lib-sqlite`. See [instructions](https://github.com/kkharji/sqlite.lua#-installation).
 
 ## Features
+
 - [x] IDE experience, out of the box
 - [x] Debug Go, Rust, JS and others out of the box.
 - [x] Integrated tests for popular languages/frameworks (powered by Neotest)
@@ -19,6 +21,7 @@ _A tailored prose-writing and programming environment based on @folke's [LazyVim
 - [x] A ton of themes
 
 ## Wants
+
 - [x] feat: Wakatime in statusbar.
       **See:** https://github.com/wakatime/vim-wakatime/issues/110.
       _Also `:WakatimeToday`_ :moon:
@@ -36,6 +39,17 @@ _A tailored prose-writing and programming environment based on @folke's [LazyVim
 - [x] feat: GPT3 integration
       **See:** https://github.com/jackMort/ChatGPT.nvim
 - [x] feat: Highlight LuaSNIP slots with ext marks
-- [ ] feat: LSPSaga for code outline, better references and action previews etc
-- [ ] fix: disable colorizer for `lazy` ft
-- [ ] fix: disable `indentline` for `noice` ft
+
+### Ideas/configs I'm totally stealing from astronvim
+      - [x] `b0o/SchemaStore.nvim`
+- [x] `nvim-ufo`
+- [x] `nvim-dap` -- But I didn't steal it from astro, since LazyVim comes with it now.
+- [x] `neotree` -- certainly looks better + has a buffer and git view.
+- [ ] ~~Paste mode~~
+
+## Ideas and Inspiration
+- [Awesome Neovim](https://github.com/rockerBOO/awesome-neovim#colorscheme-creation)
+- [r/neovim](https://reddit.com/r/neovim)
+- Nvchad
+
+_And countless dotfiles_
