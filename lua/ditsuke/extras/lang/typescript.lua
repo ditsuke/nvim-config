@@ -15,6 +15,7 @@ return {
   {
     "neotest",
     dependencies = { "haydenmeade/neotest-jest", "marilari88/neotest-vitest" },
+    cond = function() return require("lazyvim.util").has("neotest") end,
     opts = function(_, opts)
       table.insert(opts.adapters, require("neotest-jest"))
       table.insert(opts.adapters, require("neotest-vitest"))

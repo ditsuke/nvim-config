@@ -27,6 +27,7 @@ return {
     dependencies = {
       "rouge8/neotest-rust",
     },
+    cond = function() return require("lazyvim.util").has("neotest") end,
     opts = function(_, opts)
       table.insert(opts.adapters, require("neotest-rust"))
       util.list_insert_unique(opts.vimtest_ignore, {
