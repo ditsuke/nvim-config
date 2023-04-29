@@ -1,0 +1,88 @@
+payload passed to our logger
+
+setting up neotest with: {
+  adapters = { {
+      build_spec = <function 1>,
+      discover_positions = <function 2>,
+      is_test_file = <function 3>,
+      name = "neotest-plenary",
+      results = <function 4>,
+      root = <function 5>,
+      setup = <function 6>,
+      <metatable> = {
+        __call = <function 7>
+      }
+    }, {
+      _generate_position_id = <function 8>,
+      build_spec = <function 9>,
+      discover_positions = <function 10>,
+      is_test_file = <function 11>,
+      name = "neotest-go",
+      prepare_results = <function 12>,
+      results = <function 13>,
+      root = <function 14>,
+      <metatable> = {
+        __call = <function 15>
+      }
+    }, {
+      build_spec = <function 16>,
+      discover_positions = <function 17>,
+      filter_dir = <function 18>,
+      is_test_file = <function 19>,
+      name = "neotest-jest",
+      results = <function 20>,
+      root = <function 21>,
+      <metatable> = {
+        __call = <function 22>
+      }
+    }, {
+      build_spec = <function 23>,
+      discover_positions = <function 24>,
+      filter_dir = <function 25>,
+      is_test_file = <function 26>,
+      name = "neotest-vitest",
+      results = <function 27>,
+      root = <function 28>,
+      <metatable> = {
+        __call = <function 29>
+      }
+    }, {
+      build_spec = <function 30>,
+      discover_positions = <function 31>,
+      filter_dir = <function 32>,
+      is_test_file = <function 33>,
+      name = "neotest-python",
+      results = <function 34>,
+      root = <function 35>,
+      <metatable> = {
+        __call = <function 36>
+      }
+    }, {
+      build_spec = <function 37>,
+      discover_positions = <function 38>,
+      is_test_file = <function 39>,
+      name = "neotest-rust",
+      results = <function 40>,
+      root = <function 41>,
+      <metatable> = {
+        __call = <function 42>
+      }
+    }, {
+      _build_spec = <function 43>,
+      _discover_positions = <function 44>,
+      _is_test_file = <function 45>,
+      _remote_build_spec = <function 46>,
+      build_spec = <function 47>,
+      discover_positions = <function 48>,
+      filter_dir = <function 49>,
+      is_test_file = <function 50>,
+      name = "neotest-vim-test",
+      results = <function 51>,
+      root = <function 52>,
+      <metatable> = {
+        __call = <function 53>
+      }
+    } },
+  vimtest_ignore = { "lua", "go", "javascript", "typescript", "jsx", "python", "rust" }
+}
+
