@@ -1,6 +1,8 @@
-# machine-local
-.dotter/local.toml
-
-# cache
-.dotter/cache.toml
-.dotter/cache
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data

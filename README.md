@@ -1,17 +1,50 @@
-# ditsuke's dotfiles
+# 💤 ditsuke's `nvim` config
 
-I managed my dotfiles with [dotter](https://github.com/SuperCuber/dotter/).
+_A tailored prose-writing and programming environment based on @folke's [LazyVim](https://github.com/lazyvim/lazyvim)_
 
-## Installing
-1. Fork + clone this repository, or just clone without forking!
-  `git clone https://github.com/ditsuke/dotfiles`
-2. Run a bootstrap script -- `setup-windows.ps1` for Windows, `setup-fedora.ps1` for Fedora.
-  `TODO`: more generic Linux install scripts to follow.
-2. Select a dotter configuration files form the `.dotter` directory -- `default-<os>-local.toml`, then
-  `cp .dotter/<file.toml> .dotter/local.toml`
-3. Apply dotfiles with `dotter deploy`. The bootstrap scripts install _dotter_, but if you skip that dotter
-  can be installed independently with Cargo or from GitHub releases.
-  
+## Requirements
 
-## Updating
-`TODO`
+- Neovim Nightly.
+- Terminal emulator with support for the [Kitty graphics protocol](https://sw.kovidgoyal.net/kitty/graphics-protocol/).
+- `sqlite` and `lib-sqlite`. See [instructions](https://github.com/kkharji/sqlite.lua#-installation).
+
+## Features
+
+- [x] IDE experience, out of the box
+- [x] Debug Go, Rust, JS and others out of the box.
+- [x] Integrated tests for popular languages/frameworks (powered by Neotest)
+- [x] Automatic session management (including reloads!) with flag (`+NoSession`) to disable it.
+- [x] Floating, persistent terminal
+- [x] Better _marks_ with [Harpoon](https://github.com/ThePrimeagen/harpoon).
+- [x] Editor context awareness and more powered by Treesitter. Checked for performance on large (>5000LOC) files!
+- [x] LSP-sensitive completion context (import paths)
+- [x] A ton of themes
+
+## Wants
+
+- [x] feat: Wakatime in statusbar.
+      **See:** https://github.com/wakatime/vim-wakatime/issues/110.
+      _Also `:WakatimeToday`_ :moon:
+- [x] feat: Keymaps to yank from system clipboard.
+      **Ref:** Primeagen's keymaps
+- [x] feat: smarter winbar
+      **See:** [barbecue.nvim](https://github.com/utilyre/barbecue.nvim).
+- [x] feat: inline git blame
+- [x] fix: session reload conflicts with lazy.nvim float
+- [x] feat: `:UndoTree` alternative in `telescope-undo`
+- [x] feat: cleaner winbar, toggle keymap
+- [x] chore: Improve Neo-tree aesthetics
+- [x] fix: Defuse LuaSnip slots on mode change
+      **Reasoning:** Super duper annoying when `<Tab>` triggers slots and you can't see them.
+- [x] feat: GPT3 integration
+      **See:** https://github.com/jackMort/ChatGPT.nvim
+- [x] feat: Highlight LuaSNIP slots with ext marks
+
+## Ideas and Inspiration
+- [Awesome Neovim](https://github.com/rockerBOO/awesome-neovim#colorscheme-creation)
+- [r/neovim](https://reddit.com/r/neovim)
+- [Nvchad](https://github.com/NvChad/NvChad)
+- [Astronvim](https://astronvim.github.io/)
+- [amaanq/nvim-config](https://github.com/amaanq/nvim-config)
+
+_And countless other dotfiles_

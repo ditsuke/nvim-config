@@ -1,9 +1,0 @@
-includes = [".dotter/windows.toml"]
-
-packages = ["default"]
-
-[files]
-
-[variables]
-gpg_binary = 'C:\\Users\\dt\\scoop\\apps\\gpg\\current\\bin\\gpg.exe'
-
