@@ -1,14 +1,16 @@
 # 💤 ditsuke's `nvim` config
 
 _A tailored prose-writing and programming environment based on @folke's [LazyVim](https://github.com/lazyvim/lazyvim)_
-## Requirements
 
+## Requirements
 - Neovim Nightly.
 - Terminal emulator with support for the [Kitty graphics protocol](https://sw.kovidgoyal.net/kitty/graphics-protocol/).
 - `sqlite` and `lib-sqlite`. See [instructions](https://github.com/kkharji/sqlite.lua#-installation).
 
 ## Features
 - [x] IDE experience, out of the box
+- [x] Debug Go, Rust, JS and others out of the box.
+- [x] Integrated tests for popular languages/frameworks (powered by Neotest)
 - [x] Automatic session management (including reloads!) with flag (`+NoSession`) to disable it.
 - [x] Floating, persistent terminal
 - [x] Better _marks_ with [Harpoon](https://github.com/ThePrimeagen/harpoon).
