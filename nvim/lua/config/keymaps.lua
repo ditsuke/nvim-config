@@ -5,11 +5,11 @@
 -- ===================
 -- Buffer navigation
 -- ===================
-vim.keymap.set("n", "<C-D>", "<C-D>zz")
-vim.keymap.set("n", "<C-U>", "<C-U>zz")
+-- vim.keymap.set("n", "<C-D>", "<C-D>zz")
+-- vim.keymap.set("n", "<C-U>", "<C-U>zz")
 
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
+-- vim.keymap.set("n", "n", "nzz")
+-- vim.keymap.set("n", "N", "Nzz")
 
 -- ===================
 -- Window navigation
@@ -100,6 +100,11 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete selection, s
 -- Replace selection, sending it into oblivion 🙈
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection, send to NULL register" })
 
+-- ====
+-- UI
+-- ====
+-- TODO: toggle indentscope + indent_blanklines
+
 -- Toggle mouse
 local state__mouse = "a"
 vim.keymap.set("n", "<leader>um", function()
@@ -108,3 +113,11 @@ vim.keymap.set("n", "<leader>um", function()
   vim.notify('Set mouse to "' .. state__mouse .. '"')
   state__mouse = now
 end, { desc = "Toggle [m]ouse support" })
+
+local state__tabline = 0
+vim.keymap.set("n", "<leader>ut", function()
+  local now = vim.opt.showtabline["_value"]
+  vim.opt.showtabline = state__tabline
+  vim.notify('Set showtabline to "' .. state__tabline .. '"')
+  state__tabline = now
+end, { desc = "Toggle [t]abline" })
