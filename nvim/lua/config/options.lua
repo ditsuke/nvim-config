@@ -11,6 +11,9 @@ opt.laststatus = 3 -- Global statusline
 
 opt.cursorline = true
 opt.wrap = false
+
+-- opt.spelloptions = "camel"
+
 -- Make window title indicative of our cwd
 -- Loaded before normal autocmds (./autocmds) because we leverage the `VimEnter` here.
 vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {

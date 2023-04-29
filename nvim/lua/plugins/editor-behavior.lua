@@ -1,5 +1,5 @@
 return {
-  { "NMAC427/guess-indent.nvim", event = "BufReadPost", opts = {} },
+  { "NMAC427/guess-indent.nvim", event = "BufReadPre", opts = { auto_cmd = true } },
   {
     -- Smooth-scrolling!
     "psliwka/vim-smoothie",
@@ -86,5 +86,10 @@ return {
 
       return vim.tbl_deep_extend("force", og, overrides)
     end,
+  },
+  {
+    -- draw `:h colorcolumn` with a virtual text + a character
+    "lukas-reineke/virt-column.nvim",
+    config = true,
   },
 }

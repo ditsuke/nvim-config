@@ -32,6 +32,7 @@ return {
           end
 
           vim.cmd.close()
+          -- TODO: delay load of persistence
           vim.schedule(function()
             persistence.load()
             require("lazy").show()
