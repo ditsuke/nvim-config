@@ -10,24 +10,26 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import any extras modules here
+
+    -- Extra lazyvim modules
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
     { import = "lazyvim.plugins.extras.util.project" },
+    -- { import = "lazyvim.plugins.extras.coding.copilot" },
     -- import/override with your plugins
     { import = "plugins" },
 
+    -- Others
+    { import = "extras.neotest" },
+
     -- Language extensions
-    { import = "extras.java" },
     { import = "extras.go" },
+    { import = "extras.java" },
     { import = "extras.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses vtsls instead
     { import = "extras.python" },
     { import = "extras.rust" },
-
-    -- Others
-    { import = "extras.neotest" },
   },
   -- dev = { path = "~/projects", patterns = jit.os:find("Windows") and {} or { "LazyVim" } },
   defaults = {
