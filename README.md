@@ -26,7 +26,7 @@ There are 2 ways:
 
 1. Clone this into `~/.config/nvim-ditsuke`, then run:
   ```sh
-  NVIM_APPNAME=ditsuke nvim
+  NVIM_APPNAME=nvim-ditsuke nvim
   ```
 2. Use it as a layer in your `LazyVim` configuration. Note that `1.` is simpler to get started:
 ```lua
