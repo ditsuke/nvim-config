@@ -65,12 +65,28 @@ local state = {
   comp_wakatime_time = "",
 }
 
+local logger = require("ditsuke.utils").logger
+local LspUtils = require("ditsuke.utils.lspts")
+local Icons = require("ditsuke.utils.icons")
 local components = {
   filetype_plus_lsp = function()
+    logger("filetype_plug_lsp_component called")
     local ft = vim.bo.filetype
-    local lsp = require("ditsuke.utils.lsp-ts").get_active_lsp()
+    logger("ft is: ", ft)
+    local lsp = LspUtils.get_active_lsp()
+    local ts_enabled = LspUtils.is_treesitter_active()
+    logger("active lsp is: ", lsp)
+    local ctx_parts = {}
     if lsp ~= nil then
-      return string.format("%s ( %s)", ft, lsp)
+      table.insert(ctx_parts, Icons.lsp_ts.active_lsp .. " " .. lsp)
+    end
+    if ts_enabled then
+      table.insert(ctx_parts, Icons.lsp_ts.active_ts)
+    end
+
+    local ft_ctx = table.concat(ctx_parts, " + ", 1)
+    if ft_ctx ~= "" then
+      return string.format("%s (%s)", ft, ft_ctx)
     end
     return ft
   end,
@@ -189,9 +205,9 @@ M.config = function()
         {
           -- Copilot icon
           function() return "" end,
-          cond = function() return require("lazyvim.util").has("copilot") and package.loaded["copilot"] ~= nil end,
+          cond = function() return require("lazyvim.util").has("copilot.lua") and package.loaded["copilot"] ~= nil end,
           color = function(_)
-            local copilot_client = require("lazyvim.util").has("copilot") and require("copilot.client")
+            local copilot_client = require("lazyvim.util").has("copilot.lua") and require("copilot.client")
             if not copilot_client then
               return
             end

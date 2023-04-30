@@ -23,7 +23,7 @@ M.logger = function(message, payload)
     message = message .. vim.inspect(payload)
   end
   io.output(log_file)
-  io.write(message .. "\n\n")
+  io.write(message .. "\n")
 end
 
 M.set_window_title = function()

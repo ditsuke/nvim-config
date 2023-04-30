@@ -2,7 +2,7 @@ local M = {}
 
 local FILESTATUS_SYMBOLS = { modified = "  ", readonly = "", unnamed = "" }
 
-local LspUtils = require("ditsuke.utils.lsp-ts")
+local LspUtils = require("ditsuke.utils.lspts")
 
 local function root_base()
   local path = vim.split(vim.fn.getcwd(), "/", {})
