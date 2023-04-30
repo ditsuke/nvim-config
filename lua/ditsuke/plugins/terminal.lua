@@ -1,3 +1,13 @@
+local function toggleterm()
+  -- Need to escape from insert mode if we're in it
+  local mode = vim.api.nvim_get_mode().mode
+  if mode == "i" then
+    vim.cmd.stopinsert()
+  end
+  local count = vim.v["count"] or 1
+  require("toggleterm").toggle(count, nil, nil, "float")
+end
+
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -6,11 +16,13 @@ return {
       return {
         {
           "<F60>",
-          function()
-            local count = vim.v["count"] or 1
-            require("toggleterm").toggle(count, nil, nil, "float")
-          end,
-          mode = { "n", "t" },
+          toggleterm,
+          mode = { "n", "t", "i" },
+        },
+        {
+          "<C-\\>",
+          toggleterm,
+          mode = { "n", "t", "i" },
         },
       }
     end,

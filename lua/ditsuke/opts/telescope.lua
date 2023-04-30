@@ -67,6 +67,12 @@ M.keys = {
     desc = "[t]erminals",
   },
   {
+    "<M-BSlash>",
+    function() require("telescope").extensions.termfinder.find({}) end,
+    desc = "find terminals",
+    mode = { "t", "i", "n" },
+  },
+  {
     "<leader>sS",
     function()
       require("lazyvim.util").telescope("lsp_dynamic_workspace_symbols", {
