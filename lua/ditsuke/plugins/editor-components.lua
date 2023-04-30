@@ -209,6 +209,7 @@ return {
   {
     -- Diagnostics with virtual text. Does multiline well
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    event = "BufReadPost",
     dependencies = {
       {
         "neovim/nvim-lspconfig",

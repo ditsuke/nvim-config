@@ -9,7 +9,7 @@ NeotestLayerEnabled = true
 
 local M = {
   "nvim-neotest/neotest",
-  event = "BufEnter",
+  event = "VeryLazy",
   dependencies = {
     "plenary.nvim",
     -- Decouple updateTime from the `CursorHold` event used by NeoTest

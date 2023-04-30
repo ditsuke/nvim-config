@@ -21,6 +21,7 @@ return {
   -- > With ChatGPT, you can ask questions and get answers from GPT-3 in real-time.
   {
     "jackMort/ChatGPT.nvim",
+    cmd = "ChatGPT",
     config = true,
     cond = function()
       local api_key = os.getenv("OPENAI_API_KEY")
