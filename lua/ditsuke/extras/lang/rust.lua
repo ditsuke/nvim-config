@@ -43,7 +43,6 @@ return {
           require("lazyvim.util").on_attach(function(client, buffer)
 						-- stylua: ignore
 						if client.name == "rust_analyzer" then
-              require("ditsuke.utils").logger("we found rust_analyzer workin")
 							vim.keymap.set("n", "K", "<cmd>RustHoverActions<cr>", { buffer = buffer, desc = "Hover Actions (Rust)" })
 							vim.keymap.set("n", "<leader>cR", "<cmd>RustCodeAction<cr>", { buffer = buffer, desc = "Code Action (Rust)" })
 							vim.keymap.set("n", "<leader>dr", "<cmd>RustDebuggables<cr>", { buffer = buffer, desc = "Run Debuggables (Rust)" })
