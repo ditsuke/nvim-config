@@ -5,9 +5,13 @@ local M = {}
 ---@param vals string|string[]
 function M.list_insert_unique(list, vals)
   list = list or {}
-  if type(vals) ~= "table" then vals = { vals } end
+  if type(vals) ~= "table" then
+    vals = { vals }
+  end
   for _, val in ipairs(vals) do
-    if not vim.tbl_contains(list, val) then table.insert(list, val) end
+    if not vim.tbl_contains(list, val) then
+      table.insert(list, val)
+    end
   end
 end
 

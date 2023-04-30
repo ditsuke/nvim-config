@@ -16,11 +16,15 @@ end
 --  https://github.com/AstroNvim/AstroNvim
 local function get_lsp_completion_context(completion, source)
   local ok, source_name = pcall(function() return source.source.client.config.name end)
-  if not ok then return nil end
+  if not ok then
+    return nil
+  end
   if source_name == "tsserver" then
     return completion.detail
   elseif source_name == "pyright" or source_name == "vtsls" then
-    if completion.labelDetails ~= nil then return completion.labelDetails.description end
+    if completion.labelDetails ~= nil then
+      return completion.labelDetails.description
+    end
   elseif source_name == "gopls" then
     -- And this, for the record, is how I inspect payloads
     -- require("ditsuke.config.shared").logger("completion source: ", completion) -- Lazy-serialization of heavy payloads
@@ -196,7 +200,9 @@ M.config = function(_, _)
         local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
         if completion_context ~= nil and completion_context ~= "" then
           local truncated_context = string.sub(completion_context, 1, 30)
-          if truncated_context ~= completion_context then truncated_context = truncated_context .. "..." end
+          if truncated_context ~= completion_context then
+            truncated_context = truncated_context .. "..."
+          end
           item_with_kind.menu = item_with_kind.menu .. " " .. truncated_context
         end
 

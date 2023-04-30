@@ -12,7 +12,9 @@ end
 local function filetype_plus_lsp()
   local ft = vim.bo.filetype
   local lsp = shared.get_active_lsp()
-  if lsp ~= nil then return string.format("%s (%s)", ft, lsp) end
+  if lsp ~= nil then
+    return string.format("%s (%s)", ft, lsp)
+  end
   return ft
 end
 

@@ -18,9 +18,10 @@ M.sampled_logger = function(message, payload)
 end
 
 M.logger = function(message, payload)
-  if log_file == nil then return end
+  if log_file == nil then
+    return
+  end
   if payload ~= nil then
-    M.logger("payload passed to our logger")
     message = message .. vim.inspect(payload)
   end
   io.output(log_file)
@@ -35,7 +36,9 @@ end
 
 M.get_active_lsp = function()
   for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-    if not vim.tbl_contains(M.NON_LSP_CLIENTS, client.name) then return client.name end
+    if not vim.tbl_contains(M.NON_LSP_CLIENTS, client.name) then
+      return client.name
+    end
   end
   return nil
 end

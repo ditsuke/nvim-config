@@ -66,7 +66,9 @@ return {
     },
     init = function()
       require("lazyvim.util").on_attach(function(client, buffer)
-        if client.server_capabilities.documentSymbolProvider then require("nvim-navbuddy").attach(client, buffer) end
+        if client.server_capabilities.documentSymbolProvider then
+          require("nvim-navbuddy").attach(client, buffer)
+        end
       end)
     end,
     keys = {

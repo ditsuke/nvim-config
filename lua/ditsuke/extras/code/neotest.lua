@@ -27,8 +27,6 @@ local M = {
     "nvim-neotest/neotest-plenary",
   },
   opts = function(_, _)
-    local logger = require("ditsuke.config.shared").logger
-    logger("plugin table when eval neotest opts: ", require("lazy.core.config").plugins)
     return {
       adapters = {
         require("neotest-plenary"),
@@ -71,8 +69,6 @@ function M.config(_, opts)
     },
   }, neotest_ns)
 
-  -- TODO: cleanup
-  require("ditsuke.config.shared").logger("setting up neotest with: ", opts)
   require("neotest").setup(opts)
 end
 
