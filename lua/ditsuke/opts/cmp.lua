@@ -27,8 +27,8 @@ local function get_lsp_completion_context(completion, source)
     end
   elseif source_name == "gopls" then
     -- And this, for the record, is how I inspect payloads
-    -- require("ditsuke.config.shared").logger("completion source: ", completion) -- Lazy-serialization of heavy payloads
-    -- require("ditsuke.config.shared").logger("completion detail added to gopls")
+    -- require("ditsuke.utils").logger("completion source: ", completion) -- Lazy-serialization of heavy payloads
+    -- require("ditsuke.utils").logger("completion detail added to gopls")
     return completion.detail
   end
 end

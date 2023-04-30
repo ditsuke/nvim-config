@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {
   callback = function()
     local scope = (vim.v["event"] or {})["scope"]
     if scope == nil or scope == "global" then
-      require("ditsuke.config.shared").set_window_title()
+      require("ditsuke.utils").set_window_title()
     end
   end,
 })

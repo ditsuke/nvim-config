@@ -4,7 +4,6 @@
 -- Color table for highlights
 -- Eviline-ish configuration for lualine
 
-local shared = require("ditsuke.config.shared")
 local uv = vim.loop
 
 local COLORS = {
@@ -69,7 +68,7 @@ local state = {
 local components = {
   filetype_plus_lsp = function()
     local ft = vim.bo.filetype
-    local lsp = shared.get_active_lsp()
+    local lsp = require("ditsuke.utils.lsp-ts").get_active_lsp()
     if lsp ~= nil then
       return string.format("%s ( %s)", ft, lsp)
     end
@@ -85,7 +84,10 @@ local components = {
       end
       -- Update wakatime every some some
       uv.timer_start(timer, 500, WAKATIME_UPDATE_INTERVAL, function()
-        require("plenary.async").run(shared.get_wakatime_time, function(time) state.comp_wakatime_time = time end)
+        require("plenary.async").run(
+          require("ditsuke.utils").get_wakatime_time,
+          function(time) state.comp_wakatime_time = time end
+        )
       end)
       Wakatime_routine_init = true
     end

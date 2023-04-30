@@ -2,7 +2,7 @@ local M = {}
 
 local FILESTATUS_SYMBOLS = { modified = "  ", readonly = "", unnamed = "" }
 
-local shared = require("ditsuke.config.shared")
+local LspUtils = require("ditsuke.utils.lsp-ts")
 
 local function root_base()
   local path = vim.split(vim.fn.getcwd(), "/", {})
@@ -11,7 +11,7 @@ end
 
 local function filetype_plus_lsp()
   local ft = vim.bo.filetype
-  local lsp = shared.get_active_lsp()
+  local lsp = LspUtils.get_active_lsp()
   if lsp ~= nil then
     return string.format("%s (%s)", ft, lsp)
   end
