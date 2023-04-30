@@ -2,6 +2,8 @@
 
 _A tailored prose-writing and programming environment based on @folke's [LazyVim](https://github.com/lazyvim/lazyvim)_
 
+![Dash](assets/ss-dash.png)
+
 ## Requirements
 
 - Neovim Nightly.
@@ -19,6 +21,28 @@ _A tailored prose-writing and programming environment based on @folke's [LazyVim
 - [x] Editor context awareness and more powered by Treesitter. Checked for performance on large (>5000LOC) files!
 - [x] LSP-sensitive completion context (import paths)
 - [x] A ton of themes
+
+
+
+## Screenshots
+
+![Floating Terminals](assets/ss-terminal.png)
+
+
+
+![Terminal search](assets/search-terminals.png)
+
+
+
+![File search](assets/fuzzy-search-files.png)
+
+
+
+![Structural Symbol Explorer](assets/structural-symbol-explorer.png)
+
+
+
+![Better Quickfix list](assets/better-qflist.png)
 
 ## How can I try this configuration?
 
