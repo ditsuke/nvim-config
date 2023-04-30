@@ -30,7 +30,6 @@ return {
     opts = function(_, opts)
       local null_ls = require("null-ls")
       opts.sources = {
-        null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.diagnostics.buf,
         null_ls.builtins.code_actions.refactoring,
