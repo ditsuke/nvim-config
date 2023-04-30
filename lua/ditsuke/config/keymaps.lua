@@ -72,7 +72,7 @@ vim.keymap.set("n", "<leader>ub", function()
   end
 end, { desc = "Toggle [b]ackground (dark/light)" })
 
-vim.keymap.del("n", "<leader>ud")
+pcall(function() vim.keymap.del("n", "<leader>ud") end)
 require("which-key").register({
   ["<leader>ud"] = { name = "+diagnostics" },
 }, nil)

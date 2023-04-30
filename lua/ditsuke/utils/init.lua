@@ -3,7 +3,7 @@ local M = {}
 local async = require("plenary.async")
 local Job = require("plenary.job")
 
-local LOG_FILE_PATH = "./log_nvim.txt"
+local LOG_FILE_PATH = "./nvim.local.log"
 local log_file = io.open(LOG_FILE_PATH, "a")
 local log_count = 0
 
