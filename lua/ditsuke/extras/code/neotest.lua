@@ -25,6 +25,16 @@ local M = {
     },
     "nvim-neotest/neotest-vim-test",
     "nvim-neotest/neotest-plenary",
+
+    -- which key integration
+    {
+      "folke/which-key.nvim",
+      opts = {
+        defaults = {
+          ["<leader>ct"] = { name = "+tests (neotest)" },
+        },
+      },
+    },
   },
   opts = function(_, _)
     return {
