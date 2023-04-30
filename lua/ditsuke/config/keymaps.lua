@@ -103,7 +103,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection, send to 
 -- ====
 -- UI
 -- ====
--- TODO: toggle indentscope + indent_blanklines
 
 -- Toggle mouse
 local state__mouse = "a"
@@ -121,3 +120,23 @@ vim.keymap.set("n", "<leader>ut", function()
   vim.notify('Set showtabline to "' .. state__tabline .. '"')
   state__tabline = now
 end, { desc = "Toggle [t]abline" })
+
+vim.keymap.set("n", "<leader>uIi", function()
+  if vim.g.indent_blankline_enabled == true then
+    vim.g.indent_blankline_enabled = false
+    vim.notify("Disabled indent_blankline")
+  else
+    vim.g.indent_blankline_enabled = true
+    vim.notify("Enabled indent_blankline")
+  end
+end, { desc = "Toggle indent_blankline" })
+
+vim.keymap.set("n", "<leader>uII", function()
+  if vim.g.miniindentscope_disable == true then
+    vim.g.miniindentscope_disable = false
+    vim.notify("Disabled mini.indentscope")
+  else
+    vim.g.miniindentscope_disable = true
+    vim.notify("Enabled mini.indentscope")
+  end
+end, { desc = "Toggle mini.indentscope" })
