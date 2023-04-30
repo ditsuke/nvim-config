@@ -1,6 +1,12 @@
 -- > A framework for interacting with tests within NeoVim.
 -- TODO: factor out language configurations to their own layers
 -- TODO: Install vim-test + neotest-vim-test for increased language support/compat
+
+-- HACK: Indicate layer status to other layers
+-- I couldn't find a lazy.nvim-native way to do this
+-- (plugin table is not populated as its being build)
+NeotestLayerEnabled = true
+
 local M = {
   "nvim-neotest/neotest",
   event = "BufEnter",
@@ -20,14 +26,16 @@ local M = {
     "nvim-neotest/neotest-vim-test",
     "nvim-neotest/neotest-plenary",
   },
-  opts = function(_, og_opts)
+  opts = function(_, _)
+    local logger = require("ditsuke.config.shared").logger
+    logger("plugin table when eval neotest opts: ", require("lazy.core.config").plugins)
     return {
       adapters = {
         require("neotest-plenary"),
       },
       -- HACK: non-standard extension to opts to enable language
       -- layers to exclude filetypes covered by standard neotest adapters
-      -- from the blanket `vim-test` adapter
+      -- from the blanket `vim-test` adapter.
       vimtest_ignore = {
         "lua",
       },

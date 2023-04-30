@@ -38,17 +38,7 @@ return {
   },
 
   -- Add neotest adapter for go
-  {
-    "neotest",
-    dependencies = { "nvim-neotest/neotest-go" },
-    cond = function() return require("lazyvim.util").has("neotest") end,
-    opts = function(_, opts)
-      table.insert(opts.adapters, require("neotest-go"))
-      util.list_insert_unique(opts.vimtest_ignore, {
-        "go",
-      })
-    end,
-  },
+  require("ditsuke.utils.lang").neotest_extension_spec({ { "nvim-neotest/neotest-go" } }, { "go" }),
 
   -- Configure some formatters/auto-fixers.
   -- TODO: replace this setup with `null-ls`

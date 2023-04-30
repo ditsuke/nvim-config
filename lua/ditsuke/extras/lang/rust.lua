@@ -22,19 +22,7 @@ return {
   },
 
   -- Add neotest adapter for rust
-  {
-    "neotest",
-    dependencies = {
-      "rouge8/neotest-rust",
-    },
-    cond = function() return require("lazyvim.util").has("neotest") end,
-    opts = function(_, opts)
-      table.insert(opts.adapters, require("neotest-rust"))
-      util.list_insert_unique(opts.vimtest_ignore, {
-        "rust",
-      })
-    end,
-  },
+  require("ditsuke.utils.lang").neotest_extension_spec({ { "rouge8/neotest-rust" } }, { "rust" }),
 
   -- Setup LSP and keybindings for Rust/Cargo/RustAnalyzer and TOML/Taplo
   -- NOTE: I've copied this without checks from `@amaanq`'s config. I will

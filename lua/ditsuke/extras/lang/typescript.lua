@@ -12,22 +12,10 @@ return {
   },
 
   -- Add neotest adapter for Jest
-  {
-    "neotest",
-    dependencies = { "haydenmeade/neotest-jest", "marilari88/neotest-vitest" },
-    cond = function() return require("lazyvim.util").has("neotest") end,
-    opts = function(_, opts)
-      table.insert(opts.adapters, require("neotest-jest"))
-      table.insert(opts.adapters, require("neotest-vitest"))
-      -- NOTE: for testrunners not covered by our adapters above, this will prevent
-      -- vim-test from taking over. An unfortunate side-effect.
-      util.list_insert_unique(opts.vimtest_ignore, {
-        "javascript",
-        "typescript",
-        "jsx",
-      })
-    end,
-  },
+  require("ditsuke.utils.lang").neotest_extension_spec(
+    { { "haydenmeade/neotest-jest" }, { "marilari88/neotest-vitest" } },
+    { "javascript", "typescript", "jsx" }
+  ),
 
   {
     "jose-elias-alvarez/null-ls.nvim",
