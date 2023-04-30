@@ -29,23 +29,11 @@ return {
     event = "VeryLazy",
   },
   {
-    "rockerBOO/boo-colorscheme-nvim",
-    event = "VeryLazy",
-  },
-  {
-    "phha/zenburn.nvim",
-    event = "VeryLazy",
-  },
-  {
     "JoosepAlviste/palenightfall.nvim",
     event = "VeryLazy",
   },
   {
     "yonlu/omni.vim",
-    event = "VeryLazy",
-  },
-  {
-    "lighthaus-theme/vim-lighthaus",
     event = "VeryLazy",
   },
   {
@@ -113,14 +101,14 @@ return {
       event = "VeryLazy",
     },
   },
-  {
-    "ray-x/starry.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "ray-x/aurora",
-    event = "VeryLazy",
-  },
+  -- {
+  --   "ray-x/starry.nvim",
+  --   event = "VeryLazy",
+  -- },
+  -- {
+  --   "ray-x/aurora",
+  --   event = "VeryLazy",
+  -- },
   -- Effortlessly sync the terminal background with Neovim.
   -- As a side effect, get effortless transparency across color schemes!
   { "typicode/bg.nvim", lazy = false, cond = function() return os.getenv("NVIM_COLORSYNC") == nil end },
@@ -128,7 +116,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "zenwritten",
     },
   },
 }
