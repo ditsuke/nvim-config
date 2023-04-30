@@ -20,25 +20,35 @@ _A tailored prose-writing and programming environment based on @folke's [LazyVim
 - [x] LSP-sensitive completion context (import paths)
 - [x] A ton of themes
 
-## Wants
+## How can I try this configuration?
 
-- [x] feat: Wakatime in statusbar.
-      **See:** https://github.com/wakatime/vim-wakatime/issues/110.
-      _Also `:WakatimeToday`_ :moon:
-- [x] feat: Keymaps to yank from system clipboard.
-      **Ref:** Primeagen's keymaps
-- [x] feat: smarter winbar
-      **See:** [barbecue.nvim](https://github.com/utilyre/barbecue.nvim).
-- [x] feat: inline git blame
-- [x] fix: session reload conflicts with lazy.nvim float
-- [x] feat: `:UndoTree` alternative in `telescope-undo`
-- [x] feat: cleaner winbar, toggle keymap
-- [x] chore: Improve Neo-tree aesthetics
-- [x] fix: Defuse LuaSnip slots on mode change
-      **Reasoning:** Super duper annoying when `<Tab>` triggers slots and you can't see them.
-- [x] feat: GPT3 integration
-      **See:** https://github.com/jackMort/ChatGPT.nvim
-- [x] feat: Highlight LuaSNIP slots with ext marks
+There are 2 ways:
+
+1. Clone this into `~/.config/nvim-ditsuke`, then run:
+  ```sh
+  NVIM_APPNAME=ditsuke nvim
+  ```
+2. Use it as a layer in your `LazyVim` configuration. Note that `1.` is simpler to get started:
+```lua
+{ "ditsuke/nvim-config", import = "ditsuke.plugins"}
+-- And any additional layers
+-- { import = "ditsuke.extras.code.neotest" },
+-- { import = "ditsuke.extras.utils.ai" },
+-- { import = "ditsuke.extras.utils.wakatime" },
+--
+-- -- Language extensions
+-- { import = "ditsuke.extras.lang.go" },
+-- { import = "ditsuke.extras.lang.java" },
+-- { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses vtsls instead
+-- { import = "ditsuke.extras.lang.python" },
+-- { import = "ditsuke.extras.lang.rust" },
+```
+
+## Stability
+
+I consider this configuration bleeding edge and maintain it for my own use. As such, there are no guarantees on stability
+but I'm open to issues and fixes and try to keep the configuration as plug-and-play as possible.
+
 
 ## Ideas and Inspiration
 - [Awesome Neovim](https://github.com/rockerBOO/awesome-neovim#colorscheme-creation)
