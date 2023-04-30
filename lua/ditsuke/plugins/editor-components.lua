@@ -13,7 +13,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "main", -- override until fuzzy_finder_mappings is in 2.x
     opts = function(_, og)
-      local icons = require("ditsuke.icons")
+      local icons = require("ditsuke.utils.icons")
       local overrides = {
         -- auto_clean_after_session_restore = true,
         close_if_last_window = true,

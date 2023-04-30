@@ -23,14 +23,16 @@ require("lazy").setup({
     { import = "plugins" },
 
     -- Others
-    { import = "extras.neotest" },
+    { import = "ditsuke.extras.code.neotest" },
+    { import = "ditsuke.extras.utils.ai" },
+    { import = "ditsuke.extras.utils.wakatime" },
 
     -- Language extensions
-    { import = "extras.go" },
-    { import = "extras.java" },
-    { import = "extras.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses vtsls instead
-    { import = "extras.python" },
-    { import = "extras.rust" },
+    { import = "ditsuke.extras.lang.go" },
+    { import = "ditsuke.extras.lang.java" },
+    { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses vtsls instead
+    { import = "ditsuke.extras.lang.python" },
+    { import = "ditsuke.extras.lang.rust" },
   },
   -- dev = { path = "~/projects", patterns = jit.os:find("Windows") and {} or { "LazyVim" } },
   defaults = {
