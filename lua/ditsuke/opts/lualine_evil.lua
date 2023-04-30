@@ -65,17 +65,13 @@ local state = {
   comp_wakatime_time = "",
 }
 
-local logger = require("ditsuke.utils").logger
 local LspUtils = require("ditsuke.utils.lspts")
 local Icons = require("ditsuke.utils.icons")
 local components = {
   filetype_plus_lsp = function()
-    logger("filetype_plug_lsp_component called")
     local ft = vim.bo.filetype
-    logger("ft is: ", ft)
     local lsp = LspUtils.get_active_lsp()
     local ts_enabled = LspUtils.is_treesitter_active()
-    logger("active lsp is: ", lsp)
     local ctx_parts = {}
     if lsp ~= nil then
       table.insert(ctx_parts, Icons.lsp_ts.active_lsp .. " " .. lsp)
