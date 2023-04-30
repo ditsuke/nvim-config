@@ -70,7 +70,9 @@ local components = {
   filetype_plus_lsp = function()
     local ft = vim.bo.filetype
     local lsp = shared.get_active_lsp()
-    if lsp ~= nil then return string.format("%s ( %s)", ft, lsp) end
+    if lsp ~= nil then
+      return string.format("%s ( %s)", ft, lsp)
+    end
     return ft
   end,
   wakatime = function()
@@ -78,7 +80,9 @@ local components = {
 
     if not Wakatime_routine_init then
       local timer = uv.new_timer()
-      if timer == nil then return "" end
+      if timer == nil then
+        return ""
+      end
       -- Update wakatime every some some
       uv.timer_start(timer, 500, WAKATIME_UPDATE_INTERVAL, function()
         require("plenary.async").run(shared.get_wakatime_time, function(time) state.comp_wakatime_time = time end)
@@ -183,9 +187,13 @@ M.config = function()
         {
           -- Copilot icon
           function() return "" end,
-          cond = function() return package.loaded["copilot"] ~= nil end,
+          cond = function() return require("lazyvim.util").has("copilot") and package.loaded["copilot"] ~= nil end,
           color = function(_)
-            return { bg = require("copilot.client").is_disabled() and COLORS.fg or COLORS.cyan, fg = "white" }
+            local copilot_client = require("lazyvim.util").has("copilot") and require("copilot.client")
+            if not copilot_client then
+              return
+            end
+            return { bg = copilot_client.is_disabled() and COLORS.fg or COLORS.cyan, fg = "white" }
           end,
           on_click = function(clicks, button)
             local commands = require("copilot.command")
@@ -208,7 +216,9 @@ M.config = function()
             end
 
             local disabled = require("copilot.client").is_disabled()
-            if clicks == 2 then return disabled == true and commands.enable() == nil or commands.disable() end
+            if clicks == 2 then
+              return disabled == true and commands.enable() == nil or commands.disable()
+            end
           end,
         },
         {
