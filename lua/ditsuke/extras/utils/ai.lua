@@ -11,7 +11,7 @@ return {
       },
     },
     opts = {
-      suggestions = {
+      suggestion = {
         auto_trigger = true,
       },
     },
