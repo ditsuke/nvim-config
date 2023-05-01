@@ -1,0 +1,27 @@
+{
+  "language": "en",
+  "words": [
+    "neovim",
+    "Neotest",
+    "pytest",
+    "ditsuke",
+    "nvim",
+    "builtins",
+    "pyright",
+    "lspconfig",
+    "mfussenegger",
+    "wakatime",
+    "stylua",
+    "lazyvim",
+    "netrw",
+    "matchparen",
+    "matchit",
+    "tohtml",
+    "stdpath",
+    "vtsls",
+    "tokyonight",
+    "habamax"
+  ],
+  "flagWords": [],
+  "version": "0.2"
+}

@@ -6,6 +6,7 @@ local util = require("ditsuke.utils")
 ---@param ft_covered string[]
 M.neotest_extension_spec = function(plugins, ft_covered)
   -- We don't want to add the dep at all if neotest isn't enabled
+  -- TODO: check if require("lazy.core.config").spec has the information we're trying to hack around with this global
   if type(NeotestLayerEnabled) == nil or NeotestLayerEnabled ~= true then
     return {}
   end
@@ -31,6 +32,7 @@ M.neotest_extension_spec = function(plugins, ft_covered)
       for _, spec in ipairs(plugins) do
         -- Split string in domain/name
         local plugin_name = type(spec) == string and spec or spec[1]
+        ---@diagnostic disable-next-line: param-type-mismatch (type inferrence is wrong)
         local _, rname = plugin_name:match("([^/]+)/([^/]+)")
         local mod = require(rname)
         if spec.opts == nil then

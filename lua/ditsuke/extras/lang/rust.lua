@@ -41,12 +41,12 @@ return {
       setup = {
         rust_analyzer = function(_, opts)
           require("lazyvim.util").on_attach(function(client, buffer)
-						-- stylua: ignore
-						if client.name == "rust_analyzer" then
-							vim.keymap.set("n", "K", "<cmd>RustHoverActions<cr>", { buffer = buffer, desc = "Hover Actions (Rust)" })
-							vim.keymap.set("n", "<leader>cR", "<cmd>RustCodeAction<cr>", { buffer = buffer, desc = "Code Action (Rust)" })
-							vim.keymap.set("n", "<leader>dr", "<cmd>RustDebuggables<cr>", { buffer = buffer, desc = "Run Debuggables (Rust)" })
-						end
+            -- stylua: ignore
+            if client.name == "rust_analyzer" then
+              vim.keymap.set("n", "K", "<cmd>RustHoverActions<cr>", { buffer = buffer, desc = "Hover Actions (Rust)" })
+              vim.keymap.set("n", "<leader>cR", "<cmd>RustCodeAction<cr>", { buffer = buffer, desc = "Code Action (Rust)" })
+              vim.keymap.set("n", "<leader>dr", "<cmd>RustDebuggables<cr>", { buffer = buffer, desc = "Run Debuggables (Rust)" })
+            end
           end)
           local mason_registry = require("mason-registry")
           -- rust tools configuration for debugging support
@@ -62,12 +62,12 @@ return {
             tools = {
               on_initialized = function()
                 vim.cmd([[
-									augroup RustLSP
-										autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
-										autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
-										autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
-									augroup END
-								]])
+                  augroup RustLSP
+                    autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
+                    autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
+                    autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
+                  augroup END
+                ]])
               end,
             },
             server = {
@@ -108,10 +108,10 @@ return {
             end
           end
           require("lazyvim.util").on_attach(function(client, buffer)
-						-- stylua: ignore
-						if client.name == "taplo" then
-							vim.keymap.set("n", "K", show_documentation, { buffer = buffer, desc = "Show Crate Documentation" })
-						end
+            -- stylua: ignore
+            if client.name == "taplo" then
+              vim.keymap.set("n", "K", show_documentation, { buffer = buffer, desc = "Show Crate Documentation" })
+            end
           end)
           return false -- make sure the base implementation calls taplo.setup
         end,

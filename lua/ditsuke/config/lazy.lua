@@ -1,10 +1,10 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazy_path) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazy_path })
 end
-vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
 require("lazy").setup({
   spec = {
@@ -32,7 +32,7 @@ require("lazy").setup({
     -- Language extensions
     { import = "ditsuke.extras.lang.go" },
     { import = "ditsuke.extras.lang.java" },
-    { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses vtsls instead
+    { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses `vtsls` instead
     { import = "ditsuke.extras.lang.python" },
     { import = "ditsuke.extras.lang.rust" },
     { import = "ditsuke.extras.lang.yaml" },

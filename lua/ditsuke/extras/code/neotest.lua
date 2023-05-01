@@ -3,6 +3,7 @@
 -- TODO: Install vim-test + neotest-vim-test for increased language support/compat
 
 -- HACK: Indicate layer status to other layers
+-- TODO: check if require("lazy.core.config").spec has the information we're trying to hack around with this global
 -- I couldn't find a lazy.nvim-native way to do this
 -- (plugin table is not populated as its being build)
 NeotestLayerEnabled = true

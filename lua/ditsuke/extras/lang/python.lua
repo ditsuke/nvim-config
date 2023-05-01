@@ -1,4 +1,4 @@
-local util = require("ditsuke.utils")
+local Util = require("ditsuke.utils")
 
 return {
   {
@@ -10,7 +10,7 @@ return {
     },
   },
 
-  -- Add neotest adapter for python (pytest/python-unittest)
+  -- Add Neotest adapter for python (pytest/python-unittest)
   require("ditsuke.utils.lang").neotest_extension_spec({
     {
       "nvim-neotest/neotest-python",
@@ -24,7 +24,7 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
-      util.list_insert_unique(opts.sources, {
+      Util.list_insert_unique(opts.sources, {
         nls.builtins.diagnostics.ruff,
         nls.builtins.formatting.ruff,
         nls.builtins.formatting.black,
