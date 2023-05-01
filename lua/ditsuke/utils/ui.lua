@@ -36,4 +36,36 @@ function M.close_floats()
   end
 end
 
+-- Set smart jk navigation
+-- Source: https://vim.fandom.com/wiki/Smart_navigation_using_j_and_k
+function M.set_smart_jk_nav()
+  vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+  vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+end
+
+-- Set options related to wrapping
+---@param enable boolean
+function M.set_wrap(enable)
+  vim.opt.wrap = enable
+  vim.opt.list = enable
+  vim.opt.linebreak = enable
+end
+
+function M.set_wrap_with_keybindings(enable)
+  if not enable then
+    M.set_wrap(false)
+    pcall(function()
+      vim.keymap.del({ "n", "v" }, "0")
+      vim.keymap.del({ "n", "v" }, "^")
+      vim.keymap.del({ "n", "v" }, "$")
+    end)
+  else
+    M.set_wrap(true)
+    M.set_smart_jk_nav()
+    vim.keymap.set({ "n", "v" }, "0", "g0")
+    vim.keymap.set({ "n", "v" }, "^", "g^")
+    vim.keymap.set({ "n", "v" }, "$", "g$")
+  end
+end
+
 return M

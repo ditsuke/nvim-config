@@ -141,3 +141,16 @@ vim.keymap.set("n", "<leader>uII", function()
     vim.notify("Enabled mini.indentscope")
   end
 end, { desc = "Toggle mini.indentscope" })
+
+local state__wrap_enabled = false
+vim.keymap.set("n", "<leader>uw", function()
+  if state__wrap_enabled then
+    UIUtils.set_wrap_with_keybindings(false)
+    vim.notify("Disabled wrap")
+  else
+    UIUtils.set_wrap_with_keybindings(true)
+    vim.notify("Enabled wrap")
+  end
+end, { desc = "Toggle word wrap (with keybindings)" })
+
+UIUtils.set_smart_jk_nav()
