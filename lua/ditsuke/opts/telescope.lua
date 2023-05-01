@@ -59,7 +59,10 @@ M.config = function(_, opts)
 end
 
 M.keys = {
-  { "<leader>bs", function() require("telescope.builtin").buffers() end, desc = "[s]earch" },
+  -- stylua: ignore
+  { "<leader>fF", function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true, }) end, desc = "[f]ind [f]iles", },
+  { "<leader>bs", function() require("telescope.builtin").buffers({ sort_mru = true }) end, desc = "[s]earch" },
+  { "<leader>,", function() require("telescope.builtin").buffers({ sort_mru = true }) end, desc = "search buffers" },
   { "<F1>", function() require("telescope.builtin").help_tags() end, desc = "Search :help" },
   {
     "<C-`>",
