@@ -73,23 +73,16 @@ vim.keymap.set("n", "<leader>ub", function()
 end, { desc = "Toggle [b]ackground (dark/light)" })
 
 pcall(function() vim.keymap.del("n", "<leader>ud") end)
-require("which-key").register({
-  ["<leader>ud"] = { name = "+diagnostics" },
-}, nil)
-vim.keymap.set("n", "<leader>udt", function()
-  local virtual_text_enabled = vim.diagnostic.config()["virtual_text"] ~= false
-  if virtual_text_enabled then
-    vim.diagnostic.config({ virtual_text = false })
-  else
-    vim.diagnostic.config({ virtual_text = { spacing = 4, prefix = "⬤" } })
-  end
-end, { desc = "Toggle virtual_text diagnostics" })
-vim.keymap.set(
-  "n",
-  "<leader>udl",
-  function() require("lsp_lines").toggle() end,
-  { desc = "Toggle virtual line diagnostics" }
-)
+vim.keymap.set("n", "<leader>ud", function()
+  vim.ui.select({ "lsp_lines", "stock", "none" }, { prompt = "Select style:" }, function(style)
+    vim.diagnostic.config({ virtual_text = false, virtual_lines = false })
+    if style == "lsp_lines" then
+      vim.diagnostic.config({ virtual_lines = true })
+    elseif style == "stock" then
+      vim.diagnostic.config({ virtual_text = true })
+    end
+  end)
+end, { desc = "Choose [d]iagnostics style" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank until EOL to system clipboard" })
