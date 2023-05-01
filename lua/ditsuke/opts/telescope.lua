@@ -38,7 +38,12 @@ M.config = function(_, opts)
       },
     },
     -- Use the `ivy` theme, inspired by Emacs Ivy!
+    -- Also disable previews and reduce height
     defaults = require("telescope.themes").get_ivy({
+      preview = false, -- An experiment (I might enable just for grep/livegrep)
+      layout_config = {
+        height = 15,
+      },
       mappings = {
         i = {
           ["<C-n>"] = actions.cycle_history_next,
