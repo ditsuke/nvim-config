@@ -104,6 +104,14 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection, send to 
 -- UI
 -- ====
 
+local UIUtils = require("ditsuke.utils.ui")
+
+vim.keymap.set({ "i", "n" }, "<esc>", function()
+  vim.cmd.noh()
+  UIUtils.close_floats()
+  return "<esc>"
+end, { expr = true, desc = "Escape, clear hlsearch and close floats" })
+
 -- Toggle mouse
 local state__mouse = "a"
 vim.keymap.set("n", "<leader>um", function()
@@ -120,8 +128,6 @@ vim.keymap.set("n", "<leader>ut", function()
   vim.notify('Set showtabline to "' .. state__tabline .. '"')
   state__tabline = now
 end, { desc = "Toggle [t]abline" })
-
-local UIUtils = require("ditsuke.utils.ui")
 
 vim.keymap.set("n", "<leader>uIi", function()
   if UIUtils.indent_blankline_enabled() then

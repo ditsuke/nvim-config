@@ -1,8 +1,5 @@
 local M = {}
 
-local async = require("plenary.async")
-local Job = require("plenary.job")
-
 local LOG_FILE_PATH = "./nvim.local.log"
 local log_file = io.open(LOG_FILE_PATH, "a")
 local log_count = 0
@@ -24,6 +21,7 @@ M.logger = function(message, payload)
   end
   io.output(log_file)
   io.write(message .. "\n")
+  log_file:flush()
 end
 
 M.set_window_title = function()
@@ -48,6 +46,9 @@ function M.list_insert_unique(list, vals)
 end
 
 M.get_wakatime_time = function()
+  local async = require("plenary.async")
+  local Job = require("plenary.job")
+
   local tx, rx = async.control.channel.oneshot()
   local ok, job = pcall(Job.new, Job, {
     command = os.getenv("HOME") .. "/.wakatime/wakatime-cli",
@@ -63,5 +64,7 @@ M.get_wakatime_time = function()
   job:start()
   return rx()
 end
+
+M.logger("\n==new-session==\n")
 
 return M
