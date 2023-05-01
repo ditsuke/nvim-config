@@ -34,6 +34,7 @@ require("lazy").setup({
     { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses vtsls instead
     { import = "ditsuke.extras.lang.python" },
     { import = "ditsuke.extras.lang.rust" },
+    { import = "ditsuke.extras.lang.yaml" },
   },
   -- dev = { path = "~/projects", patterns = jit.os:find("Windows") and {} or { "LazyVim" } },
   defaults = {
