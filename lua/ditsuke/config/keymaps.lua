@@ -121,22 +121,24 @@ vim.keymap.set("n", "<leader>ut", function()
   state__tabline = now
 end, { desc = "Toggle [t]abline" })
 
+local UIUtils = require("ditsuke.utils.ui")
+
 vim.keymap.set("n", "<leader>uIi", function()
-  if vim.g.indent_blankline_enabled == true then
-    vim.g.indent_blankline_enabled = false
+  if UIUtils.indent_blankline_enabled() then
+    UIUtils.indent_blankline_enabled(false)
     vim.notify("Disabled indent_blankline")
   else
-    vim.g.indent_blankline_enabled = true
+    UIUtils.indent_blankline_enabled(true)
     vim.notify("Enabled indent_blankline")
   end
 end, { desc = "Toggle indent_blankline" })
 
 vim.keymap.set("n", "<leader>uII", function()
-  if vim.g.miniindentscope_disable == true then
-    vim.g.miniindentscope_disable = false
+  if UIUtils.mini_indentscope_enabled() then
+    UIUtils.mini_indentscope_enabled(false)
     vim.notify("Disabled mini.indentscope")
   else
-    vim.g.miniindentscope_disable = true
+    UIUtils.mini_indentscope_enabled(true)
     vim.notify("Enabled mini.indentscope")
   end
 end, { desc = "Toggle mini.indentscope" })
