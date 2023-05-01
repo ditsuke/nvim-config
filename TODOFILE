@@ -16,6 +16,9 @@
       **See:** https://github.com/jackMort/ChatGPT.nvim
 - [x] feat: Highlight LuaSNIP slots with ext marks
 - [x] ! Load keymaps, autocmds and opts (broken after namespacing, see `lazyvim.config.init`)
+- [x] Improved `null-ls` setup that ships with spell checks and code-actions.
+      For spell-checking consider `cspell` among other more involved options like LanguageTool
+      **Reference:** https://nullvoxpopuli.com/2023-03-13-null-ls/
 - [ ] feat: LSPSaga for code outline, better references and action previews etc
 - [ ] fix: disable colorizer for `lazy` ft
 - [ ] fix: disable `indentline` for `noice` ft
@@ -50,9 +53,6 @@
       - Delete second \`. First one remains.
       - Insert \`. First \` is ignored, 2 \` are inserted again.
       PAIN!
-- [ ] Improved `null-ls` setup that ships with spell checks and code-actions.
-      For spell-checking consider `cspell` among other more involved options like LanguageTool
-      **Reference:** https://nullvoxpopuli.com/2023-03-13-null-ls/
 - [ ] Disable, by default, mini-indentscope for large files. Or at least the markers. They're slow..
 - [ ] feat: Codeium as a copilot alternative.
       **Options:**
