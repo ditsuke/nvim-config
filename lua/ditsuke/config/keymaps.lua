@@ -11,6 +11,8 @@
 -- vim.keymap.set("n", "n", "nzz")
 -- vim.keymap.set("n", "N", "Nzz")
 
+local UIUtils = require("ditsuke.utils.ui")
+
 -- ===================
 -- Window navigation
 -- ===================
@@ -56,6 +58,8 @@ map_if_pumvisible("c", "<CR>", "<C-y>")
 -- ===================
 vim.keymap.set("n", "J", "mzJ`z") -- Retain cursor position on line join w J
 
+UIUtils.set_smart_jk_nav()
+
 -- ============
 --Utility
 -- ============
@@ -96,8 +100,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection, send to 
 -- ====
 -- UI
 -- ====
-
-local UIUtils = require("ditsuke.utils.ui")
 
 vim.keymap.set({ "i", "n" }, "<esc>", function()
   vim.cmd.noh()
@@ -153,4 +155,18 @@ vim.keymap.set("n", "<leader>uw", function()
   end
 end, { desc = "Toggle word wrap (with keybindings)" })
 
-UIUtils.set_smart_jk_nav()
+local state__statusline_enabled = true
+if true then
+  pcall(function() vim.keymap.del("n", "<leader>us") end)
+  vim.keymap.set("n", "<leader>us", function()
+    if state__statusline_enabled then
+      state__statusline_enabled = false
+      UIUtils.set_lualine_statusline(false)
+      vim.notify("Disabled statusline")
+    else
+      state__statusline_enabled = true
+      UIUtils.set_lualine_statusline(true)
+      vim.notify("Enabled statusline")
+    end
+  end, { desc = "Toggle [s]tatusline (lualine)" })
+end

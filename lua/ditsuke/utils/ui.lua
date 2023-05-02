@@ -68,4 +68,14 @@ function M.set_wrap_with_keybindings(enable)
   end
 end
 
+function M.set_lualine_statusline(enable)
+  if enable then
+    vim.opt.laststatus = 3
+    require("lualine").hide({ place = { "statusline" }, unhide = true })
+  else
+    vim.opt.laststatus = 0
+    require("lualine").hide({ place = { "statusline" } })
+  end
+end
+
 return M
