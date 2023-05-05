@@ -92,6 +92,8 @@ return {
     "lukas-reineke/virt-column.nvim",
     config = true,
   },
+
+  -- Escape from insert mode with `jk` or `jj`, without delay or lag when typing
   {
     "max397574/better-escape.nvim",
     opts = {
@@ -99,6 +101,20 @@ return {
       timeout = 200,
       clear_empty_lines = true,
       keys = "<Esc>",
+    },
+  },
+
+  -- >  Treesitter based structural search and replace plugin for Neovim.
+  -- Ref: https://www.jetbrains.com/help/idea/structural-search-and-replace.html
+  {
+    "cshuaimin/ssr.nvim",
+    keys = {
+      {
+        "<leader>sR",
+        function() require("ssr").open() end,
+        mode = { "n", "x" },
+        desc = "Structural Replace",
+      },
     },
   },
 }
