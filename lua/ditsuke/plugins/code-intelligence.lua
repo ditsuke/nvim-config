@@ -38,6 +38,25 @@ return {
       return opts
     end,
   },
+
+  -- > A framework for running functions on Tree-sitter nodes, and updating the buffer with the result.
+  {
+    "ckolkey/ts-node-action",
+    event = "BufReadPost",
+    dependencies = {
+      "nvim-treesitter",
+      {
+        "null-ls.nvim",
+        opts = function(_, opts)
+          local null_ls = require("null-ls")
+          table.insert(opts.sources, null_ls.builtins.code_actions.ts_node_action)
+          return opts
+        end,
+      },
+    },
+    opts = {},
+  },
+
   {
     "neovim/nvim-lspconfig",
     opts = {
