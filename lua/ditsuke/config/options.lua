@@ -11,6 +11,13 @@ opt.laststatus = 3 -- Global statusline
 
 opt.cursorline = true
 opt.wrap = false
+opt.listchars = {
+  trail = "·",
+  precedes = "«",
+  extends = "»",
+  -- eol = "↲",
+  tab = "▸ ",
+}
 
 -- opt.spelloptions = "camel"
 
