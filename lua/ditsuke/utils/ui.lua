@@ -20,17 +20,25 @@ end
 
 -- Close floating windows
 -- Source: https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi
--- TODO: While this closes floats, it does not diffuse handlers that focus floats on triggering them again (!)
---  as a result we're getting some weird artifacts on: open float -> close float -> open float again (without moving)
---  in order to investigate this behavior I'd have to see that the CursorMoved autocmd is doing (I don't know how to find it, though)
+local SPECIAL_FLOAT_FTS = { "hydra_hint", "which-key" }
 function M.close_floats()
+  local needs_hack = false
   local inactive_floating_wins = vim.fn.filter(vim.api.nvim_list_wins(), function(_, v)
     local file_type = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(v), "filetype")
+    if file_type == "noice" then
+      needs_hack = true
+    end
 
     return vim.api.nvim_win_get_config(v).relative ~= ""
       and v ~= vim.api.nvim_get_current_win()
-      and file_type ~= "hydra_hint"
+      and not vim.tbl_contains(SPECIAL_FLOAT_FTS, file_type)
   end)
+
+  -- If we're closing a noice float, we need to employ a hack
+  -- to prevent the float to reopen on the top left under some scenarios (e.g., when we reopen it witout moving our cursor)
+  if needs_hack then
+    vim.api.nvim_feedkeys("jk", "nt", true)
+  end
   for _, w in ipairs(inactive_floating_wins) do
     pcall(vim.api.nvim_win_close, w, false)
   end
