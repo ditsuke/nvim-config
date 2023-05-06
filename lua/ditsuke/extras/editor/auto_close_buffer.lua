@@ -4,6 +4,7 @@ return {
   "axkirillov/hbac.nvim",
   dependencies = {
     "bufferline.nvim",
+    event = "VeryLazy",
     ---@type LazyKeys[]
     keys = {
       {

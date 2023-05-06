@@ -69,7 +69,24 @@ return {
         },
       },
       servers = {
-        marksman = {}, -- For markdown
+        -- For markdown
+        marksman = {
+          ---@type nio.lsp.types.ClientCapabilities
+          capabilities = {
+            textDocument = {
+              completion = {
+                completionItemKind = {
+                  valueSet = {
+                    15,
+                  },
+                },
+                completionItem = {
+                  snippetSupport = true,
+                },
+              },
+            },
+          },
+        },
       },
     },
   },

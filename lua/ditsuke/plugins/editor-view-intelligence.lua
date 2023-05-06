@@ -1,5 +1,5 @@
 local disable_on_large_buffers = function(_, bufnr)
-  local TS_MAX_LINE = 2000
+  local TS_MAX_LINE = 1000
   return vim.api.nvim_buf_line_count(bufnr) > TS_MAX_LINE
 end
 
@@ -58,6 +58,7 @@ return {
       { "<leader>ux", "<Cmd>TSHighlightCapturesUnderCursor<CR>", desc = "Show highlight groups" },
     },
   },
+
   {
     "folke/todo-comments.nvim",
     enabled = false,
@@ -67,18 +68,21 @@ return {
       },
     },
   },
+
   {
     "Djancyp/better-comments.nvim",
     enabled = false,
     name = "better-comment.nvim",
     config = function(_, opts) require("better-comment").Setup(opts) end,
   },
+
   {
     "NvChad/nvim-colorizer.lua",
     config = true,
   },
+
+  -- > IncRename, like IncSearch but for LSP renaming
   {
-    -- IncRename, like IncSearch but for LSP renaming
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
     config = true,

@@ -108,6 +108,7 @@ return {
   -- Ref: https://www.jetbrains.com/help/idea/structural-search-and-replace.html
   {
     "cshuaimin/ssr.nvim",
+    event = "BufReadPre",
     keys = {
       {
         "<leader>sR",

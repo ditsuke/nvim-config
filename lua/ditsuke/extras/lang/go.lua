@@ -4,6 +4,7 @@ return {
   -- Configure Go integrations (commands, LSP)
   {
     "ray-x/go.nvim",
+    lazy = true,
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     dependencies = { -- optional packages

@@ -13,9 +13,12 @@ return {
       current_line_blame = true, -- Inline blame for current line w/ virt-text
     },
   },
+
+  -- Create and switch worktrees with a telescope-driven UI.
+  --
+  -- STATUS(2023-04-08): I like it, but I've barely ever used it.
+  -- I should consider axing it if it doesn't become a part of my workflow.
   {
-    -- STATUS(2023-04-08): I like it, but I've barely ever used it.
-    -- I should consider axing it if it doesn't become a part of my workflow.
     "ThePrimeagen/git-worktree.nvim",
     event = "VeryLazy",
     -- ! For some reason declaring this dependency overrides telescope.nvim setup in lazyvim core
