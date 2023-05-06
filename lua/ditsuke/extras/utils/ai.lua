@@ -13,6 +13,11 @@ return {
     opts = {
       suggestion = {
         auto_trigger = true,
+        keymap = {
+          accept = "<M-;>",
+          accept_line = "<M-l>",
+          accept_word = "<M-,>",
+        },
       },
     },
   },
