@@ -32,17 +32,18 @@ end
 
 -- Insert values into a list if they don't already exist
 ---@param list string[]
----@param vals string|string[]
-function M.list_insert_unique(list, vals)
+---@param values string|number|string[]|number[]|table[]
+function M.list_insert_unique(list, values)
   list = list or {}
-  if type(vals) ~= "table" then
-    vals = { vals }
+  if type(values) ~= "table" then
+    values = { values }
   end
-  for _, val in ipairs(vals) do
-    if not vim.tbl_contains(list, val) then
-      table.insert(list, val)
+  for _, value in ipairs(values) do
+    if not vim.tbl_contains(list, function(tv) return vim.deep_equal(tv, value) end, { predicate = true }) then
+      table.insert(list, value)
     end
   end
+  return list
 end
 
 M.get_wakatime_time = function()

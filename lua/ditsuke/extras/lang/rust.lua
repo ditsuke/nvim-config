@@ -1,4 +1,4 @@
-local util = require("ditsuke.utils")
+local Util = require("ditsuke.utils")
 
 return {
   -- Add Rust & related to treesitter
@@ -6,7 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
-        util.list_insert_unique(opts.ensure_installed, { "ron", "rust", "toml" })
+        Util.list_insert_unique(opts.ensure_installed, { "ron", "rust", "toml" })
       end
     end,
   },
@@ -16,7 +16,7 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
-        util.list_insert_unique(opts.ensure_installed, "codelldb")
+        Util.list_insert_unique(opts.ensure_installed, "codelldb")
       end
     end,
   },

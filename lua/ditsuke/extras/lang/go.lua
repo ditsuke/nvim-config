@@ -1,4 +1,4 @@
-local util = require("ditsuke.utils")
+local Util = require("ditsuke.utils")
 
 return {
   -- Configure Go integrations (commands, LSP)
@@ -32,7 +32,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
-        util.list_insert_unique(opts.ensure_installed, { "go", "gomod", "gosum", "gowork" })
+        Util.list_insert_unique(opts.ensure_installed, { "go", "gomod", "gosum", "gowork" })
       end
     end,
   },
@@ -41,13 +41,17 @@ return {
   require("ditsuke.utils.lang").neotest_extension_spec({ { "nvim-neotest/neotest-go" } }, { "go" }),
 
   -- Configure some formatters/auto-fixers.
-  -- TODO: replace this setup with `null-ls`
+  -- NOTE: Consider adding `iferr` (not available)
   {
-    "jay-babu/mason-null-ls.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        util.list_insert_unique(opts.ensure_installed, { "gomodifytags", "gofumpt", "iferr", "impl" })
-      end
+      local builtins = require("null-ls").builtins
+      Util.list_insert_unique(opts.sources, {
+        builtins.code_actions.gomodifytags,
+        builtins.formatting.gofumpt,
+        builtins.code_actions.impl,
+        builtins.diagnostics.golangci_lint,
+      })
     end,
   },
 
@@ -60,7 +64,7 @@ return {
         "jay-babu/mason-nvim-dap.nvim",
         opts = function(_, opts)
           if type(opts.ensure_installed) == "table" then
-            util.list_insert_unique(opts.ensure_installed, "delve")
+            Util.list_insert_unique(opts.ensure_installed, "delve")
           end
         end,
       },
