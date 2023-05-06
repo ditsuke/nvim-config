@@ -84,6 +84,13 @@ return {
   -- > IncRename, like IncSearch but for LSP renaming
   {
     "smjonas/inc-rename.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "noice.nvim",
+      opts = {
+        presets = { inc_rename = true },
+      },
+    },
     cmd = "IncRename",
     config = true,
   },
