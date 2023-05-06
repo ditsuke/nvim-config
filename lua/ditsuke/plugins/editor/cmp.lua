@@ -1,5 +1,24 @@
-local M = {}
+local M = {
+  "hrsh7th/nvim-cmp",
+  event = { "InsertEnter", "CmdlineEnter" },
+  dependencies = {
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp-document-symbol",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-emoji",
+    "f3fora/cmp-spell",
+    "ray-x/cmp-treesitter",
+    "saadparwaiz1/cmp_luasnip",
+    "uga-rosa/cmp-dictionary",
+    "onsails/lspkind.nvim",
+  },
+}
 
+--#region Utilities
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 
@@ -32,6 +51,7 @@ local function get_lsp_completion_context(completion, source)
     return completion.detail
   end
 end
+--#endregion
 
 local SYMBOL_MAP = {
   Text = "  ",
@@ -61,7 +81,7 @@ local SYMBOL_MAP = {
   TypeParameter = "  ",
 }
 
-M.config = function(_, _)
+M.opts = function(_, _)
   local cmp = require("cmp")
 
   local editorSources = {
@@ -83,6 +103,7 @@ M.config = function(_, _)
   -- <Tab> is used by Copilot, I found the plugin doesn't work
   -- if I use <Tab> for nvim-cmp or any other plugin
   -- local mappings for nvim-cmp.
+  --#region mappings
   local mapping = {
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -102,24 +123,11 @@ M.config = function(_, _)
         fallback()
       end
     end, { "i", "s", "c" }),
-    -- ["<C-j>"] = cmp.mapping(function(fallback)
-    --   if luasnip.expand_or_jumpable() then
-    --     luasnip.expand_or_jump()
-    --   else
-    --     fallback()
-    --   end
-    -- end, { "i", "s" }),
-    -- ["<C-k>"] = cmp.mapping(function(fallback)
-    --   if luasnip.jumpable(-1) then
-    --     luasnip.jump(-1)
-    --   else
-    --     fallback()
-    --   end
-    -- end, { "i", "s" }),
     ["<C-Space>"] = cmp.mapping.complete({}),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }
+  --#endregion
 
   -- cmp plugin
   cmp.setup.filetype("gitcommit", {

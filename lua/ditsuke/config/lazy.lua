@@ -21,6 +21,8 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
     -- import/override with your plugins
     { import = "ditsuke.plugins" },
+    { import = "ditsuke.plugins.editor" },
+    { import = "ditsuke.plugins.ui" },
 
     -- Others
     { import = "ditsuke.extras.code.dap_extensions" },

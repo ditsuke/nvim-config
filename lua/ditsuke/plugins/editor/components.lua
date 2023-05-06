@@ -61,55 +61,6 @@ return {
     end,
   },
   {
-    -- Extensible fuzzy searcher for files, buffers, and virtually everything else
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && \
-          cmake --build build --config Release && \
-          cmake --install build --prefix build",
-        config = function() require("telescope").load_extension("fzf") end,
-      },
-      {
-        "nvim-telescope/telescope-frecency.nvim",
-        dependencies = { { "kkharji/sqlite.lua" } },
-        config = function() require("telescope").load_extension("frecency") end,
-      },
-      {
-        -- Find terminals 👿
-        "tknightz/telescope-termfinder.nvim",
-        config = function() require("telescope").load_extension("termfinder") end,
-      },
-      {
-        "debugloop/telescope-undo.nvim",
-        config = function() require("telescope").load_extension("undo") end,
-      },
-    },
-    keys = require("ditsuke.opts.telescope").keys,
-    opts = require("ditsuke.opts.telescope").config,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
-    dependencies = {
-      "hrsh7th/nvim-cmp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-emoji",
-      "f3fora/cmp-spell",
-      "ray-x/cmp-treesitter",
-      "saadparwaiz1/cmp_luasnip",
-      "uga-rosa/cmp-dictionary",
-      "onsails/lspkind.nvim",
-    },
-    opts = require("ditsuke.opts.cmp").config,
-  },
-  {
     "L3MON4D3/LuaSnip",
     opts = function(_, og_opts)
       local types = require("luasnip.util.types")

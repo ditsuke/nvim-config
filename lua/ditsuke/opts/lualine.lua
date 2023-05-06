@@ -1,4 +1,9 @@
-local M = {}
+local M = {
+  "nvim-lualine/lualine.nvim",
+  depedencies = {
+    "nvim-navic",
+  },
+}
 
 local FILESTATUS_SYMBOLS = { modified = "  ", readonly = "", unnamed = "" }
 

@@ -4,8 +4,16 @@
 -- Color table for highlights
 -- Eviline-ish configuration for lualine
 
+local M = {
+  "nvim-lualine/lualine.nvim",
+  depedencies = {
+    "nvim-navic",
+  },
+}
+
 local uv = vim.loop
 
+--#region colors
 local COLORS = {
   bg = "#202328",
   fg = "#bbc2cf",
@@ -42,6 +50,7 @@ local MODE_COLOR_MAP = {
   ["!"] = COLORS.red,
   t = COLORS.red,
 }
+--#endregion
 
 local function fg(name)
   return function()
@@ -67,6 +76,7 @@ local state = {
 
 local LspUtils = require("ditsuke.utils.lspts")
 local Icons = require("ditsuke.utils.icons")
+--#region components
 local components = {
   filetype_plus_lsp = function()
     local ft = vim.bo.filetype
@@ -107,10 +117,9 @@ local components = {
     return state.comp_wakatime_time
   end,
 }
+--#endregion
 
-local M = {}
-
-M.config = function()
+M.opts = function()
   return {
     options = {
       -- Disable sections and component separators
