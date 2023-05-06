@@ -80,8 +80,6 @@ M.config = function(_, _)
     },
   }
 
-  local WIN_HIGHLIGHT = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:Search"
-
   -- <Tab> is used by Copilot, I found the plugin doesn't work
   -- if I use <Tab> for nvim-cmp or any other plugin
   -- local mappings for nvim-cmp.
@@ -179,9 +177,6 @@ M.config = function(_, _)
       max_width = 40,
       col_offset = -3,
       side_padding = 0,
-      completion = cmp.config.window.bordered({ winhighlight = WIN_HIGHLIGHT }),
-      documentation = cmp.config.window.bordered({ winhighlight = WIN_HIGHLIGHT }),
-      preview = cmp.config.window.bordered({ winhighlight = WIN_HIGHLIGHT }),
     },
     formatting = {
       --- @type cmp.ItemField[]

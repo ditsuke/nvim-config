@@ -14,13 +14,11 @@ return {
       presets = {
         command_palette = true,
         bottom_search = false,
-        lsp_doc_border = true,
         long_message_to_split = true, -- long messages will be sent to a split
       },
     },
   },
   {
-    -- TODO: add copilot button/icon that checks for activity
     "nvim-lualine/lualine.nvim",
     dependencies = {
       { "nvim-navic" },
