@@ -28,6 +28,7 @@ require("lazy").setup({
     { import = "ditsuke.extras.utils.ai" },
     { import = "ditsuke.extras.utils.wakatime" },
     { import = "ditsuke.extras.prose" },
+    { import = "ditsuke.extras.editor.auto_close_buffer" },
 
     -- Language extensions
     { import = "ditsuke.extras.lang.go" },
