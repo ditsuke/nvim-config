@@ -11,6 +11,7 @@ opt.laststatus = 3 -- Global statusline
 
 opt.cursorline = true
 opt.wrap = false
+opt.timeoutlen = 0
 opt.listchars = {
   trail = "·",
   precedes = "«",

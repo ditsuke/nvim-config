@@ -104,5 +104,27 @@ return {
       { "<S-Left>", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer left" },
     },
   },
+
+  -- > Better quickfix window in Neovim, polish old quickfix window.
   { "kevinhwang91/nvim-bqf", ft = "qf", dependencies = { "junegunn/fzf", build = ":call fzf#install()" } },
+
+  -- > 💥 Create key bindings that stick. WhichKey is a lua plugin for
+  -- > Neovim 0.5 that displays a popup with possible keybindings of the
+  -- > command you started typing.
+  {
+    "folke/which-key.nvim",
+    ---@type Options
+    opts = {
+      window = {
+        winblend = 10,
+      },
+      layout = {
+        height = { min = 4, max = 15 },
+        width = { min = 20, max = 50 },
+      },
+    },
+    keys = {
+      { "<C-/>", function() require("which-key").show() end, desc = "Show [h]elp", mode = { "n", "i" } },
+    },
+  },
 }
