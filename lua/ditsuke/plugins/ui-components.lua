@@ -27,14 +27,16 @@ return {
     },
     opts = require("ditsuke.opts.lualine_evil").config,
   },
+
+  -- A VS Code like winbar that uses nvim-navic in order to get LSP context from your language server.
+  --
+  -- FIXME: despite the fix from #35, `navic` still refuses to work
+  --  with barbecue.
+  --  After further investigation, I found that the bug is reproducible in my older
+  --  _lualine_ winbar, which begs the question if it's a navic bug or a bug
+  --  with lazyvim's handling of navic (particularly, how it attaches to a
+  --  LSP/buf).
   {
-    -- Winbar
-    -- FIXME: despite the fix from #35, `navic` still refuses to work
-    --  with barbecue.
-    --  After further investigation, I found that the bug is reproducible in my older
-    --  _lualine_ winbar, which begs the question if it's a navic bug or a bug
-    --  with lazyvim's handling of navic (particularly, how it attaches to a
-    --  LSP/buf).
     "utilyre/barbecue.nvim", -- Wait for my PR to get merged
     dependencies = {
       "SmiteshP/nvim-navic",
@@ -57,6 +59,8 @@ return {
       },
     },
   },
+
+  -- >  A simple popup display that provides breadcrumbs feature using LSP server
   {
     "SmiteshP/nvim-navbuddy",
     dependencies = {
@@ -84,12 +88,25 @@ return {
         config = true,
       },
     },
+    ---@type bufferline.Config
     opts = {
       options = {
-        separator_style = "slant",
+        separator_style = "thin",
+        style_preset = require("bufferline.config").STYLE_PRESETS["minimal"],
         always_show_bufferline = true,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        hover = {
+          enabled = true,
+          delay = 200,
+          reveal = { "close" },
+        },
       },
     },
+    config = function(_, opts)
+      require("bufferline").setup(opts)
+      vim.opt.showtabline = 0
+    end,
     keys = {
       { "<leader>bj", "<Cmd>BufferLinePick<CR>", desc = "[b]uffer [j]ump" },
       { "<S-Right>", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer right" },

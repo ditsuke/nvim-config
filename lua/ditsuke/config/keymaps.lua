@@ -116,12 +116,10 @@ vim.keymap.set("n", "<leader>um", function()
   state__mouse = now
 end, { desc = "Toggle [m]ouse support" })
 
-local state__tabline = 0
 vim.keymap.set("n", "<leader>ut", function()
-  local now = vim.opt.showtabline["_value"]
-  vim.opt.showtabline = state__tabline
-  vim.notify('Set showtabline to "' .. state__tabline .. '"')
-  state__tabline = now
+  local to = vim.opt.showtabline["_value"] == 0 and 2 or 0
+  vim.opt.showtabline = to
+  vim.notify('Set showtabline to "' .. to .. '"')
 end, { desc = "Toggle [t]abline" })
 
 vim.keymap.set("n", "<leader>uIi", function()
