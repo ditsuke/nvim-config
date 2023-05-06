@@ -19,6 +19,11 @@
 - [x] Improved `null-ls` setup that ships with spell checks and code-actions.
       For spell-checking consider `cspell` among other more involved options like LanguageTool
       **Reference:** https://nullvoxpopuli.com/2023-03-13-null-ls/
+- [x] fix!: [regression] shift+enter no longer bypasses cmp
+      **NOTE:** It turned out to be the terminal emulator I was using then. It turns
+      out that all emulators except Kitty pass S-CR as CR, Kitty passes it as S-CR as it should.
+- [x] ui: Move all float border = true to a custom layer (that I might keep disabled)
+- [ ] fix: Configuration order is broken when opening a file directly (lazyvim keymaps loaded after ours)
 - [ ] feat: LSPSaga for code outline, better references and action previews etc
 - [ ] fix: disable colorizer for `lazy` ft
 - [ ] fix: disable `indentline` for `noice` ft
