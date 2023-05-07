@@ -1,117 +1,85 @@
-return {
-  {
-    "folke/tokyonight.nvim",
-    event = "VeryLazy",
-  },
+-- Make sure colorschemes are loaded on VeryLazy (we want them to be
+-- loaded for previews)
+local function build_colorscheme_spec(colorschemes)
+  return vim.tbl_map(function(colorscheme)
+    local fqn = type(colorscheme) == "string" and colorscheme or colorscheme[1]
+    local spec =
+      vim.tbl_extend("force", { fqn, event = "VeryLazy" }, type(colorscheme) == "table" and colorscheme or {})
+    return spec
+  end, colorschemes)
+end
+
+local colorschemes = {
+  -- Clean and popular
+  -- > A clean, dark Neovim theme written in Lua, with support for
+  -- > lsp, treesitter and lots of plugins.
+  "folke/tokyonight.nvim",
+
+  -- One of my favorites
+  -- > A dark and light Neovim theme written in fennel, inspired by IBM Carbon.
+  "nyoom-engineering/oxocarbon.nvim",
+
+  -- Really cool
+  -- > A dark charcoal theme for modern Neovim & classic Vim
+  "bluz71/vim-moonfly-colors",
+  "bluz71/vim-nightfly-colors",
+  "Everblush/nvim",
+  "JoosepAlviste/palenightfall.nvim",
+  "yonlu/omni.vim",
+  "Abstract-IDE/Abstract-cs",
+  "Mofiqul/dracula.nvim",
+  "LunarVim/horizon.nvim",
+
+  -- > Port of the original
+  -- >> A Synthwave inspired colour theme (for VSCode)
+  -- >> Source: https://github.com/robb0wen/synthwave-vscode
+  "LunarVim/synthwave84.nvim",
+  "katawful/kat.nvim",
+  "hachy/eva01.vim",
+  "igorgue/danger",
+
+  -- > NeoVim dark colorscheme inspired by the colors of the famous painting by Katsushika Hokusai
+  "rebelot/kanagawa.nvim",
+
+  -- > Moonbow is a theme for nvim inspired by Gruvbox and Ayu dark
+  "arturgoms/moonbow.nvim",
+
+  -- > 🪨 A collection of contrast-based Vim/Neovim colorschemes
+  { "mcchrish/zenbones.nvim", dependencies = "rktjmp/lush.nvim" },
+
+  -- > 🍨 Soothing pastel theme for (Neo)vim
+  { "catppuccin/nvim", name = "catppuccin" },
+
+  -- > All natural pine, faux fur and a bit of soho vibes for the classy minimalist
+  { "rose-pine/neovim", name = "rose-pine" },
+  { "ellisonleao/gruvbox.nvim", opts = { palette_overrides = {} } },
+
+  -- Tons of awesome color schemes in base16. Really nice!
+  "RRethy/nvim-base16",
+
+  { "scysta/pink-panic.nvim", dependencies = "rktjmp/lush.nvim" },
+
   {
     "jesseleite/nvim-noirbuddy",
-    event = "VeryLazy",
-    dependencies = {
-      "tjdevries/colorbuddy.nvim",
-      branch = "dev",
-    },
+    dependencies = { "tjdevries/colorbuddy.nvim", branch = "dev" },
   },
+
   {
-    "nyoom-engineering/oxocarbon.nvim",
-    event = "VeryLazy",
+    "maxmx03/fluoromachine.nvim",
+    -- Setting these also enables the colorscheme. Poor
+    -- opts = {
+    --   -- glow = true,
+    -- },
   },
-  {
-    -- So cool!
-    "bluz71/vim-moonfly-colors",
-    event = "VeryLazy",
-  },
-  {
-    "bluz71/vim-nightfly-colors",
-    event = "VeryLazy",
-  },
-  {
-    "Everblush/nvim",
-    event = "VeryLazy",
-  },
-  {
-    "JoosepAlviste/palenightfall.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "yonlu/omni.vim",
-    event = "VeryLazy",
-  },
-  {
-    "Abstract-IDE/Abstract-cs",
-    event = "VeryLazy",
-  },
-  {
-    "Mofiqul/dracula.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "mcchrish/zenbones.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "rktjmp/lush.nvim",
-    },
-  },
-  {
-    "LunarVim/horizon.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "LunarVim/synthwave84.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "katawful/kat.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "catppuccin/nvim",
-    event = "VeryLazy",
-    name = "catppuccin",
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    event = "VeryLazy",
-  },
-  {
-    "hachy/eva01.vim",
-    event = "VeryLazy",
-  },
-  {
-    "igorgue/danger",
-    event = "VeryLazy",
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "arturgoms/moonbow.nvim",
-    event = "VeryLazy",
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    event = "VeryLazy",
-    opts = {
-      palette_overrides = {},
-    },
-    {
-      -- Tons of awesome color schemes in base16. Really nice!
-      "RRethy/nvim-base16",
-      event = "VeryLazy",
-    },
-  },
-  -- {
-  --   "ray-x/starry.nvim",
-  --   event = "VeryLazy",
-  -- },
-  -- {
-  --   "ray-x/aurora",
-  --   event = "VeryLazy",
-  -- },
+}
+
+return {
+  build_colorscheme_spec(colorschemes),
+
   -- Effortlessly sync the terminal background with Neovim.
   -- As a side effect, get effortless transparency across color schemes!
   { "typicode/bg.nvim", lazy = false, cond = function() return os.getenv("NVIM_COLORSYNC") == nil end },
+
   -- Configure LazyVim to load oxocarbon
   {
     "LazyVim/LazyVim",
