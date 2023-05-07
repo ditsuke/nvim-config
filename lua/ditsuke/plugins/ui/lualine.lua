@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 local M = {
   "nvim-lualine/lualine.nvim",
   depedencies = {
@@ -80,4 +84,5 @@ M.config = function(_, og_opts)
 
   return vim.tbl_deep_extend("force", og_opts, overrides)
 end
+
 return M

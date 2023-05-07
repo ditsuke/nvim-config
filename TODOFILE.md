@@ -23,33 +23,28 @@
       **NOTE:** It turned out to be the terminal emulator I was using then. It turns
       out that all emulators except Kitty pass S-CR as CR, Kitty passes it as S-CR as it should.
 - [x] ui: Move all float border = true to a custom layer (that I might keep disabled)
+- [x] fix: disable colorizer for `lazy` ft
+- [x] fix: Treesitter errors when no parser is available.
+      > Triggered by `cmp`?
+      > Reproduce by opening: `kitty.conf`
+      NOTE: I think this issue fixed itself somewhere along the way.
+- [x] feat: Smart colorcolumn
+      [smartcolumn.nvim](https://github.com/m4xshen/smartcolumn.nvim).
+- [x] feat: consider using Neogit or fugitive or a more nvim-centric
+      git workflow.
+- [x] feat: `<leader>ff` for git-insensitive search / figure out a way to include hidden files etc
+      with a `:tag:` (Telescope).
+      UPDATE: <leader>fF is now a git-insensitive search.
 - [ ] fix: Configuration order is broken when opening a file directly (lazyvim keymaps loaded after ours)
 - [ ] feat: LSPSaga for code outline, better references and action previews etc
-- [ ] fix: disable colorizer for `lazy` ft
 - [ ] fix: disable `indentline` for `noice` ft
 - [ ] feat: tune indentline and mini-indentscope,
       - [ ] define keymap for toggling.
 - [ ] feat: `fidget.nvim` to fixed location (statusline?)
-- [ ] fix: Treesitter errors when no parser is available.
-      > Triggered by `cmp`?
-      > Reproduce by opening: `kitty.conf`
 - [ ] chore: Remove enter-to-accept suggestions.
       **Reasoning:** Accidental accepts are really annoying to deal with.
 - [ ] Notifications to the left
       **See:** https://github.com/rcarriga/nvim-notify/issues/124
-- [ ] Declarative configuration management with _Neoconf_. Neoconf, however, does not support general
-      configuration besides LSP at the moment so I'll probably have to make a plugin that extends it.
-      Someone did take a shot at it earlier in 2023, but it doesn't cover much ground:
-      _Alternatively_, I could contribute back to neoconf if `folke` is receptive of the idea.
-      **Note:** I really, really want this for `colorscheme`, `wrap` etc :plead:
-      - https://git.jacky.wtf/neovim/neoconf-neovim-configuration
-      - https://github.com/folke/neoconf.nvim/issues/2
-- [ ] Tailored markdown editing
-      - **Reasoning:** Markdown with tailored keymaps makes for a good experience,
-            incidentally it also falls in the realm of expectations from using
-            virtually any markdown editor.
-      - **Options:** 
-            - https://github.com/antonk52/markdowny.nvim/blob/main/lua/markdowny.lua
 - [ ] Improve pair-handling. Currently the pair plugin (`mini-pair`?) does not
       detect existing unmatches pairs on the line and also fails to detect
       and act upon deletion of pair on other lines/same line making it difficult
@@ -66,15 +61,30 @@
 - [ ] feat: status-column
 - [ ] fix: Neoconf complains about loading order
 - [ ] feat: `<C-j/k>` bindings for Neo-tree search modes
-- [ ] feat: `<leader>ff` for git-insensitive search / figure out a way to include hidden files etc
-      with a `:tag:` (Telescope).
 - [ ] feat: improved Harpoon mappings for more utility
       **See:** [r/neovim/comments](https://www.reddit.com/r/neovim/comments/11r4ecp/comment/jc6rdjv/?utm_source=share&utm_medium=web2x&context=3)
-- [ ] feat: consider using Neogit or fugitive or a more nvim-centric
-      git workflow.
-- [ ] feat: Smart colorcolumn
-      [smartcolumn.nvim](https://github.com/m4xshen/smartcolumn.nvim).
 - [ ] feat: more info on ctrl-g, wittle down on statusbar components
-
 - [ ] misc: Food for thought
       [r/neovim](https://www.reddit.com/r/neovim/comments/11rzy1k/why_isnt_using_sidebars_to_display_information/)
+
+## High Effort / Might require me to write a plugin
+- [ ] Declarative configuration management with _Neoconf_. Neoconf, however, does not support general
+      configuration besides LSP at the moment so I'll probably have to make a plugin that extends it.
+      Someone did take a shot at it earlier in 2023, but it doesn't cover much ground:
+      _Alternatively_, I could contribute back to neoconf if `folke` is receptive of the idea.
+      **Note:** I really, really want this for `colorscheme`, `wrap` etc :plead:
+      - https://git.jacky.wtf/neovim/neoconf-neovim-configuration
+      - https://github.com/folke/neoconf.nvim/issues/2
+- [ ] Tailored markdown editing
+      - **Reasoning:** Markdown with tailored keymaps makes for a good experience,
+            incidentally it also falls in the realm of expectations from using
+            virtually any markdown editor.
+      - **Options:** 
+            - https://github.com/antonk52/markdowny.nvim/blob/main/lua/markdowny.lua
+- [ ] feat: Shada file by CWD.
+      > Why?
+      I don't want the jumplist etc for one cwd to be mixed with another.
+      > What to do?
+      - [ ] Create a custom shada file for each cwd.
+      - [ ] Package this into plugin (if one doesn't exist)
+
