@@ -20,6 +20,9 @@ return {
         window = {
           width = 30,
           position = "right",
+          mappings = {
+            ["/"] = "noop",
+          },
           fuzzy_finder_mappings = {
             ["<C-j>"] = "move_cursor_down",
             ["<C-k>"] = "move_cursor_up",
