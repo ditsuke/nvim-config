@@ -20,7 +20,13 @@ end
 
 -- Close floating windows
 -- Source: https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi
-local SPECIAL_FLOAT_FTS = { "hydra_hint", "which-key" }
+local SPECIAL_FLOAT_FTS = {
+  "hydra_hint",
+  "which-key",
+  "zenmode-bg",
+  "TelescopePrompt",
+  "TelescopeResults",
+}
 function M.close_floats()
   local needs_hack = false
   local inactive_floating_wins = vim.fn.filter(vim.api.nvim_list_wins(), function(_, v)
