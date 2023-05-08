@@ -31,8 +31,6 @@ end
 --- And see where useful information is stored.
 ---@param completion lsp.CompletionItem
 ---@param source cmp.Source
----@see Astronvim, because i just discovered they're already doing this thing, too
---  https://github.com/AstroNvim/AstroNvim
 local function get_lsp_completion_context(completion, source)
   local ok, source_name = pcall(function() return source.source.client.config.name end)
   if not ok then
@@ -109,7 +107,7 @@ M.opts = function(_, _)
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-j>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
       elseif has_words_before() then
         cmp.mapping.complete({})
       else
@@ -118,14 +116,42 @@ M.opts = function(_, _)
     end, { "i", "s", "c" }),
     ["<C-k>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item()
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
       else
         fallback()
       end
     end, { "i", "s", "c" }),
     ["<C-Space>"] = cmp.mapping.complete({}),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
+    -- SuperTab like behavior
+    -- Ref: https://www.lazyvim.org/configuration/recipes#supertab
+    -- BUG: does not work on entering insert mode for the first time, for
+    -- whatever reason. However, on entering insert mode for the second time,
+    -- the mappings work as expected.
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+        -- they way you will only jump inside the snippet region
+      elseif require("luasnip").expand_or_jumpable() then
+        require("luasnip").expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif require("luasnip").jumpable(-1) then
+        require("luasnip").jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
   }
   --#endregion
 
@@ -168,6 +194,7 @@ M.opts = function(_, _)
   })
 
   return {
+    preselect = cmp.PreselectMode.None,
     completion = {
       -- autocomplete = false, -- Can turn off autocomplete for ya
       -- completeopt = "menu,menuone,noinsert", -- No effect, but major SIDE-effect: selects first item visually, impairing `cmp` in command mode
@@ -176,7 +203,7 @@ M.opts = function(_, _)
       ghost_text = {
         hl_group = "LspCodeLens",
       },
-      --   native_menu = true,
+      --   native_menu = true, -- Doesn't play well with `cmp` in command mode
     },
     snippet = {
       expand = function(args) require("luasnip").lsp_expand(args.body) end,
