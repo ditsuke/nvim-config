@@ -129,7 +129,7 @@ M.opts = function(_, opts)
     -- Use the `ivy` theme, inspired by Emacs Ivy!
     -- Also disable previews and reduce height
     defaults = require("telescope.themes").get_ivy({
-      preview = false, -- An experiment (I might enable just for grep/livegrep)
+      preview = { hide_on_startup = true }, -- An experiment (I might enable just for grep/livegrep)
       layout_config = {
         height = 15,
       },
@@ -139,6 +139,7 @@ M.opts = function(_, opts)
           ["<C-p>"] = actions.cycle_history_prev,
           ["<C-J>"] = actions.move_selection_next,
           ["<C-K>"] = actions.move_selection_previous,
+          ["<M-p>"] = require("telescope.actions.layout").toggle_preview,
         },
       },
     }),
