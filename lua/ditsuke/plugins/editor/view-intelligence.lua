@@ -21,7 +21,12 @@ return {
   -- > A high-performance color highlighter for Neovim which has no external dependencies! Written in performant Luajit.
   {
     "NvChad/nvim-colorizer.lua",
-    config = true,
+    opts = {
+      filetypes = {
+        "*",
+        "!lazy",
+      },
+    },
   },
 
   -- > Incremental LSP renaming based on Neovim's command-preview feature.
