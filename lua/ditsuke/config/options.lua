@@ -20,6 +20,14 @@ opt.listchars = {
   tab = "▸ ",
 }
 
+-- Textwidth and auto-wrapping (disabled)
+-- Read: http://blog.ezyang.com/2010/03/vim-textwidth
+opt.textwidth = 120
+local wanted_format_opts = "coqljp"
+local unwanted_format_opts = "tc"
+opt.formatoptions:remove(unwanted_format_opts .. wanted_format_opts)
+opt.formatoptions:append(wanted_format_opts)
+
 -- opt.spelloptions = "camel"
 
 local UiUtils = require("ditsuke.utils.ui")
