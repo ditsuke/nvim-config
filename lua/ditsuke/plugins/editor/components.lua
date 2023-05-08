@@ -158,7 +158,7 @@ return {
     },
     -- stylua: ignore
     -- TODO: which-key leads for these keymaps
-    keys = { { "<leader>zz", function() require("zen-mode").toggle() end, desc = "Toggle [z]enmode"} },
+    keys = { { "<leader>z", function() require("zen-mode").toggle() end, desc = "Toggle [z]enmode"} },
   },
   {
     -- Diagnostics with virtual text. Does multiline well
