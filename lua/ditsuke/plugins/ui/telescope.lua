@@ -23,12 +23,28 @@ local M = {
       "debugloop/telescope-undo.nvim",
       config = function() require("telescope").load_extension("undo") end,
     },
+    {
+      -- > `telescope-file-browser.nvim` is a file browser extension for telescope.nvim.
+      -- > It supports synchronized creation, deletion, renaming, and moving of files and folders powered by telescope.nvim and plenary.nvim.
+      "nvim-telescope/telescope-file-browser.nvim",
+      config = function() require("telescope").load_extension("file_browser") end,
+    },
   },
   keys = {
     {
       "<leader>fF",
       function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
       desc = "[f]ind [f]iles",
+    },
+    {
+      "<leader>fb",
+      -- stylua: ignore
+      function() require("telescope").extensions.file_browser.file_browser({ hidden = true, no_ignore = true, path = "%:p:h" }) end,
+    },
+    {
+      "<leader>o",
+      -- stylua: ignore
+      function() require("telescope").extensions.file_browser.file_browser({ hidden = true, no_ignore = true, path = "%:p:h" }) end,
     },
     { "<leader>bs", function() require("telescope.builtin").buffers({ sort_mru = true }) end, desc = "[s]earch" },
     { "<leader>,", function() require("telescope.builtin").buffers({ sort_mru = true }) end, desc = "search buffers" },
@@ -113,11 +129,26 @@ M.opts = function(_, opts)
     },
   }
 
+  local file_browser_opts = {
+    theme = "ivy",
+    -- disables netrw and use telescope-file-browser in its place
+    hijack_netrw = true,
+    mappings = {
+      ["i"] = {
+        -- your custom insert mode mappings
+      },
+      ["n"] = {
+        -- your custom normal mode mappings
+      },
+    },
+  }
+
   local overrides = {
     extensions = {
       fzf = fzf_opts,
       frecency = frecency_opts,
       undo = undo_opts,
+      file_browser = file_browser_opts,
     },
     pickers = {
       lsp_dynamic_workspace_symbols = {

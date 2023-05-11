@@ -56,14 +56,13 @@ return {
       }
       return vim.tbl_deep_extend("force", og, overrides)
     end,
-    keys = function(_, keys)
-      keys[#keys + 1] = {
-        "<leader>o",
+    keys = {
+      {
+        "<leader>e",
         function() require("neo-tree.command").execute({ focus = true }) end,
         desc = "Focus Neotree",
-      }
-      return keys
-    end,
+      },
+    },
   },
   {
     "L3MON4D3/LuaSnip",
