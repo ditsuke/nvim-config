@@ -11,12 +11,30 @@ opt.laststatus = 3 -- Global statusline
 
 opt.cursorline = true
 opt.wrap = false
+
+-- Set a timeoutlen of 0 for instant response in normal/insert modes
+-- However in terminal mode, we want to keep a non-zero timeoutlen as it is
+-- essential in triggering mappings like `<Esc><Esc>` to exit terminal mode.
 opt.timeoutlen = 0
+vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+  group = vim.api.nvim_create_augroup("update_timeoutlen", { clear = true }),
+  callback = function()
+    local mode = vim.api.nvim_get_mode().mode
+    if mode == "t" then
+      opt.timeoutlen = 200
+    else
+      opt.timeoutlen = 0
+    end
+  end,
+})
+
+-- Pretty display of whitespace characters.
+-- Can be toggled with `:set list!`
 opt.listchars = {
   trail = "·",
   precedes = "«",
   extends = "»",
-  -- eol = "↲",
+  -- eol = "↲", -- This is a bit too much
   tab = "▸ ",
 }
 
@@ -35,7 +53,7 @@ UiUtils.mini_indentscope_enabled(false)
 UiUtils.indent_blankline_enabled(false)
 
 -- Make window title indicative of our cwd
--- Loaded before normal autocmds (./autocmds) because we leverage the `VimEnter` here.
+-- Loaded before normal autocmds (./autocmds) because we leverage the `VimEnter` event here.
 vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {
   group = vim.api.nvim_create_augroup("update_window_title", { clear = true }),
   callback = function()
