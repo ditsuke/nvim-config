@@ -40,41 +40,6 @@ return {
     config = true,
   },
   {
-    "kevinhwang91/nvim-ufo",
-    enabled = true,
-    event = { "BufReadPost", "InsertEnter" },
-    dependencies = { "kevinhwang91/promise-async" },
-    opts = require("ditsuke.opts.ufo").config,
-    init = require("ditsuke.opts.ufo").init,
-    keys = {
-      {
-        "zR",
-        function() require("ufo").openAllFolds() end,
-        desc = "Open all folds",
-      },
-      {
-        "zM",
-        function() require("ufo").closeAllFolds() end,
-        desc = "Close all folds",
-      },
-      {
-        "zr",
-        function() require("ufo").openFoldsExceptKinds() end,
-        desc = "Fold less",
-      },
-      {
-        "zm",
-        function() require("ufo").closeFoldsWith() end,
-        desc = "Fold more",
-      },
-      {
-        "zp",
-        function() require("ufo").peekFoldedLinesUnderCursor() end,
-        desc = "Peek fold",
-      },
-    },
-  },
-  {
     "echasnovski/mini.indentscope",
     opts = function(_, og)
       local overrides = {
