@@ -13,6 +13,14 @@
 
 local UIUtils = require("ditsuke.utils.ui")
 
+-- ==================
+-- Buffer navigation
+-- ==================
+
+-- Reverse a folly from Lazyvim
+pcall(function() vim.keymap.del("i", "<A-j>") end)
+pcall(function() vim.keymap.del("i", "<A-k>") end)
+
 -- ===================
 -- Window navigation
 -- ===================
