@@ -16,6 +16,12 @@ return {
         bottom_search = false,
         long_message_to_split = true, -- long messages will be sent to a split
       },
+      lsp = {
+        progress = {
+          enabled = true,
+          throttle = 10000 / 30,
+        },
+      },
     },
   },
 
