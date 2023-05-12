@@ -156,6 +156,20 @@ M.opts = function(_, opts)
         -- Ref: https://github.com/nvim-telescope/telescope.nvim/issues/2104#issuecomment-1223790155
         sorter = require("telescope").extensions.fzf.native_fzf_sorter(fzf_opts),
       },
+      buffers = {
+        mappings = {
+          n = {
+            ["d"] = function(prompt_bufnr)
+              local current_picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+              current_picker:delete_selection(function(selection)
+                local force = vim.api.nvim_buf_get_option(selection.bufnr, "buftype") == "terminal"
+                local ok = pcall(require("mini.bufremove").delete, selection.bufnr, force)
+                return ok
+              end)
+            end,
+          },
+        },
+      },
     },
     -- Use the `ivy` theme, inspired by Emacs Ivy!
     -- Also disable previews and reduce height
