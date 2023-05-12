@@ -2,6 +2,7 @@ if true then
   return {}
 end
 
+-- Deprecated
 local M = {
   "nvim-lualine/lualine.nvim",
   depedencies = {
