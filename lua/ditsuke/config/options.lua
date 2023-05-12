@@ -38,6 +38,17 @@ opt.listchars = {
   tab = "▸ ",
 }
 
+opt.fillchars = {
+  vert = "▕",
+  fold = " ",
+  diff = "╱",
+  msgsep = "‾",
+  foldopen = "▾",
+  foldsep = "│",
+  foldclose = "▸",
+  eob = " ",
+}
+
 -- Textwidth and auto-wrapping (disabled)
 -- Read: http://blog.ezyang.com/2010/03/vim-textwidth
 opt.textwidth = 120
