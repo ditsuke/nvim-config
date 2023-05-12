@@ -51,6 +51,7 @@ local function get_lsp_completion_context(completion, source)
 end
 --#endregion
 
+--#region symbols
 local SYMBOL_MAP = {
   Text = "  ",
   Method = "  ",
@@ -78,6 +79,7 @@ local SYMBOL_MAP = {
   Operator = "  ",
   TypeParameter = "  ",
 }
+--#endregion
 
 M.opts = function(_, _)
   local cmp = require("cmp")
@@ -90,9 +92,11 @@ M.opts = function(_, _)
       { name = "emoji" },
     },
     {
-      { name = "treesitter" },
+      { name = "luasnip" },
       { name = "path" },
+      { name = "buffer" },
       -- Distracting!
+      -- { name = "treesitter" }, -- Works well except for with markdown, where it counts all headers as nodes 😕
       -- { name = "spell" },
       -- { name = "dictionary" },
     },
@@ -107,7 +111,7 @@ M.opts = function(_, _)
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-j>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
       elseif has_words_before() then
         cmp.mapping.complete({})
       else
@@ -116,7 +120,7 @@ M.opts = function(_, _)
     end, { "i", "s", "c" }),
     ["<C-k>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
       else
         fallback()
       end
