@@ -32,7 +32,10 @@ return {
   config = function()
     local builtin = require("statuscol.builtin")
     require("statuscol").setup({
-      ft_ignore = { "neo-tree" },
+      ft_ignore = {
+        "neo-tree",
+        "starter",
+      },
       relculright = true,
       segments = {
         {
