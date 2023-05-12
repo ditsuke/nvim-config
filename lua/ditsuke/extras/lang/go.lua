@@ -23,8 +23,9 @@ return {
     },
     opts = {
       lsp_cfg = false,
+      lsp_keymaps = false,
     },
-    config = function(opts) require("go").setup(opts) end,
+    config = function(_, opts) require("go").setup(opts) end,
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 
