@@ -42,11 +42,21 @@ return {
     cmd = "IncRename",
     config = true,
   },
+
+  -- >  An extremely lightweight plugin (~ 120loc) that hightlights ranges you have entered in commandline.
   {
     "winston0410/range-highlight.nvim",
     dependencies = {
       "winston0410/cmd-parser.nvim",
     },
+    config = true,
+  },
+
+  -- > Cursor line number mode indicator.
+  --
+  -- > A small Neovim plugin that changes the foreground color of the CursorLineNr highlight based on the current Vim mode.
+  {
+    "mawkler/modicator.nvim",
     config = true,
   },
 }
