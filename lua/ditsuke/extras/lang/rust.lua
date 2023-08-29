@@ -124,4 +124,8 @@ return {
       },
     },
   },
+  {
+    "Saecki/crates.nvim",
+    opts = true,
+  },
 }
