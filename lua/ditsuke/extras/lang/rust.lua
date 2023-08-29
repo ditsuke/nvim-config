@@ -60,6 +60,12 @@ return {
               adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
             },
             tools = {
+              inlay_hints = {
+                auto = false,
+                show_parameter_hints = true,
+                parameter_hints_prefix = "",
+                other_hints_prefix = "",
+              },
               on_initialized = function()
                 vim.cmd([[
                   augroup RustLSP
