@@ -18,8 +18,6 @@ function M.indent_blankline_enabled(set_to)
     or vim.g.indent_blankline_enabled
 end
 
--- Close floating windows
--- Source: https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi
 local SPECIAL_FLOAT_FTS = {
   "hydra_hint",
   "which-key",
@@ -27,6 +25,8 @@ local SPECIAL_FLOAT_FTS = {
   "TelescopePrompt",
   "TelescopeResults",
 }
+-- Close floating windows
+-- Source: https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi
 function M.close_floats()
   local needs_hack = false
   local inactive_floating_wins = vim.fn.filter(vim.api.nvim_list_wins(), function(_, v)
@@ -42,12 +42,15 @@ function M.close_floats()
 
   -- If we're closing a noice float, we need to employ a hack
   -- to prevent the float to reopen on the top left under some scenarios (e.g., when we reopen it witout moving our cursor)
-  if needs_hack then
-    vim.api.nvim_feedkeys("jk", "nt", true)
-  end
-  for _, w in ipairs(inactive_floating_wins) do
-    pcall(vim.api.nvim_win_close, w, false)
-  end
+  vim.api.nvim_feedkeys("hl", "nt", true)
+  -- if needs_hack then
+  -- end
+  -- for _, w in ipairs(inactive_floating_wins) do
+  --   local file_type = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(w), "filetype")
+  --   local buftype = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(w), "buftype")
+  --   require("ditsuke.utils").logger("Closing float: " .. file_type .. " (" .. buftype .. ")")
+  --   pcall(vim.api.nvim_win_close, w, false)
+  -- end
 end
 
 -- Set smart jk navigation
