@@ -15,7 +15,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
-    { import = "lazyvim.plugins.extras.util.project" },
+    { import = "lazyvim.plugins.extras.lang.clangd" },
+    -- { import = "lazyvim.plugins.extras.util.project" },
 
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- { import = "lazyvim.plugins.extras.coding.copilot" },
@@ -37,8 +38,10 @@ require("lazy").setup({
     { import = "ditsuke.extras.lang.java" },
     { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses `vtsls` instead
     { import = "ditsuke.extras.lang.python" },
+    -- { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "ditsuke.extras.lang.rust" },
     { import = "ditsuke.extras.lang.yaml" },
+    { import = "ditsuke.extras.lang.just" },
   },
   -- dev = { path = "~/projects", patterns = jit.os:find("Windows") and {} or { "LazyVim" } },
   defaults = {
