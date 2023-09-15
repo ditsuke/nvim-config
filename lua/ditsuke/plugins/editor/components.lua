@@ -100,7 +100,7 @@ return {
   {
     -- Diagnostics with virtual text. Does multiline well
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    event = "BufReadPost",
+    event = "LspAttach",
     dependencies = {
       {
         "neovim/nvim-lspconfig",
@@ -116,5 +116,14 @@ return {
       require("lsp_lines").setup()
       vim.diagnostic.config({ virtual_lines = false }) -- disable by default
     end,
+  },
+  {
+    -- >  LSP diagnostics in virtual text at the top right of your screen
+    -- NOTE: Promising but not quite there yet. Last I updated this the plugin worked but the generated
+    -- text has too big a right offset to be very visible. This is configurable but I don't see
+    -- why it should be broken by default.
+    "dgagn/diagflow.nvim",
+    event = "LspAttach",
+    config = true,
   },
 }
