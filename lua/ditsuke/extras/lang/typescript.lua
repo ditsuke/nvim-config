@@ -23,6 +23,7 @@ return {
       local nls = require("null-ls")
       util.list_insert_unique(opts.sources, {
         nls.builtins.code_actions.eslint_d,
+        nls.builtins.formatting.prettier,
       })
       return opts
     end,
