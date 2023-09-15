@@ -27,7 +27,7 @@ return {
       Util.list_insert_unique(opts.sources, {
         nls.builtins.diagnostics.ruff,
         nls.builtins.formatting.ruff,
-        nls.builtins.formatting.black,
+        -- nls.builtins.formatting.black,
       })
       return opts
     end,
