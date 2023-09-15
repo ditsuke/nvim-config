@@ -1,5 +1,8 @@
+local icons = require("ditsuke.utils.icons")
+
 local M = {
   "hrsh7th/nvim-cmp",
+  lazy = true,
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "hrsh7th/nvim-cmp",
@@ -15,6 +18,15 @@ local M = {
     "saadparwaiz1/cmp_luasnip",
     "uga-rosa/cmp-dictionary",
     "onsails/lspkind.nvim",
+
+    -- Disable LuaSnip <Tab> keymap set by lazy
+    -- QUESTION: Is this necessary?
+    {
+      "L3MON4D3/LuaSnip",
+      keys = {
+        -- { "<Tab>", nil },
+      },
+    },
   },
 }
 
@@ -49,36 +61,6 @@ local function get_lsp_completion_context(completion, source)
     return completion.detail
   end
 end
---#endregion
-
---#region symbols
-local SYMBOL_MAP = {
-  Text = "  ",
-  Method = "  ",
-  Function = "  ",
-  Constructor = "  ",
-  Field = "  ",
-  Variable = "  ",
-  Class = "  ",
-  Interface = "  ",
-  Module = "  ",
-  Property = "  ",
-  Unit = " 塞",
-  Value = "  ",
-  Enum = "  ",
-  Keyword = "  ",
-  Snippet = "  ",
-  Color = "  ",
-  File = "  ",
-  Reference = "  ",
-  Folder = "  ",
-  EnumMember = "  ",
-  Constant = "  ",
-  Struct = "  ",
-  Event = "  ",
-  Operator = "  ",
-  TypeParameter = "  ",
-}
 --#endregion
 
 M.opts = function(_, _)
@@ -204,22 +186,51 @@ M.opts = function(_, _)
       -- completeopt = "menu,menuone,noinsert", -- No effect, but major SIDE-effect: selects first item visually, impairing `cmp` in command mode
     },
     experimental = {
-      ghost_text = {
-        hl_group = "LspCodeLens",
-      },
+      -- ghost_text = {
+      --   hl_group = "LspCodeLens",
+      -- },
       --   native_menu = true, -- Doesn't play well with `cmp` in command mode
     },
     snippet = {
       expand = function(args) require("luasnip").lsp_expand(args.body) end,
     },
     window = {
-      max_width = 40,
-      col_offset = -3,
-      side_padding = 0,
+      -- completion = cmp.config.window.bordered(),
+      completion = {
+        winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+        border = icons.borders.outer.all,
+        col_offset = 2,
+        side_padding = 1,
+        scrollbar = false,
+      },
+
+      documentation = {
+        winhighlight = "Normal:Pmenu,FloatBorder:PmenuDocBorder,CursorLine:PmenuSel,Search:None",
+        border = icons.borders.outer.all,
+        side_padding = 0,
+        scrollbar = false,
+        max_width = 80,
+        max_height = 25,
+      },
     },
+
+    -- window = {
+    --   winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+    --   border = Icons.borders.outer.all,
+    --   col_offset = 2,
+    --   side_padding = 1,
+    --   scrollbar = false,
+    --   max_width = 40,
+    --   -- col_offset = -3,
+    --   -- side_padding = 0,
+    -- },
     formatting = {
       --- @type cmp.ItemField[]
-      fields = { "abbr", "kind", "menu" },
+      fields = {
+        "kind",
+        "abbr",
+        "menu",
+      },
 
       --- @param entry cmp.Entry
       --- @param vim_item vim.CompletedItem
@@ -227,7 +238,7 @@ M.opts = function(_, _)
         local item_with_kind = require("lspkind").cmp_format({
           mode = "symbol",
           maxwidth = 50,
-          symbol_map = SYMBOL_MAP,
+          symbol_map = icons.cmp_types,
         })(entry, vim_item)
 
         item_with_kind.menu = ""
@@ -235,7 +246,7 @@ M.opts = function(_, _)
         if completion_context ~= nil and completion_context ~= "" then
           local truncated_context = string.sub(completion_context, 1, 30)
           if truncated_context ~= completion_context then
-            truncated_context = truncated_context .. "..."
+            truncated_context = truncated_context .. icons.misc.ellipsis
           end
           item_with_kind.menu = item_with_kind.menu .. " " .. truncated_context
         end
