@@ -12,6 +12,8 @@ opt.laststatus = 3 -- Global statusline
 opt.cursorline = true
 opt.wrap = false
 
+opt.cmdheight = 0
+
 -- Set a timeoutlen of 0 for instant response in normal/insert modes
 -- However in terminal mode, we want to keep a non-zero timeoutlen as it is
 -- essential in triggering mappings like `<Esc><Esc>` to exit terminal mode.
