@@ -4,6 +4,8 @@
 -- Color table for highlights
 -- Eviline-ish configuration for lualine
 
+local Icons = require("ditsuke.utils.icons")
+
 local M = {
   "nvim-lualine/lualine.nvim",
   depedencies = {
@@ -75,7 +77,6 @@ local state = {
 }
 
 local LspUtils = require("ditsuke.utils.lspts")
-local Icons = require("ditsuke.utils.icons")
 --#region components
 local components = {
   filetype_plus_lsp = function()
@@ -83,11 +84,11 @@ local components = {
     local lsp = LspUtils.get_active_lsp()
     local ts_enabled = LspUtils.is_treesitter_active()
     local ctx_parts = {}
-    if lsp ~= nil then
-      table.insert(ctx_parts, Icons.lsp_ts.active_lsp .. " " .. lsp)
-    end
     if ts_enabled then
       table.insert(ctx_parts, Icons.lsp_ts.active_ts)
+    end
+    if lsp ~= nil then
+      table.insert(ctx_parts, Icons.lsp_ts.active_lsp .. " " .. lsp)
     end
 
     local ft_ctx = table.concat(ctx_parts, " + ", 1)
@@ -171,9 +172,19 @@ M.opts = function()
           color = { fg = COLORS.magenta, gui = "bold" },
         },
         {
+          function()
+            local cur_buf = vim.api.nvim_get_current_buf()
+            local pin = require("hbac.state").is_pinned(cur_buf) and "󰐃 " or "󰤰 "
+            return "" .. pin .. ""
+            -- tip: nerd fonts have pinned/unpinned icons!
+          end,
+          cond = function() return require("lazyvim.util").has("hbac.nvim") and package.loaded["hbac"] ~= nil end,
+          color = { fg = "#ef5f6b", gui = "bold" },
+        },
+        {
           "diff",
           -- Is it me or the symbol for modified us really weird
-          symbols = { added = " ", modified = "柳", removed = " " },
+          symbols = { added = Icons.git.added, modified = Icons.git.changed, removed = Icons.git.deleted },
           diff_color = {
             added = { fg = COLORS.green },
             modified = { fg = COLORS.orange },
@@ -184,7 +195,7 @@ M.opts = function()
         {
           "diagnostics",
           sources = { "nvim_diagnostic" },
-          symbols = { error = " ", warn = " ", info = " " },
+          symbols = Icons.diagnostics,
           diagnostics_color = {
             color_error = { fg = COLORS.red },
             color_warn = { fg = COLORS.yellow },
@@ -209,15 +220,25 @@ M.opts = function()
         },
         {
           -- Copilot icon
-          function() return "" end,
-          cond = function() return require("lazyvim.util").has("copilot.lua") and package.loaded["copilot"] ~= nil end,
-          color = function(_)
+          function()
+            -- require("ditsuke.utils").logger("copilot icon")
             local copilot_client = require("lazyvim.util").has("copilot.lua") and require("copilot.client")
             if not copilot_client then
-              return
+              return " "
             end
-            return { bg = copilot_client.is_disabled() and COLORS.fg or COLORS.cyan, fg = "white" }
+            local bg_color = copilot_client and (copilot_client.is_disabled() and COLORS.fg or COLORS.cyan) or "NONE"
+            local bg_syntax = bg_color ~= "NONE" and "%#" .. bg_color .. "#" or ""
+            -- FIXME: bg color is not working
+            return bg_syntax .. "%#white# " .. "%*" -- Move %* to end of string
           end,
+          -- cond = function() return require("lazyvim.util").has("copilot.lua") and package.loaded["copilot"] ~= nil end,
+          -- color = function(_)
+          --   local copilot_client = require("lazyvim.util").has("copilot.lua") and require("copilot.client")
+          --   if not copilot_client then
+          --     return
+          --   end
+          --   return { bg = copilot_client.is_disabled() and COLORS.fg or COLORS.cyan, fg = "white" }
+          -- end,
           on_click = function(clicks, button)
             local commands = require("copilot.command")
 

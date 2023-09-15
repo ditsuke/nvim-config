@@ -40,14 +40,31 @@ local M = {
       "<leader>fb",
       -- stylua: ignore
       function() require("telescope").extensions.file_browser.file_browser({ hidden = true, no_ignore = true, path = "%:p:h" }) end,
+      desc = "[file] [b]rowser",
     },
     {
       "<leader>o",
       -- stylua: ignore
       function() require("telescope").extensions.file_browser.file_browser({ hidden = true, no_ignore = true, path = "%:p:h" }) end,
+      desc = "[o]pen file browser",
     },
     { "<leader>bs", function() require("telescope.builtin").buffers({ sort_mru = true }) end, desc = "[s]earch" },
-    { "<leader>,", function() require("telescope.builtin").buffers({ sort_mru = true }) end, desc = "search buffers" },
+    {
+      "<leader>,",
+      function()
+        require("telescope.builtin").buffers({
+          sort_mru = true,
+          -- entry_maker = function(entry)
+          --   return {
+          --     value = entry,
+          --     display = entry[1],
+          --     ordinal = entry[1],
+          --   }
+          -- end,
+        })
+      end,
+      desc = "search buffers",
+    },
     { "<F1>", function() require("telescope.builtin").help_tags() end, desc = "Search :help" },
     {
       "<C-`>",
