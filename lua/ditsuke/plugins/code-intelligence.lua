@@ -34,6 +34,9 @@ return {
         null_ls.builtins.diagnostics.buf,
         null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.diagnostics.selene,
+        -- bash
+        null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.diagnostics.shellcheck,
       }
       return opts
     end,
