@@ -4,6 +4,10 @@ local disable_on_large_buffers_fn = function(threshold)
   return function(_, bufnr) return vim.api.nvim_buf_line_count(bufnr) > threshold end
 end
 
+-- if true then
+--   return {}
+-- end
+
 return {
   "nvim-treesitter/nvim-treesitter",
   enabled = true,
@@ -13,7 +17,7 @@ return {
     "nvim-treesitter/playground",
     -- highlight same-name identifiers with the same color
     "David-Kunz/markid",
-    "HiPhish/nvim-ts-rainbow2",
+    -- "HiPhish/nvim-ts-rainbow2",
     "nvim-treesitter/nvim-treesitter-refactor",
     -- Show code context (function, etc) on top while navigating ala context.vim
     "nvim-treesitter/nvim-treesitter-context",
