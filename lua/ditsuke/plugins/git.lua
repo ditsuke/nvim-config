@@ -2,6 +2,7 @@ return {
   {
     -- Neogit -- an experimental addition, not yet a part of my workflow
     "TimUntersberger/neogit",
+    event = "VeryLazy",
     dependencies = {
       "plenary.nvim",
     },
@@ -25,6 +26,7 @@ return {
   -- > - [x — move to next conflict
   {
     "akinsho/git-conflict.nvim",
+    event = "VeryLazy",
     version = "*",
     config = true,
   },
