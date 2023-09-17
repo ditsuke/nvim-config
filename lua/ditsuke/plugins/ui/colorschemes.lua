@@ -311,6 +311,50 @@ local colorschemes = {
   "projekt0n/github-nvim-theme",
   -- Soothing green colorscheme, very nice!
   "ribru17/bamboo.nvim",
+  -- > [WIP] The timeless colorscheme for neovim text editor.
+  "projekt0n/caret.nvim",
+  {
+    "svermeulen/text-to-colorscheme",
+    opts = {
+      default_palette = "sakura-glasgow-darker",
+      ai = {
+        openai_api_key = os.getenv("OPENAI_API_KEY"),
+        gpt_model = "gpt-3.5-turbo-0613",
+      },
+      hex_palettes = {
+        {
+          name = "sakura-glasgow",
+          background_mode = "dark",
+          background = "#0b0b0b",
+          foreground = "#ffffff",
+          accents = {
+            "#ffb8ca",
+            "#ffd9b8",
+            "#fff0b8",
+            "#d9ffb8",
+            "#b8ffcd",
+            "#b8fff0",
+            "#b8d9ff",
+          },
+        },
+        {
+          name = "sakura-glasgow-darker",
+          background_mode = "dark",
+          background = "#120f0f",
+          foreground = "#e2b5b5",
+          accents = {
+            "#e27691",
+            "#e2a876",
+            "#e2cc76",
+            "#a8e276",
+            "#76e296",
+            "#76e2cc",
+            "#76a8e2",
+          },
+        },
+      },
+    },
+  },
 }
 
 return {
@@ -324,7 +368,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oxocarbon",
+      colorscheme = "text-to-colorscheme",
     },
   },
 }
