@@ -21,6 +21,7 @@ return {
   -- > A high-performance color highlighter for Neovim which has no external dependencies! Written in performant Luajit.
   {
     "NvChad/nvim-colorizer.lua",
+    event = "BufReadPre",
     opts = {
       filetypes = {
         "*",
@@ -46,6 +47,7 @@ return {
   -- >  An extremely lightweight plugin (~ 120loc) that hightlights ranges you have entered in commandline.
   {
     "winston0410/range-highlight.nvim",
+    event = "VeryLazy",
     dependencies = {
       "winston0410/cmd-parser.nvim",
     },
