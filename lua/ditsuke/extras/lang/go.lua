@@ -45,7 +45,7 @@ return {
   -- Configure some formatters/auto-fixers.
   -- NOTE: Consider adding `iferr` (not available)
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local builtins = require("null-ls").builtins
       Util.list_insert_unique(opts.sources, {

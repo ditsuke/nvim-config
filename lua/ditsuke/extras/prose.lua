@@ -2,7 +2,7 @@ local Util = require("ditsuke.utils")
 
 return {
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     init = function()
       -- Disable vim's own spell checker (it sucks)
       vim.opt.spell = false

@@ -18,7 +18,7 @@ return {
   ),
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
       util.list_insert_unique(opts.sources, {

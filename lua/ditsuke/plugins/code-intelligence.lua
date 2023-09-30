@@ -22,7 +22,7 @@ return {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     dependencies = {
       -- The Refactoring library based off the Refactoring book by Martin Fowler
       "ThePrimeagen/refactoring.nvim",
@@ -49,7 +49,7 @@ return {
     dependencies = {
       "nvim-treesitter",
       {
-        "null-ls.nvim",
+        "none-ls.nvim",
         opts = function(_, opts)
           local null_ls = require("null-ls")
           table.insert(opts.sources, null_ls.builtins.code_actions.ts_node_action)
