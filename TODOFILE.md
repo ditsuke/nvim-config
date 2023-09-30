@@ -4,14 +4,6 @@
       > Impact?
       If you have 2 windows open and switch between them, both
       will show the same git-signs (ie, for the active window/buffer)
-- [ ] Improve pair-handling. Currently the pair plugin (`mini-pair`?) does not
-      detect existing unmatches pairs on the line and also fails to detect
-      and act upon deletion of pair on other lines/same line making it difficult
-      to work with pairs after deleting one of the parts. Consider:
-      - Enter \`. Paired \` appears.
-      - Delete second \`. First one remains.
-      - Insert \`. First \` is ignored, 2 \` are inserted again.
-      PAIN!
 - [ ] fix: Configuration order is broken when opening a file directly (lazyvim keymaps loaded after ours)
 - [ ] feat: improved Harpoon mappings for more utility
       **See:** [r/neovim/comments](https://www.reddit.com/r/neovim/comments/11r4ecp/comment/jc6rdjv/?utm_source=share&utm_medium=web2x&context=3)
@@ -31,6 +23,14 @@
 - [ ] feat: LSPSaga for code outline, better references and action previews etc
 - [ ] misc: Food for thought
       [r/neovim](https://www.reddit.com/r/neovim/comments/11rzy1k/why_isnt_using_sidebars_to_display_information/)
+- [x] Improve pair-handling. Currently the pair plugin (`mini-pair`?) does not
+      detect existing unmatches pairs on the line and also fails to detect
+      and act upon deletion of pair on other lines/same line making it difficult
+      to work with pairs after deleting one of the parts. Consider:
+      - Enter \`. Paired \` appears.
+      - Delete second \`. First one remains.
+      - Insert \`. First \` is ignored, 2 \` are inserted again.
+      PAIN!
 
 ## High Effort / Might require me to write a plugin
 - [ ] Declarative configuration management with _Neoconf_. Neoconf, however, does not support general

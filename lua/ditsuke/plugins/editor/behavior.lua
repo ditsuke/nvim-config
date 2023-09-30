@@ -83,4 +83,32 @@ return {
       },
     },
   },
+
+  -- > A neovim autopair plugin designed to have all the features that an autopair plugin needs.
+  -- TODO: Re-evaluate this plugin at a later stage (30-09-2023)
+  -- {
+  --   "altermo/ultimate-autopair.nvim",
+  --   enabled = true,
+  --   dependencies = {
+  --     {
+  --       "windwp/nvim-autopairs",
+  --       config = function()
+  --         local npairs = require("nvim-autopairs")
+  --         npairs.setup({})
+  --         for _, i in ipairs(npairs.config.rules) do
+  --           i.key_map = nil
+  --         end
+  --       end,
+  --     },
+  --   },
+  --   event = { "InsertEnter", "CmdlineEnter" },
+  --   branch = "development",
+  --   -- branch = "v0.6",
+  --   config = true,
+  -- },
+  -- >  autopairs for neovim written by lua
+  {
+    "windwp/nvim-autopairs",
+    config = true,
+  },
 }
