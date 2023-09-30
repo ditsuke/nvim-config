@@ -355,6 +355,7 @@ local colorschemes = {
       },
     },
   },
+  "zootedb0t/citruszest.nvim",
 }
 
 return {
