@@ -179,11 +179,19 @@ M.opts = function(_, _)
     }),
   })
 
+  local types = require("cmp.types")
+  local LSP_TYPES = {
+    types.lsp.CompletionItemKind.Method,
+    types.lsp.CompletionItemKind.Field,
+    types.lsp.CompletionItemKind.Property,
+    types.lsp.CompletionItemKind.Function,
+  }
+
   return {
     preselect = cmp.PreselectMode.None,
     completion = {
       -- autocomplete = false, -- Can turn off autocomplete for ya
-      -- completeopt = "menu,menuone,noinsert", -- No effect, but major SIDE-effect: selects first item visually, impairing `cmp` in command mode
+      completeopt = "menu,menuone,noinsert,noselect",
     },
     experimental = {
       -- ghost_text = {
@@ -257,6 +265,59 @@ M.opts = function(_, _)
     },
     mapping = cmp.mapping.preset.insert(mapping),
     sources = cmp.config.sources(editorSources[1], editorSources[2]),
+
+    -- Better sorting
+    -- Adapted from: https://github.com/tjdevries/config_manager/blob/78608334a7803a0de1a08a9a4bd1b03ad2a5eb11/xdg_config/nvim/after/plugin/completion.lua#L129
+    sorting = {
+      -- TODO: Would be cool to add stuff like "See variable names before method names" in rust, or something like that.
+      comparators = {
+        --- Always rank snippets below methods and fields.
+        --- @param e1 cmp.Entry
+        --- @param e2 cmp.Entry
+        --- @return boolean|nil
+        function(e1, e2)
+          local e1_kind = e1:get_kind()
+          local e2_kind = e2:get_kind()
+          if e1_kind == e2_kind then
+            return nil
+          end
+          if e1_kind ~= types.lsp.CompletionItemKind.Snippet and e2_kind ~= types.lsp.CompletionItemKind.Snippet then
+            return nil
+          end
+          if vim.tbl_contains(LSP_TYPES, e1_kind) then
+            return true
+          elseif vim.tbl_contains(LSP_TYPES, e2_kind) then
+            return false
+          end
+          return nil
+        end,
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.recently_used,
+        cmp.config.compare.locality,
+        cmp.config.compare.kind,
+
+        --- Completion items that start with one or more underlines should be ranked lower.
+        --- Copied from `lukas-reineke/cmp-under-comparator`
+        function(entry1, entry2)
+          local _, entry1_under = entry1.completion_item.label:find("^_+")
+          local _, entry2_under = entry2.completion_item.label:find("^_+")
+          entry1_under = entry1_under or 0
+          entry2_under = entry2_under or 0
+          if entry1_under > entry2_under then
+            return false
+          elseif entry1_under < entry2_under then
+            return true
+          end
+        end,
+
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+      },
+    },
+    -- sorting = require("cmp.config.default")().sorting,
   }
 end
 
