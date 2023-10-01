@@ -154,13 +154,25 @@ M.opts = function(_, opts)
     },
   }
 
+  -- BUG: Importing actions like this causes an override of the setup mappings, somehow.
+  -- local fb_actions = require("telescope").extensions.file_browser.actions
+
+  local fb_actions = require("telescope._extensions.file_browser.actions")
   local file_browser_opts = {
     theme = "ivy",
+    layout_config = {
+      height = 15
+    },
     -- disables netrw and use telescope-file-browser in its place
     hijack_netrw = true,
     mappings = {
       ["i"] = {
-        -- your custom insert mode mappings
+        -- Avoid overriding expected keybinds to delete words and scroll previews.
+        -- Instead, assign them more appropriate shortcuts.
+        ["<C-F>"] = false,
+        ["<C-W>"] = false,
+        ["<A-f>"] = fb_actions.toggle_browser,
+        ["<A-w>"] = fb_actions.goto_cwd,
       },
       ["n"] = {
         -- your custom normal mode mappings
