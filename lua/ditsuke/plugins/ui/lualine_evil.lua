@@ -226,19 +226,26 @@ M.opts = function()
             if not copilot_client then
               return " "
             end
-            local bg_color = copilot_client and (copilot_client.is_disabled() and COLORS.fg or COLORS.cyan) or "NONE"
-            local bg_syntax = bg_color ~= "NONE" and "%#" .. bg_color .. "#" or ""
-            -- FIXME: bg color is not working
-            return bg_syntax .. "%#white# " .. "%*" -- Move %* to end of string
+            return " "
+
+            -- TODO: figure out how to change bg color for a single symbol
+            -- local bg_color = copilot_client and (copilot_client.is_disabled() and COLORS.fg or COLORS.cyan) or "NONE"
+            -- local bg_syntax = bg_color ~= "NONE" and "%#" .. bg_color .. "#" or ""
+            -- -- FIXME: bg color is not working
+            --
+            -- return bg_syntax .. "%#white# " .. "%*" -- Move %* to end of string
           end,
           -- cond = function() return require("lazyvim.util").has("copilot.lua") and package.loaded["copilot"] ~= nil end,
-          -- color = function(_)
-          --   local copilot_client = require("lazyvim.util").has("copilot.lua") and require("copilot.client")
-          --   if not copilot_client then
-          --     return
-          --   end
-          --   return { bg = copilot_client.is_disabled() and COLORS.fg or COLORS.cyan, fg = "white" }
-          -- end,
+          color = function(_)
+            local copilot_client = require("lazyvim.util").has("copilot.lua") and require("copilot.client")
+            if not copilot_client then
+              return { bg = "NONE", fg = "NONE" }
+            end
+            return {
+              -- bg = copilot_client.is_disabled() and COLORS.fg or COLORS.cyan,
+              fg = copilot_client.is_disabled() and COLORS.fg or COLORS.blue,
+            }
+          end,
           on_click = function(clicks, button)
             local commands = require("copilot.command")
 

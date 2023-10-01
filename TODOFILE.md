@@ -1,5 +1,4 @@
 ## Regular
-- [ ] fix: Copilot statusline indicator
 - [ ] fix: <C-F> <C-B> <C-W> mappings are broken in `telescope-file-browser`
       **Context:** While the default mappings are reasonable,
 - [ ] fix: CWD changes on switching to file with a different (git) root.
@@ -22,14 +21,6 @@
 - [ ] feat: LSPSaga for code outline, better references and action previews etc
 - [ ] misc: Food for thought
       [r/neovim](https://www.reddit.com/r/neovim/comments/11rzy1k/why_isnt_using_sidebars_to_display_information/)
-- [x] Improve pair-handling. Currently the pair plugin (`mini-pair`?) does not
-      detect existing unmatches pairs on the line and also fails to detect
-      and act upon deletion of pair on other lines/same line making it difficult
-      to work with pairs after deleting one of the parts. Consider:
-      - Enter \`. Paired \` appears.
-      - Delete second \`. First one remains.
-      - Insert \`. First \` is ignored, 2 \` are inserted again.
-      PAIN!
 
 ## High Effort / Might require me to write a plugin
 - [ ] Declarative configuration management with _Neoconf_. Neoconf, however, does not support general
@@ -101,3 +92,12 @@
       **See:** [r/neovim/comments](https://www.reddit.com/r/neovim/comments/11r4ecp/comment/jc6rdjv/?utm_source=share&utm_medium=web2x&context=3)
 - [x] Disable, by default, mini-indentscope for large files. Or at least the markers. They're slow..
 - [x] feat: status-column
+- [x] Improve pair-handling. Currently the pair plugin (`mini-pair`?) does not
+      detect existing unmatches pairs on the line and also fails to detect
+      and act upon deletion of pair on other lines/same line making it difficult
+      to work with pairs after deleting one of the parts. Consider:
+      - Enter \`. Paired \` appears.
+      - Delete second \`. First one remains.
+      - Insert \`. First \` is ignored, 2 \` are inserted again.
+      PAIN!
+- [x] fix: Copilot statusline indicator
