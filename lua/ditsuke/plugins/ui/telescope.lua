@@ -1,3 +1,11 @@
+--- Keep track of extensions to load after telescope is setup.
+---@type string[]
+local telescope_extensions = {}
+
+local function add_extension(ext)
+  telescope_extensions[#telescope_extensions + 1] = ext
+end
+
 -- Extensible fuzzy searcher for files, buffers, and virtually everything else
 local M = {
   "nvim-telescope/telescope.nvim",
@@ -7,27 +15,27 @@ local M = {
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build --config Release && \
           cmake --install build --prefix build",
-      config = function() require("telescope").load_extension("fzf") end,
+      config = function() add_extension("fzf") end,
     },
     {
       "nvim-telescope/telescope-frecency.nvim",
       dependencies = { { "kkharji/sqlite.lua" } },
-      config = function() require("telescope").load_extension("frecency") end,
+      config = function() add_extension("frecency") end,
     },
     {
       -- Find terminals 👿
       "tknightz/telescope-termfinder.nvim",
-      config = function() require("telescope").load_extension("termfinder") end,
+      config = function() add_extension("termfinder") end,
     },
     {
       "debugloop/telescope-undo.nvim",
-      config = function() require("telescope").load_extension("undo") end,
+      config = function() add_extension("undo") end,
     },
     {
       -- > `telescope-file-browser.nvim` is a file browser extension for telescope.nvim.
       -- > It supports synchronized creation, deletion, renaming, and moving of files and folders powered by telescope.nvim and plenary.nvim.
       "nvim-telescope/telescope-file-browser.nvim",
-      config = function() require("telescope").load_extension("file_browser") end,
+      config = function() add_extension("file_browser") end,
     },
   },
   keys = {
@@ -208,6 +216,16 @@ M.opts = function(_, opts)
   }
 
   return vim.tbl_deep_extend("force", opts, overrides)
+end
+
+--- Custom setup function to load extensions after telescope setup.
+--- Side effect: some extensions will be loaded twice, but that's okay (I guess).
+M.setup = function(_, opts)
+  local telescope = require("telescope")
+  telescope.setup(opts)
+  for _, e in ipairs(telescope_extensions) do
+    telescope.load_extension(e)
+  end
 end
 
 return M
