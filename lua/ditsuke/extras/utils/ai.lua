@@ -2,6 +2,7 @@ return {
   -- > Fully featured & enhanced replacement for copilot.vim complete with API for interacting with Github Copilot
   {
     "zbirenbaum/copilot.lua",
+    enabled = true,
     event = "InsertEnter",
     cmd = "Copilot",
     dependencies = {
