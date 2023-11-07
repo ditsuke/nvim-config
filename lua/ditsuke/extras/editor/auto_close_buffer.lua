@@ -21,7 +21,7 @@ return {
       keys = {
         {
           "<leader>,",
-          function() require("hbac").telescope() end,
+          function() require("telescope").extensions.hbac.buffers() end,
           desc = "Find buffers",
         },
       },
@@ -30,4 +30,8 @@ return {
   opts = {
     threshold = 10,
   },
+  setup = function(_, opts)
+    require("telescope").load_extension("hbac")
+    require("hbac").setup(opts)
+  end,
 }
