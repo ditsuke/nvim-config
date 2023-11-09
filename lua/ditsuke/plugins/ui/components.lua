@@ -4,6 +4,8 @@ return {
     ---@type notify.Config
     opts = {
       top_down = false,
+      render = "compact",
+      stages = "static",
     },
   },
   {
@@ -34,7 +36,7 @@ return {
       "MunifTanjim/nui.nvim",
     },
     init = function()
-      require("lazyvim.util").on_attach(function(client, buffer)
+      require("lazyvim.util").lsp.on_attach(function(client, buffer)
         if client.server_capabilities.documentSymbolProvider then
           require("nvim-navbuddy").attach(client, buffer)
         end
