@@ -40,7 +40,7 @@ return {
       },
       setup = {
         rust_analyzer = function(_, opts)
-          require("lazyvim.util").on_attach(function(client, buffer)
+          require("lazyvim.util").lsp.on_attach(function(client, buffer)
             -- stylua: ignore
             if client.name == "rust_analyzer" then
               vim.keymap.set("n", "K", "<cmd>RustHoverActions<cr>", { buffer = buffer, desc = "Hover Actions (Rust)" })
@@ -113,7 +113,7 @@ return {
               vim.lsp.buf.hover()
             end
           end
-          require("lazyvim.util").on_attach(function(client, buffer)
+          require("lazyvim.util").lsp.on_attach(function(client, buffer)
             -- stylua: ignore
             if client.name == "taplo" then
               vim.keymap.set("n", "K", show_documentation, { buffer = buffer, desc = "Show Crate Documentation" })

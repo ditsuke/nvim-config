@@ -40,7 +40,7 @@ return {
         },
         setup = {
           vtsls = function(_, opts)
-            require("lazyvim.util").on_attach(function(client, buffer)
+            require("lazyvim.util").lsp.on_attach(function(client, buffer)
               if client.name == "vtsls" then
                   -- stylua: ignore
                 vim.keymap.set("n", "<leader>co", "<cmd>VtsExec organize_imports<CR>", { buffer = buffer, desc = "Organize Imports" })
