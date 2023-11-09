@@ -59,6 +59,7 @@ return {
   -- > A small Neovim plugin that changes the foreground color of the CursorLineNr highlight based on the current Vim mode.
   {
     "mawkler/modicator.nvim",
+    event = "BufReadPost",
     config = true,
   },
 }
