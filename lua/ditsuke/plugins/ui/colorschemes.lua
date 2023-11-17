@@ -343,13 +343,13 @@ local colorschemes = {
           background = "#120f0f",
           foreground = "#e2b5b5",
           accents = {
-            "#e27691",
-            "#e2a876",
             "#e2cc76",
-            "#a8e276",
+            "#e2a876",
             "#76e296",
+            "#a8e276",
             "#76e2cc",
             "#76a8e2",
+            "#e27691",
           },
         },
       },
@@ -369,7 +369,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "text-to-colorscheme",
+      colorscheme = "bamboo",
     },
   },
 }
