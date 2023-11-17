@@ -1,4 +1,13 @@
 return {
+  -- >  Indent guides for Neovim
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      -- Disable by default
+      enabled = false,
+    },
+  },
+
   -- > ✅ Highlight, list and search todo comments in your projects
   {
     "folke/todo-comments.nvim",

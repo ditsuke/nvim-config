@@ -130,7 +130,7 @@ vim.keymap.set("n", "<leader>ut", function()
   vim.notify('Set showtabline to "' .. to .. '"')
 end, { desc = "Toggle [t]abline" })
 
-vim.keymap.set("n", "<leader>uIi", function()
+vim.keymap.set("n", "<leader>uII", function()
   if UIUtils.indent_blankline_enabled() then
     UIUtils.indent_blankline_enabled(false)
     vim.notify("Disabled indent_blankline")
@@ -140,7 +140,7 @@ vim.keymap.set("n", "<leader>uIi", function()
   end
 end, { desc = "Toggle indent_blankline" })
 
-vim.keymap.set("n", "<leader>uII", function()
+vim.keymap.set("n", "<leader>uIi", function()
   if UIUtils.mini_indentscope_enabled() then
     UIUtils.mini_indentscope_enabled(false)
     vim.notify("Disabled mini.indentscope")

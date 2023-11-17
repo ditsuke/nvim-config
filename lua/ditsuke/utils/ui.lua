@@ -11,11 +11,11 @@ function M.mini_indentscope_enabled(set_to)
 end
 
 function M.indent_blankline_enabled(set_to)
+  local ibl = require("ibl")
   if set_to ~= nil then
-    vim.g.indent_blankline_enabled = set_to
+    ibl.update({ enabled = set_to })
   end
-  return vim.g.indent_blankline_enabled == nil and true -- Enabled by default
-    or vim.g.indent_blankline_enabled
+  return require("ibl.config").get_config(0).enabled
 end
 
 local SPECIAL_FLOAT_FTS = {
