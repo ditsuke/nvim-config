@@ -55,9 +55,20 @@ end
 
 -- Set smart jk navigation
 -- Source: https://vim.fandom.com/wiki/Smart_navigation_using_j_and_k
-function M.set_smart_jk_nav()
-  vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-  vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+function M.set_smart_visual_nav(enable)
+  local keys_to_set = { "j", "k", "0", "^", "$" }
+  for _, key in ipairs(keys_to_set) do
+    if enable then
+      vim.keymap.set(
+        { "n", "v" },
+        key,
+        "v:count == 0 ? 'g" .. key .. "' : '" .. key .. "'",
+        { expr = true, silent = true }
+      )
+    else
+      pcall(vim.keymap.del, { "n", "v" }, key)
+    end
+  end
 end
 
 -- Set options related to wrapping
@@ -68,20 +79,15 @@ function M.set_wrap(enable)
   vim.opt.linebreak = enable
 end
 
+-- Enable or disable wrap with keybindings
+-- @param enable boolean
 function M.set_wrap_with_keybindings(enable)
   if not enable then
     M.set_wrap(false)
-    pcall(function()
-      vim.keymap.del({ "n", "v" }, "0")
-      vim.keymap.del({ "n", "v" }, "^")
-      vim.keymap.del({ "n", "v" }, "$")
-    end)
+    M.set_smart_visual_nav(false)
   else
     M.set_wrap(true)
-    M.set_smart_jk_nav()
-    vim.keymap.set({ "n", "v" }, "0", "g0")
-    vim.keymap.set({ "n", "v" }, "^", "g^")
-    vim.keymap.set({ "n", "v" }, "$", "g$")
+    M.set_smart_visual_nav(true)
   end
 end
 

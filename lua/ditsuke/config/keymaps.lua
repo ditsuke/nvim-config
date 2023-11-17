@@ -67,7 +67,7 @@ map_if_pumvisible("c", "<CR>", "<C-y>")
 vim.keymap.set("n", "J", "mzJ`z") -- Retain cursor position on line join w J
 vim.keymap.set("v", "y", "ygv<Esc>") -- Retain cursor position on yank (https://reddit.com/comments/13y3thq/_/jmm7tut)
 
-UIUtils.set_smart_jk_nav()
+UIUtils.set_smart_visual_nav(true)
 
 -- ============
 --Utility
