@@ -60,6 +60,7 @@ opt.formatoptions:remove(unwanted_format_opts .. wanted_format_opts)
 opt.formatoptions:append(wanted_format_opts)
 
 -- opt.spelloptions = "camel"
+opt.spell = false
 
 local UiUtils = require("ditsuke.utils.ui")
 UiUtils.mini_indentscope_enabled(false)
