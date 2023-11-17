@@ -111,4 +111,15 @@ return {
     "windwp/nvim-autopairs",
     config = true,
   },
+
+  -- > Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = {
+      config = {
+        -- Custom commentstring for C++ files, since default is block comment style (hard to work with when nested)
+        cpp = "// %s",
+      },
+    },
+  },
 }
