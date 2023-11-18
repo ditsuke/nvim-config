@@ -66,6 +66,7 @@ return {
   -- > Cursor line number mode indicator.
   --
   -- > A small Neovim plugin that changes the foreground color of the CursorLineNr highlight based on the current Vim mode.
+  -- FIXME: This plugin is not working properly. Why? Likely not playing well with statuscol
   {
     "mawkler/modicator.nvim",
     event = "BufReadPost",

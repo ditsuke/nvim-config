@@ -1,15 +1,28 @@
 ## Regular
 
+- [ ] feat: enable inlay hints? (fix will come from upstream ref https://github.com/LazyVim/LazyVim/issues/2005)
+- [ ] feat: migrate to conform/nvim-lint from `none-ls`. (URGENT!)
+- [ ] fix: Configuration order is broken when opening a file directly (lazyvim keymaps loaded after ours)
 - [ ] feat: Add `stevanmilic/nvim-lspimport` for resolving undefined imports (`pyright` et al)
-- [ ] fix: <C-F> <C-B> <C-W> mappings are broken in `telescope-file-browser`
-      **Context:** While the default mappings are reasonable,
+- [ ] feat: `<S-Tab>` for dedent (map to `<C-D>`)
+- [ ] fix: Statusline toggle breaks on colorscheme change.
+- [ ] feat: Consider using `dropbar.nvim` as an `nvim-navic` replacement.
+- [ ] feat: Consider `improved-search.nvim` for search improvements.
+      Ref: https://www.reddit.com/r/neovim/comments/178z686/improvedsearchnvim_little_things_for_search_that/
+      Question: how compatible with flash.nvim?
+- [ ] feat: Consider `auto-indent.nvim` to get VSCode-like indent level matching on first <TAB>.
+      Ref: https://www.reddit.com/r/neovim/comments/17mrka2/dataviewernvim_autoindentnvim_two_plugins_i_wrote/
+      Hint: or use the keymap someone shared on the thread >\_<
+- [ ] feat: Get a (n)vim tip on startup.
+      Ref: https://www.reddit.com/r/neovim/comments/17qdqkt/get_a_handy_tip_when_you_launch_neovim
 - [ ] fix: CWD changes on switching to file with a different (git) root.
+      **Question:** Is this fixed with latest `lazyvim` updates?
 - [ ] fix: Disable `<C-j/k>` bindings in terminal mode?
 - [ ] fix: `<C-W>` still maps to `goto_cwd` for telescope_file_browser, somehow.
-- [ ] fix(status-column): Git signs are shared by "current buffer" > Impact?
-      If you have 2 windows open and switch between them, both
-      will show the same git-signs (ie, for the active window/buffer)
-- [ ] fix: Configuration order is broken when opening a file directly (lazyvim keymaps loaded after ours)
+- [ ] fix(status-column): Git signs are shared by "current buffer" > Impact?  
+       1. If you have 2 windows open and switch between them, both
+          will show the same git-signs (ie, for the active window/buffer)
+      2. UPDATE: now they don't work at now, unless `numhl` is also enabled.
 - [ ] fix: disable `indentline` for `noice` ft
 - [ ] feat: tune indentline and mini-indentscope, - [ ] define keymap for toggling.
 - [ ] feat: `fidget.nvim` to fixed location (statusline?)
@@ -89,3 +102,5 @@
       to work with pairs after deleting one of the parts. Consider: - Enter \`. Paired \` appears. - Delete second \`. First one remains. - Insert \`. First \` is ignored, 2 \` are inserted again.
       PAIN!
 - [x] fix: Copilot statusline indicator
+- [x] fix: <C-F> <C-B> <C-W> mappings are broken in `telescope-file-browser`
+      **Context:** While the default mappings are reasonable,
