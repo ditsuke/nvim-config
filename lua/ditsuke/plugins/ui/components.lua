@@ -20,11 +20,19 @@ return {
       },
       lsp = {
         progress = {
-          enabled = true,
+          enabled = false, -- We'll use fidget.nvim for this
           throttle = 100000 / 30,
         },
       },
     },
+  },
+
+  -- > Extensible UI for Neovim notifications and LSP progress messages.
+  -- We'll use this for LSP progress messages, and noice.nvim for everything else.
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+    config = true,
   },
 
   -- >  A simple popup display that provides breadcrumbs feature using LSP server
