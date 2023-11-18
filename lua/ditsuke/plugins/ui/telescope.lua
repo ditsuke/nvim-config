@@ -2,9 +2,7 @@
 ---@type string[]
 local telescope_extensions = {}
 
-local function add_extension(ext)
-  telescope_extensions[#telescope_extensions + 1] = ext
-end
+local function add_extension(ext) telescope_extensions[#telescope_extensions + 1] = ext end
 
 -- Extensible fuzzy searcher for files, buffers, and virtually everything else
 local M = {
@@ -161,8 +159,9 @@ M.opts = function(_, opts)
   local file_browser_opts = {
     theme = "ivy",
     layout_config = {
-      height = 15
+      height = 15,
     },
+    depth = 1,
     -- disables netrw and use telescope-file-browser in its place
     hijack_netrw = true,
     mappings = {
