@@ -203,35 +203,25 @@ M.opts = function(_, _)
       expand = function(args) require("luasnip").lsp_expand(args.body) end,
     },
     window = {
-      -- completion = cmp.config.window.bordered(),
-      completion = {
-        winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
-        border = icons.borders.outer.all,
-        col_offset = 2,
-        side_padding = 1,
-        scrollbar = false,
-      },
-
-      documentation = {
-        winhighlight = "Normal:Pmenu,FloatBorder:PmenuDocBorder,CursorLine:PmenuSel,Search:None",
-        border = icons.borders.outer.all,
-        side_padding = 0,
-        scrollbar = false,
-        max_width = 80,
-        max_height = 25,
-      },
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+      -- completion = {
+      --   winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+      --   border = icons.borders.outer.all,
+      --   col_offset = 2,
+      --   side_padding = 0,
+      --   scrollbar = false,
+      -- },
+      -- documentation = {
+      --   winhighlight = "Normal:Pmenu,FloatBorder:PmenuDocBorder,CursorLine:PmenuSel,Search:None",
+      --   border = icons.borders.outer.all,
+      --   side_padding = 0,
+      --   scrollbar = false,
+      --   max_width = 80,
+      --   max_height = 25,
+      -- },
     },
 
-    -- window = {
-    --   winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
-    --   border = Icons.borders.outer.all,
-    --   col_offset = 2,
-    --   side_padding = 1,
-    --   scrollbar = false,
-    --   max_width = 40,
-    --   -- col_offset = -3,
-    --   -- side_padding = 0,
-    -- },
     formatting = {
       --- @type cmp.ItemField[]
       fields = {
@@ -267,7 +257,7 @@ M.opts = function(_, _)
     sources = cmp.config.sources(editorSources[1], editorSources[2]),
 
     -- Better sorting
-    -- Adapted from: https://github.com/tjdevries/config_manager/blob/78608334a7803a0de1a08a9a4bd1b03ad2a5eb11/xdg_config/nvim/after/plugin/completion.lua#L129
+    -- Inspired by: redd.it/14k7pbc
     sorting = {
       -- TODO: Would be cool to add stuff like "See variable names before method names" in rust, or something like that.
       comparators = {
