@@ -1,11 +1,11 @@
 local M = {}
 
-M.NON_LSP_CLIENTS = { "", "copilot", "null-ls", "luasnip" }
+M.NON_LSP_CLIENTS = { "", "copilot", "null-ls", "none-ls", "luasnip" }
 
-local logger = require("ditsuke.utils").logger
-
+-- Get the name of the active LSP client
+-- @return string
 M.get_active_lsp = function()
-  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+  for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
     if not vim.tbl_contains(M.NON_LSP_CLIENTS, client.name) then
       return client.name
     end
