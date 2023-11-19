@@ -18,11 +18,10 @@
 - [ ] fix: CWD changes on switching to file with a different (git) root.
       **Question:** Is this fixed with latest `lazyvim` updates?
 - [ ] fix: Disable `<C-j/k>` bindings in terminal mode?
-- [ ] fix: `<C-W>` still maps to `goto_cwd` for telescope_file_browser, somehow.
 - [ ] fix(status-column): Git signs are shared by "current buffer" > Impact?  
        1. If you have 2 windows open and switch between them, both
           will show the same git-signs (ie, for the active window/buffer)
-      2. UPDATE: now they don't work at now, unless `numhl` is also enabled.
+       2. UPDATE: now they don't work at now, unless `gitsigns.numhl` is also enabled.
 - [ ] fix: disable `indentline` for `noice` ft
 - [ ] feat: tune indentline and mini-indentscope, - [ ] define keymap for toggling.
 - [ ] feat: `fidget.nvim` to fixed location (statusline?)
@@ -104,3 +103,4 @@
 - [x] fix: Copilot statusline indicator
 - [x] fix: <C-F> <C-B> <C-W> mappings are broken in `telescope-file-browser`
       **Context:** While the default mappings are reasonable,
+- [x] fix: `<C-W>` still maps to `goto_cwd` for telescope_file_browser, somehow.

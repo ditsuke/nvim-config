@@ -153,6 +153,7 @@ M.opts = function(_, opts)
   }
 
   -- BUG: Importing actions like this causes an override of the setup mappings, somehow.
+  -- I should report this upstream. (TODO)
   -- local fb_actions = require("telescope").extensions.file_browser.actions
 
   local fb_actions = require("telescope._extensions.file_browser.actions")
@@ -169,7 +170,12 @@ M.opts = function(_, opts)
         -- Avoid overriding expected keybinds to delete words and scroll previews.
         -- Instead, assign them more appropriate shortcuts.
         ["<C-F>"] = false,
-        ["<C-W>"] = false,
+        ["<C-w>"] = function(_bufnr) -- works? but it maps C-w to :norm / <esc>
+          -- <C-w> works for window commands (whatever that is) by default in telescope insert mode,
+          -- so we need to remap to <C-S-w> to get the expected behavior (delete word)
+          -- Ref: https://github.com/nvim-telescope/telescope.nvim/issues/1579#issuecomment-989767519
+          vim.api.nvim_input("<C-S-w>")
+        end,
         ["<A-f>"] = fb_actions.toggle_browser,
         ["<A-w>"] = fb_actions.goto_cwd,
       },
