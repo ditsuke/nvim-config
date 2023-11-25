@@ -44,6 +44,7 @@ require("lazy").setup({
     { import = "ditsuke.extras.lang.rust" },
     { import = "ditsuke.extras.lang.yaml" },
     { import = "ditsuke.extras.lang.just" },
+    { import = "ditsuke.extras.lang.dotenv" },
   },
   -- dev = { path = "~/projects", patterns = jit.os:find("Windows") and {} or { "LazyVim" } },
   defaults = {
