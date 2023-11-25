@@ -126,4 +126,24 @@ return {
     event = "LspAttach",
     config = true,
   },
+
+  -- > A pretty window for previewing, navigating and editing your LSP locations.
+  {
+    "DNLHC/glance.nvim",
+    dependencies = {
+      {
+        "neovim/nvim-lspconfig",
+        -- NOTE: This is the lazyvim way of customizing lsp keymaps
+        -- Ref: https://github.com/lazyVim/lazyVim/issues/93
+        init = function(_, _)
+          local keys = require("lazyvim.plugins.lsp.keymaps").get()
+          keys[#keys + 1] = { "gD", "<cmd>Glance definitions<cr>", desc = "Glance Definitions" }
+          keys[#keys + 1] = { "gr", "<cmd>Glance references<cr>", desc = "Glance References" }
+          keys[#keys + 1] = { "gy", "<cmd>Glance type_definitions<cr>", desc = "Glance Type Definitions" }
+          keys[#keys + 1] = { "gM", "<CMD>Glance implementations<CR>", desc = "Glance Implementations" }
+        end,
+      },
+    },
+    config = true,
+  },
 }
