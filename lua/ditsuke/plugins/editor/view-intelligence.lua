@@ -70,6 +70,13 @@ return {
   {
     "mawkler/modicator.nvim",
     event = "BufReadPost",
-    config = true,
+    config = {
+      integration = {
+        lualine = {
+          enabled = false, -- TODO: enable and figure out how to assign mode_section
+          mode_section = "lualine_c", -- `??`
+        },
+      },
+    },
   },
 }
