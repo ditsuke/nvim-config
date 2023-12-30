@@ -38,6 +38,11 @@ local M = {
   },
   keys = {
     {
+      -- Disable LazyVim's default <leader>sR keybind for resuming telescope sessions.
+      "<leader>sR",
+      false,
+    },
+    {
       "<leader>fF",
       function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
       desc = "[f]ind [f]iles",
