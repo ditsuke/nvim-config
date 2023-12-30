@@ -20,6 +20,10 @@ return {
           accept_word = "<M-,>",
         },
       },
+      filetypes = {
+        -- Enable Copilot in markdown files (default: false)
+        markdown = true,
+      },
     },
   },
 
