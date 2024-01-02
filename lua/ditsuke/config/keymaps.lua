@@ -155,9 +155,11 @@ local state__wrap_enabled = false
 vim.keymap.set("n", "<leader>uw", function()
   if state__wrap_enabled then
     UIUtils.set_wrap_with_keybindings(false)
+    state__wrap_enabled = false
     vim.notify("Disabled wrap")
   else
     UIUtils.set_wrap_with_keybindings(true)
+    state__wrap_enabled = true
     vim.notify("Enabled wrap")
   end
 end, { desc = "Toggle word wrap (with keybindings)" })
