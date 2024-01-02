@@ -1,4 +1,4 @@
-local M = {
+local Ufo = {
   "kevinhwang91/nvim-ufo",
   enabled = true,
   event = { "BufReadPost", "InsertEnter" },
@@ -50,7 +50,7 @@ local function provider_selector(_, filetype, buftype)
     end
 end
 
-M.opts = function(_, _)
+Ufo.opts = function(_, _)
   return {
     preview = {
       mappings = {
@@ -64,11 +64,11 @@ M.opts = function(_, _)
   }
 end
 
-M.init = function()
+Ufo.init = function()
   vim.o.foldcolumn = "1" -- '0' is not bad
   vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   vim.o.foldlevelstart = 99
   vim.o.foldenable = true
 end
 
-return M
+return Ufo

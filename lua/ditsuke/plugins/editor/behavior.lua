@@ -19,6 +19,7 @@ return {
     -- Makes it easier to tell what window is active in the
     -- Absence of a prominent cursor (such as with lighter-colored themes)
     "tummetott/reticle.nvim",
+    -- enabled = false,
     event = "BufReadPre",
     opts = {
       on_startup = {
@@ -59,6 +60,7 @@ return {
   {
     -- draw `:h colorcolumn` with a virtual text + a character
     "lukas-reineke/virt-column.nvim",
+    enabled = false,
     config = true,
   },
 
@@ -77,6 +79,7 @@ return {
   -- Ref: https://www.jetbrains.com/help/idea/structural-search-and-replace.html
   {
     "cshuaimin/ssr.nvim",
+    enabled = false,
     event = "BufReadPre",
     keys = {
       {

@@ -1,11 +1,21 @@
 local Util = require("ditsuke.utils")
 
+-- vim.api.nvim_create_autocmd({ "LspAttach" }, {
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     if client.name == "gopls" then
+--       vim.notify("gopls attached")
+--       client.server_capabilities.semanticTokensProvider = nil
+--     end
+--   end,
+-- })
+
 return {
   -- Configure Go integrations (commands, LSP)
   {
     "ray-x/go.nvim",
     lazy = true,
-    event = { "CmdlineEnter" },
+    -- event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     dependencies = { -- optional packages
       "ray-x/guihua.lua",

@@ -56,6 +56,7 @@ return {
     -- Yet to use this but UndoTree here we go
     -- TODO: consider setting keymaps
     "mbbill/undotree",
+    enabled = false,
   },
   {
     -- Zen mode for when I can't care for distractions
