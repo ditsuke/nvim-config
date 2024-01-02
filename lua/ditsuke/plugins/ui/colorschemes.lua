@@ -356,6 +356,8 @@ local colorschemes = {
     },
   },
   "zootedb0t/citruszest.nvim",
+  -- A take on monokai, but more consistent with the sublime text version
+  "ofirgall/ofirkai.nvim",
 }
 
 return {
