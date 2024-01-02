@@ -6,6 +6,7 @@ return {
   dependencies = {
     {
       "bufferline.nvim",
+      optional = true,
       event = "VeryLazy",
       ---@type LazyKeys[]
       keys = {
@@ -18,6 +19,7 @@ return {
     },
     {
       "nvim-telescope/telescope.nvim",
+      optional = true,
       keys = {
         {
           "<leader>,",
@@ -29,6 +31,7 @@ return {
   },
   opts = {
     threshold = 10,
+    close_command = function(bufnr) require("mini.bufremove").delete(bufnr, false) end,
   },
   setup = function(_, opts)
     require("telescope").load_extension("hbac")
