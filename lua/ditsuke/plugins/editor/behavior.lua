@@ -21,6 +21,9 @@ return {
     "tummetott/reticle.nvim",
     event = "BufReadPre",
     opts = {
+      on_startup = {
+        cursorline = true,
+      },
       always = {
         cursorline = {
           "neo-tree", -- reticle messes up with Neo-tree cursorline in search mode
@@ -31,6 +34,7 @@ return {
   {
     "echasnovski/mini.bufremove",
     keys = {
+      -- <C-F4>
       { "<F28>", function() require("mini.bufremove").delete(0, false) end, desc = "Delete buffer" },
     },
   },
