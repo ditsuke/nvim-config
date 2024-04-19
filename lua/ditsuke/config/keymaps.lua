@@ -179,3 +179,21 @@ if true then
     end
   end, { desc = "Toggle [s]tatusline (lualine)" })
 end
+
+-- ============
+-- OSX-compat
+-- ============
+local cmd_key_combos_to_map_to_c_leaders = {
+  "Up",
+  "Down",
+  "Left",
+  "Right",
+  "o",
+  "i",
+  "d",
+  "u",
+}
+
+for _, key in ipairs(cmd_key_combos_to_map_to_c_leaders) do
+  vim.keymap.set("n", "<D-" .. key .. ">", "<C-" .. key .. ">", { remap = true })
+end
