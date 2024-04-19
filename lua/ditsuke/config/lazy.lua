@@ -17,6 +17,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.ui.mini-starter" },
     { import = "lazyvim.plugins.extras.lang.clangd" },
+    { import = "lazyvim.plugins.extras.lang.go" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.ui.edgy" },
     -- { import = "lazyvim.plugins.extras.util.project" },
@@ -37,7 +38,7 @@ require("lazy").setup({
     { import = "ditsuke.extras.editor.auto_close_buffer" },
 
     -- Language extensions
-    { import = "ditsuke.extras.lang.go" },
+    -- { import = "ditsuke.extras.lang.go" },
     { import = "ditsuke.extras.lang.java" },
     { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses `vtsls` instead
     { import = "ditsuke.extras.lang.python" },
