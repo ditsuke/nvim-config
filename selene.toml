@@ -3,3 +3,4 @@ std = "vim"
 [lints]
 one_line_if = "allow"
 multiple_statements = "allow"
+mixed_table = "allow"
