@@ -1,5 +1,12 @@
 local Icons = require("ditsuke.utils.icons")
 
+-- Disable statuscol for now, in favor of Lazyvim's built-in.
+-- That this is broken was motivation enough.
+-- TODO: Fix this or remove it.
+if true then
+  return {}
+end
+
 local function get_git_sign()
   return vim.fn.sign_getplaced(vim.api.nvim_get_current_buf(), {
     group = "gitsigns_vimfn_signs_",
