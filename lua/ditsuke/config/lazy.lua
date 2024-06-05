@@ -42,8 +42,8 @@ require("lazy").setup({
     { import = "ditsuke.extras.lang.java" },
     { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses `vtsls` instead
     { import = "ditsuke.extras.lang.python" },
-    -- { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "ditsuke.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
+    -- { import = "ditsuke.extras.lang.rust" },
     { import = "ditsuke.extras.lang.yaml" },
     { import = "ditsuke.extras.lang.just" },
     { import = "ditsuke.extras.lang.dotenv" },
