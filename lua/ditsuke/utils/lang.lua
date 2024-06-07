@@ -19,7 +19,13 @@ M.neotest_extension_spec = function(plugins, ft_covered)
 
   local r = {
     "nvim-neotest/neotest",
-    cond = function() return require("lazyvim.util").has("neotest") end,
+    cond = function()
+      local ok, lazyutil = pcall(require, "lazyvim.util")
+      if not ok then
+        return false
+      end
+      return lazyutil.has("neotest")
+    end,
     dependencies = dependencies,
     opts = function(_, opts)
       if opts.adapters == nil then
