@@ -144,4 +144,22 @@ return {
     },
   },
 
+  -- > Simple plugin implements smart-tab feature from Helix 23.10.
+  --
+  -- > Smart Tab is a new feature bound to the tab key in the default keymap. When you press tab and the line to the left
+  -- > of the cursor isn't all whitespace, the cursor will jump to the end of the syntax tree's parent node. This is
+  -- > useful in languages like Nix for adding semicolons at the end of an attribute set or jumping to the end of a block
+  -- > in a C-like language
+  --
+  -- TODO: try this out and see if it's better than `nvim-treesitter`
+  {
+    "boltlessengineer/smart-tab.nvim",
+    config = true,
+  },
+
+  {
+    "Wansmer/treesj",
+    keys = { "<space>m", "<space>j", "<space>s" },
+    config = {},
+  },
 }
