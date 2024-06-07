@@ -18,12 +18,12 @@ local M = {
     -- - https://github.com/nvim-neotest/neotest#installation
     -- - https://github.com/antoinemadec/FixCursorHold.nvim/issues/13
     "antoinemadec/FixCursorHold.nvim",
-    {
-      "neodev.nvim",
-      opts = {
-        library = { plugins = { "neotest" }, types = true },
-      },
-    },
+    -- { -- no neodev anymore
+    --   "neodev.nvim",
+    --   opts = {
+    --     library = { plugins = { "neotest" }, types = true },
+    --   },
+    -- },
     "nvim-neotest/neotest-vim-test",
     "nvim-neotest/neotest-plenary",
 
