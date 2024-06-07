@@ -129,4 +129,19 @@ return {
       },
     },
   },
+
+  -- >  Navigate your code with search labels, enhanced character motions and Treesitter integration.
+  -- (lazyvim default)
+  {
+    "folke/flash.nvim",
+    config = {
+      modes = {
+        search = {
+          -- I found the search mode to be a bit too intrusive
+          enabled = false,
+        },
+      },
+    },
+  },
+
 }
