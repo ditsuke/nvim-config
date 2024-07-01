@@ -1,3 +1,7 @@
+-- if true then
+--   return {}
+-- end
+
 --- Keep track of extensions to load after telescope is setup.
 ---@type string[]
 local telescope_extensions = {}
@@ -11,8 +15,7 @@ local M = {
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && \
-          cmake --build build --config Release && \
-          cmake --install build --prefix build",
+          cmake --build build --config Release",
       config = function() add_extension("fzf") end,
     },
     {
