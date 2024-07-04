@@ -21,6 +21,11 @@ local UIUtils = require("ditsuke.utils.ui")
 pcall(function() vim.keymap.del("i", "<A-j>") end)
 pcall(function() vim.keymap.del("i", "<A-k>") end)
 
+-- Reverse insane new nvim defaults -- no one uses these!
+pcall(function() vim.keymap.del("n", "grn") end)
+pcall(function() vim.keymap.del("n", "grr") end)
+pcall(function() vim.keymap.del("n", "gra") end)
+
 -- ===================
 -- Window navigation
 -- ===================

@@ -136,12 +136,32 @@ return {
         "neovim/nvim-lspconfig",
         -- NOTE: This is the lazyvim way of customizing lsp keymaps
         -- Ref: https://github.com/lazyVim/lazyVim/issues/93
-        init = function(_, _)
-          local keys = require("lazyvim.plugins.lsp.keymaps").get()
-          keys[#keys + 1] = { "gD", "<cmd>Glance definitions<cr>", desc = "Glance Definitions" }
-          keys[#keys + 1] = { "gr", "<cmd>Glance references<cr>", desc = "Glance References" }
-          keys[#keys + 1] = { "gy", "<cmd>Glance type_definitions<cr>", desc = "Glance Type Definitions" }
-          keys[#keys + 1] = { "gM", "<CMD>Glance implementations<CR>", desc = "Glance Implementations" }
+        opts = function(_, _)
+          local Keys = require("lazyvim.plugins.lsp.keymaps").get()
+          vim.list_extend(Keys, {
+            {
+              "gd",
+              function() vim.cmd("Glance definitions") end,
+              desc = "Goto Definition",
+              has = "definition",
+            },
+            {
+              "gr",
+              function() vim.cmd("Glance references") end,
+              desc = "References",
+              nowait = true,
+            },
+            {
+              "gI",
+              function() vim.cmd("Glance implementations") end,
+              desc = "Goto Implementation",
+            },
+            {
+              "gy",
+              function() vim.cmd("Glance type_definitions") end,
+              desc = "Goto T[y]pe Definition",
+            },
+          })
         end,
       },
     },
