@@ -99,7 +99,7 @@ local M = {
     {
       "<leader>sS",
       function()
-        require("lazyvim.util").telescope("lsp_dynamic_workspace_symbols", {
+        require("lazyvim.util.pick").open("lsp_dynamic_workspace_symbols", {
           symbols = {
             "Class",
             "Function",
@@ -111,7 +111,7 @@ local M = {
             "Trait",
             "Field",
           },
-        })()
+        })
       end,
     },
     {
