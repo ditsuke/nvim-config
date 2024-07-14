@@ -68,10 +68,30 @@ return {
   {
     "max397574/better-escape.nvim",
     opts = {
-      mapping = { "jk", "jj" },
+      default_mappings = false,
+      mappings = {
+        i = {
+          j = {
+            k = "<Esc>",
+          },
+        },
+        t = {
+          j = {
+            k = function()
+              -- bsKeys + feedkeys works great with toggleterm and lazyterm + shell,
+              -- doesn't work with lazyterm + tui (f. ex. <leader>gg lazygit)
+              local bsKeys = vim.api.nvim_replace_termcodes("<BS><Esc><Esc>", true, false, true)
+              vim.api.nvim_feedkeys(bsKeys, "n", true)
+
+              -- FIXME: keys + return works in all cases, but moves the cursor to bottom right for some reason?
+              -- local keys = vim.api.nvim_replace_termcodes("<Esc><Esc>", true, false, true)
+              -- return keys
+            end,
+          },
+        },
+      },
       timeout = 200,
       clear_empty_lines = true,
-      keys = "<Esc>",
     },
   },
 
