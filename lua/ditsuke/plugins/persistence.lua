@@ -5,10 +5,7 @@ return {
     "folke/persistence.nvim",
     lazy = false,
     event = "VimEnter",
-    opts = {
-      -- Include globals to persist special things, such as pinned buffers
-      options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals" },
-    },
+    opts = {},
     config = function(_, opts)
       local persistence = require("persistence")
       persistence.setup(opts)
