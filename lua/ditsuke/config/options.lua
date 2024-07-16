@@ -19,7 +19,8 @@ opt.cmdheight = 0
 -- Set a timeoutlen of 0 for instant response in normal/insert modes
 -- However in terminal mode, we want to keep a non-zero timeoutlen as it is
 -- essential in triggering mappings like `<Esc><Esc>` to exit terminal mode.
-opt.timeoutlen = 400
+local timeoutlen = 0
+opt.timeoutlen = timeoutlen
 vim.api.nvim_create_autocmd({ "ModeChanged" }, {
   group = vim.api.nvim_create_augroup("update_timeoutlen", { clear = true }),
   callback = function()
@@ -27,7 +28,7 @@ vim.api.nvim_create_autocmd({ "ModeChanged" }, {
     if mode == "t" then
       opt.timeoutlen = 200
     else
-      opt.timeoutlen = 400
+      opt.timeoutlen = timeoutlen
     end
   end,
 })
