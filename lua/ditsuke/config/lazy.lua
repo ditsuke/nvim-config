@@ -31,7 +31,7 @@ require("lazy").setup({
 
     -- Others
     { import = "ditsuke.extras.code.dap_extensions" },
-    { import = "ditsuke.extras.code.neotest" },
+    -- { import = "ditsuke.extras.code.neotest" },
     { import = "ditsuke.extras.utils.ai" },
     { import = "ditsuke.extras.utils.wakatime" },
     { import = "ditsuke.extras.prose" },
