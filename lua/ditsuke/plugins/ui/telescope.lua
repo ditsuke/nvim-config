@@ -47,7 +47,7 @@ local M = {
     },
     {
       "<leader>fF",
-      function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
+      function() require("telescope.builtin").find_files({ hidden = false, no_ignore = false }) end,
       desc = "[f]ind [f]iles",
     },
     {
