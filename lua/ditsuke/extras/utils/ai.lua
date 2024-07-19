@@ -26,6 +26,11 @@ return {
       },
     },
   },
+  {
+    "sourcegraph/sg.nvim",
+    enabled = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 
   -- > ChatGPT is a Neovim plugin that allows you to interact with OpenAI's GPT-3 language model.
   -- > With ChatGPT, you can ask questions and get answers from GPT-3 in real-time.
@@ -48,6 +53,7 @@ return {
   --  Use with :Backseat<Tab>
   {
     "james1236/backseat.nvim",
+    enabled = false,
     opts = {
       openai_model_id = "gpt-3.5-turbo",
     },

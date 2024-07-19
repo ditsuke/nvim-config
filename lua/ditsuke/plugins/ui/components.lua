@@ -1,7 +1,6 @@
 return {
   {
     "rcarriga/nvim-notify",
-    ---@type notify.Config
     opts = {
       top_down = false,
       render = "compact",
@@ -63,7 +62,7 @@ return {
         config = true,
       },
     },
-    ---@type bufferline.Config
+    ---@type bufferline.UserConfig
     opts = {
       options = {
         separator_style = "thin",
@@ -90,14 +89,19 @@ return {
   },
 
   -- > Better quickfix window in Neovim, polish old quickfix window.
-  { "kevinhwang91/nvim-bqf", ft = "qf", dependencies = { "junegunn/fzf", build = ":call fzf#install()" } },
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    dependencies = { "junegunn/fzf", build = ":call fzf#install()" },
+  },
 
   -- > 💥 Create key bindings that stick. WhichKey is a lua plugin for
   -- > Neovim 0.5 that displays a popup with possible keybindings of the
   -- > command you started typing.
   {
     "folke/which-key.nvim",
-    ---@type Options
+    enabled = true,
+    ---@type wk.Opts
     opts = {
       window = {
         winblend = 10,
@@ -111,8 +115,8 @@ return {
       { "<C-/>", function() require("which-key").show() end, desc = "Show [h]elp", mode = { "n", "i" } },
     },
   },
-  -- {
-  --   "anuvyklack/hydra.nvim",
-  --   enabled = true,
-  -- },
+  {
+    "anuvyklack/hydra.nvim",
+    enabled = false,
+  },
 }

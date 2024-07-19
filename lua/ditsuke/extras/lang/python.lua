@@ -1,4 +1,4 @@
-local Util = require("ditsuke.utils")
+-- local Util = require("ditsuke.utils")
 
 return {
   {
@@ -23,12 +23,12 @@ return {
   {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
-      local nls = require("null-ls")
-      Util.list_insert_unique(opts.sources, {
-        nls.builtins.diagnostics.ruff,
-        nls.builtins.formatting.ruff,
-        -- nls.builtins.formatting.black,
-      })
+      -- local nls = require("null-ls")
+      -- Util.list_insert_unique(opts.sources, {
+      -- nls.builtins.diagnostics.ruff,
+      -- nls.builtins.formatting.ruff,
+      -- nls.builtins.formatting.black,
+      -- })
       return opts
     end,
   },

@@ -128,6 +128,51 @@ return {
     config = true,
   },
 
+  -- >  Show lsp diagnostics based on mouse position
+  -- FIXME: not working atm:
+  -- - No popup on hover. It only appears on clicking (with mouse=a ofcourse)
+  -- - The popup does not close on moving/mouseleave
+  -- UPDATE:
+  -- - I have verified that it DOES NOT work with stock LazyVim either, so this plugin is almost certainly broken,
+  --  at least with nvim nightly as of 2021-11-19
+  {
+    "soulis-1256/hoverhints.nvim",
+    event = "BufReadPost",
+    config = true,
+    enabled = false,
+  },
+
+  -- > Use popup windows to navigate files/buffer and to contain shells/TUIs
+  --
+  -- This plugin lets you open ephemeral popups with a buffer or terminal in them. Useful
+  -- for 'detours', where you're perhaps going through files or following a chain of functions.
+  -- It does allow for then opening a permanent window with the same buffer, which is nice.
+  -- FIXME: this does not work at all atm, at least not with nvim 0.9.4 as of 2023-11-19
+  -- UPDATE:
+  -- - I have verified that it works with stock LazyVim, so it's probably something in my config, or an interaction with another plugin
+  --  that's causing this to not work. Some debugging is in order. Some guesses:
+  --  - `windows.nvim`
+  {
+    "carbon-steel/detour.nvim",
+    keys = {
+      { "<c-w><enter>", function() require("detour").Detour() end, desc = "Open detour float" },
+    },
+    config = function(_, _)
+      -- TODO: get rid of this keymap (this is just for experimentation)
+      -- A keymap for selecting a terminal buffer to open in a popup
+      vim.keymap.set("n", "<leader>tt", function()
+        require("detour").Detour() -- Open a detour popup
+
+        -- Switch to a blank buffer to prevent any accidental changes.
+        vim.cmd.enew()
+        vim.bo.bufhidden = "delete"
+
+        require("telescope.builtin").buffers({}) -- Open telescope prompt
+        vim.api.nvim_feedkeys("term", "n", true) -- popuplate prompt with "term"
+      end)
+    end,
+  },
+
   -- > A pretty window for previewing, navigating and editing your LSP locations.
   {
     "DNLHC/glance.nvim",

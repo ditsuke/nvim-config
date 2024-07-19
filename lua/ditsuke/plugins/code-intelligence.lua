@@ -63,6 +63,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      inlay_hints = {
+        enabled = true,
+      },
       capabilities = {
         textDocument = {
           foldingRange = {
@@ -74,7 +77,7 @@ return {
       servers = {
         -- For markdown
         marksman = {
-          ---@type nio.lsp.types.ClientCapabilities
+          ---@type lsp.ClientCapabilities
           capabilities = {
             textDocument = {
               completion = {
