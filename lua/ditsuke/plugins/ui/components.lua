@@ -103,6 +103,9 @@ return {
     enabled = true,
     ---@type wk.Opts
     opts = {
+      modes = {
+        t = false,
+      },
       window = {
         winblend = 10,
       },
