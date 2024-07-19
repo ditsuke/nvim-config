@@ -45,12 +45,14 @@ return {
       require("telescope").load_extension("git_worktree")
     end,
     keys = function()
-      require("which-key").register({
-        mode = { "n", "v" },
-        -- TODO: clean up this which-key mess :(
-        ["<leader>t"] = { name = "+telescope" },
-        ["<leader>gw"] = { name = "git-worktree" },
-      }, nil)
+      if require("lazyvim.util").has("which-key") then
+        require("which-key").register({
+          mode = { "n", "v" },
+          -- TODO: clean up this which-key mess :(
+          ["<leader>t"] = { name = "+telescope" },
+          ["<leader>gw"] = { name = "git-worktree" },
+        }, nil)
+      end
 
       return {
         {
@@ -65,6 +67,14 @@ return {
         },
       }
     end,
+  },
+
+  -- > Single tabpage interface for easily cycling through diffs for all modified files for any git rev.
+  -- Use hints:
+  -- - `:DiffviewOpen` to open the diff view
+  -- - `:DiffviewFileHistory` to open the file history view
+  {
+    "sindrets/diffview.nvim",
   },
 
   -- > A lua neovim plugin to generate shareable file permalinks (with line ranges) for several git web frontend
