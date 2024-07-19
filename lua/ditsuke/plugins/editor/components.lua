@@ -210,6 +210,18 @@ return {
         end,
       },
     },
-    config = true,
+    ---@type
+    opts = {
+      hooks = {
+        -- If there is only one result, jump to it directly
+        before_open = function(results, open, jump, _method)
+          if #results == 1 then
+            jump(results[1])
+          else
+            open(results)
+          end
+        end,
+      },
+    },
   },
 }
