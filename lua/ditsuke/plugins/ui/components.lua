@@ -103,8 +103,8 @@ return {
     enabled = true,
     ---@type wk.Opts
     opts = {
-      modes = {
-        t = false,
+      triggers = {
+        { "<auto>", mode = "nxso" },
       },
       window = {
         winblend = 10,
