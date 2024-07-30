@@ -56,7 +56,14 @@ end
 -- Set smart jk navigation
 -- Source: https://vim.fandom.com/wiki/Smart_navigation_using_j_and_k
 function M.set_smart_visual_nav(enable)
-  local keys_to_set = { "j", "k", "0", "^", "$" }
+  local keys_to_set = {
+    "j",
+    "k",
+    -- "0",
+    "^",
+    -- "$",
+  }
+
   for _, key in ipairs(keys_to_set) do
     if enable then
       vim.keymap.set(

@@ -11,7 +11,10 @@ end
 return {
   {
     "akinsho/toggleterm.nvim",
+    ---@type ToggleTermConfig
+    ---@diagnostic disable-next-line: missing-fields
     opts = {
+      direction = "float",
       winbar = {
         enabled = true,
         name_formatter = function(term) --  term: Terminal

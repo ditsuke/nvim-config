@@ -24,9 +24,59 @@ local M = {
       config = function() add_extension("frecency") end,
     },
     {
-      -- Find terminals 👿
-      "tknightz/telescope-termfinder.nvim",
-      config = function() add_extension("termfinder") end,
+      "ryanmsnyder/toggleterm-manager.nvim",
+      dependencies = {
+        "akinsho/toggleterm.nvim",
+        "nvim-telescope/telescope.nvim",
+        "nvim-lua/plenary.nvim", -- only needed because it's a dependency of telescope
+      },
+      keys = {
+        {
+          "<M-BSlash>",
+          function()
+            require("telescope").extensions.toggleterm_manager.toggleterm_manager({
+              preview = { hide_on_startup = false },
+            })
+          end,
+          desc = "find terminals",
+          mode = { "t", "i", "n" },
+        },
+      },
+      opts = function(_, _)
+        local actions = require("toggleterm-manager").actions
+        return {
+          mappings = {
+            i = {
+              ["<CR>"] = { action = actions.open_term, exit_on_action = true },
+              ["<S-CR>"] = {
+                action = function(_, _)
+                  -- Manager's default create_term action uses vim.ui for input,
+                  -- plus has some other issues such as passing the `hidden` option
+                  -- to Terminal:new, which somehow disables keybindings in the created
+                  -- terminal.
+                  local actions_state = require("telescope.actions.state")
+                  local Terminal = require("toggleterm.terminal").Terminal
+                  local text = actions_state.get_current_line()
+                  if text == nil or #text == 0 then
+                    return
+                  end
+                  local new_term = Terminal:new({
+                    id = nil,
+                    display_name = text,
+                  })
+                  new_term:open()
+                end,
+                exit_on_action = true,
+              },
+              ["<C-d>"] = { action = actions.delete_term, exit_on_action = false },
+            },
+            n = {
+              ["<CR>"] = { action = actions.create_and_name_term, exit_on_action = true },
+              ["x"] = { action = actions.delete_term, exit_on_action = false },
+            },
+          },
+        }
+      end,
     },
     {
       "debugloop/telescope-undo.nvim",
@@ -84,17 +134,6 @@ local M = {
       "<C-`>",
       function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
       desc = "Preview and switch colorschemes/themes",
-    },
-    {
-      "<leader>st",
-      function() require("telescope").extensions.termfinder.find({}) end,
-      desc = "[t]erminals",
-    },
-    {
-      "<M-BSlash>",
-      function() require("telescope").extensions.termfinder.find({}) end,
-      desc = "find terminals",
-      mode = { "t", "i", "n" },
     },
     {
       "<leader>sS",
@@ -200,6 +239,7 @@ M.opts = function(_, opts)
       undo = undo_opts,
       file_browser = file_browser_opts,
     },
+    ---@type table<string, telescope.picker.opts>
     pickers = {
       lsp_dynamic_workspace_symbols = {
         -- Manually set sorter, for some reason not picked up automatically
@@ -219,6 +259,9 @@ M.opts = function(_, opts)
             end,
           },
         },
+      },
+      toggleterm_manager = {
+        previewer = require("telescope.previewers.term_previewer"),
       },
     },
     -- Use the `ivy` theme, inspired by Emacs Ivy!
