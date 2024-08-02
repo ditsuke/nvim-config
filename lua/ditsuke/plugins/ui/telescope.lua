@@ -44,31 +44,43 @@ local M = {
       },
       opts = function(_, _)
         local actions = require("toggleterm-manager").actions
+        local actions_state = require("telescope.actions.state")
+        local create_new_term = function(_, _)
+          local Terminal = require("toggleterm.terminal").Terminal
+          local text = actions_state.get_current_line()
+          if text == nil or #text == 0 then
+            return
+          end
+          local new_term = Terminal:new({
+            id = nil,
+            display_name = text,
+          })
+          new_term:open()
+        end
+        local open_or_new_term = function(_, _)
+          -- Manager's default create_term action uses vim.ui for input,
+          -- plus has some other issues such as passing the `hidden` option
+          -- to Terminal:new, which somehow disables keybindings in the created
+          -- terminal.
+          local selected = actions_state.get_selected_entry()
+          if selected == nil then
+            create_new_term()
+            return
+          end
+          local term = selected.value
+          term:open()
+        end
         return {
           mappings = {
             i = {
-              ["<CR>"] = { action = actions.open_term, exit_on_action = true },
-              ["<S-CR>"] = {
-                action = function(_, _)
-                  -- Manager's default create_term action uses vim.ui for input,
-                  -- plus has some other issues such as passing the `hidden` option
-                  -- to Terminal:new, which somehow disables keybindings in the created
-                  -- terminal.
-                  local actions_state = require("telescope.actions.state")
-                  local Terminal = require("toggleterm.terminal").Terminal
-                  local text = actions_state.get_current_line()
-                  if text == nil or #text == 0 then
-                    return
-                  end
-                  local new_term = Terminal:new({
-                    id = nil,
-                    display_name = text,
-                  })
-                  new_term:open()
-                end,
-                exit_on_action = true,
-              },
+              -- Just like telescope-file-browser, we need to map <CR> to open_or_new
+              -- because <S-CR> is not a distinct keybindings in most environments
+              -- (non kitty terminals, even kitty + zellij)
+              ["<CR>"] = { action = open_or_new_term, exit_on_action = true },
               ["<C-d>"] = { action = actions.delete_term, exit_on_action = false },
+              -- Can always use Alt-C to create a new terminal regardless of match
+              ["<M-c>"] = { action = create_new_term, exit_on_action = true },
+              ["<M-r>"] = { action = actions.rename_term, exit_on_action = false },
             },
             n = {
               ["<CR>"] = { action = actions.create_and_name_term, exit_on_action = true },
