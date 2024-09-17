@@ -92,3 +92,6 @@ vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {
     end
   end,
 })
+
+-- Lazyvim ops
+vim.g.lazyvim_python_lsp = "basedpyright"
