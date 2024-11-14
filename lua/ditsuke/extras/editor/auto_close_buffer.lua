@@ -2,6 +2,7 @@
 -- Automatically close unedited buffers after some threshold
 return {
   "axkirillov/hbac.nvim",
+  enabled = false,
   event = "BufReadPre",
   dependencies = {
     {
