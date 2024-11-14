@@ -69,17 +69,19 @@ local UiUtils = require("ditsuke.utils.ui")
 UiUtils.mini_indentscope_enabled(false)
 UiUtils.indent_blankline_enabled(false)
 
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-  },
-}
+if os.getenv("SSH_TTY") ~= nil then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+end
 
 -- Make window title indicative of our cwd
 -- Loaded before normal autocmds (./autocmds) because we leverage the `VimEnter` event here.
@@ -94,4 +96,4 @@ vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {
 })
 
 -- Lazyvim ops
-vim.g.lazyvim_python_lsp = "basedpyright"
+--vim.g.lazyvim_python_lsp = "basedpyright"
