@@ -1,10 +1,11 @@
 return {
-  -- >  Indent guides for Neovim
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "snacks.nvim",
     opts = {
-      -- Disable by default
-      enabled = false,
+      indent = {
+        -- Disable by default
+        enabled = false,
+      },
     },
   },
 

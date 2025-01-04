@@ -12,17 +12,22 @@ local function add_extension(ext) telescope_extensions[#telescope_extensions + 1
 local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
+
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build --config Release",
       config = function() add_extension("fzf") end,
     },
-    {
-      "nvim-telescope/telescope-frecency.nvim",
-      dependencies = { { "kkharji/sqlite.lua" } },
-      config = function() add_extension("frecency") end,
-    },
+
+    -- TODO: file alternative for fzf
+    -- {
+    --   "nvim-telescope/telescope-frecency.nvim",
+    --   dependencies = { { "kkharji/sqlite.lua" } },
+    --   config = function() add_extension("frecency") end,
+    -- },
+
+    -- NOTE: does not have an fzf replacement yet
     {
       "ryanmsnyder/toggleterm-manager.nvim",
       dependencies = {
@@ -90,10 +95,12 @@ local M = {
         }
       end,
     },
-    {
-      "debugloop/telescope-undo.nvim",
-      config = function() add_extension("undo") end,
-    },
+    -- {
+    --   "debugloop/telescope-undo.nvim",
+    --   config = function() add_extension("undo") end,
+    -- },
+
+    -- NOTE: Does not have fzf-lua replacement
     {
       -- > `telescope-file-browser.nvim` is a file browser extension for telescope.nvim.
       -- > It supports synchronized creation, deletion, renaming, and moving of files and folders powered by telescope.nvim and plenary.nvim.
@@ -101,6 +108,7 @@ local M = {
       config = function() add_extension("file_browser") end,
     },
   },
+
   keys = {
     {
       -- Disable LazyVim's default <leader>sR keybind for resuming telescope sessions.
@@ -113,40 +121,20 @@ local M = {
       desc = "[f]ind [f]iles",
     },
     {
-      "<leader>fb",
-      -- stylua: ignore
-      function() require("telescope").extensions.file_browser.file_browser({ hidden = true, no_ignore = true, path = "%:p:h" }) end,
-      desc = "[file] [b]rowser",
-    },
-    {
       "<leader>o",
       -- stylua: ignore
       function() require("telescope").extensions.file_browser.file_browser({ hidden = true, no_ignore = true, path = "%:p:h" }) end,
       desc = "[o]pen file browser",
     },
     { "<leader>bs", function() require("telescope.builtin").buffers({ sort_mru = true }) end, desc = "[s]earch" },
-    {
-      "<leader>,",
-      function()
-        require("telescope.builtin").buffers({
-          sort_mru = true,
-          -- entry_maker = function(entry)
-          --   return {
-          --     value = entry,
-          --     display = entry[1],
-          --     ordinal = entry[1],
-          --   }
-          -- end,
-        })
-      end,
-      desc = "search buffers",
-    },
     { "<F1>", function() require("telescope.builtin").help_tags() end, desc = "Search :help" },
     {
       "<C-`>",
       function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
       desc = "Preview and switch colorschemes/themes",
     },
+
+    --  TODO: confirm new fzf-lua behavior matches
     {
       "<leader>sS",
       function()
@@ -165,25 +153,20 @@ local M = {
         })
       end,
     },
-    {
-      "<leader>su",
-      function() require("telescope").extensions.undo.undo() end,
-      desc = "[u]ndo tree",
-    },
-    {
-      "<leader>fr",
-      function()
-        require("telescope").extensions.frecency.frecency({
-          workspace = "CWD",
-        })
-      end,
-      desc = "[r]ecent",
-    },
-    {
-      "<leader>tr",
-      function() require("telescope.builtin").resume() end,
-      desc = "[r]esume",
-    },
+
+    -- TODO: maybe replicate for fzf-lua
+    -- Ref:
+    -- - https://github.com/ibhagwan/fzf-lua/issues/931
+    -- - https://www.reddit.com/r/neovim/comments/1hmoa2z/does_anyone_know_of_an_alternative_to/
+    -- {
+    --   "<leader>fr",
+    --   function()
+    --     require("telescope").extensions.frecency.frecency({
+    --       workspace = "CWD",
+    --     })
+    --   end,
+    --   desc = "[r]ecent",
+    -- },
   },
 }
 
@@ -200,15 +183,6 @@ M.opts = function(_, opts)
 
   local frecency_opts = {
     db_root = "~/.local/share/nvim",
-  }
-
-  local undo_opts = {
-    use_delta = true,
-    side_by_side = true,
-    layout_strategy = "vertical",
-    layout_config = {
-      preview_height = 0.8,
-    },
   }
 
   -- BUG: Importing actions like this causes an override of the setup mappings, somehow.
@@ -248,16 +222,10 @@ M.opts = function(_, opts)
     extensions = {
       fzf = fzf_opts,
       frecency = frecency_opts,
-      undo = undo_opts,
       file_browser = file_browser_opts,
     },
     ---@type table<string, telescope.picker.opts>
     pickers = {
-      lsp_dynamic_workspace_symbols = {
-        -- Manually set sorter, for some reason not picked up automatically
-        -- Ref: https://github.com/nvim-telescope/telescope.nvim/issues/2104#issuecomment-1223790155
-        sorter = require("telescope").extensions.fzf.native_fzf_sorter(fzf_opts),
-      },
       buffers = {
         mappings = {
           n = {

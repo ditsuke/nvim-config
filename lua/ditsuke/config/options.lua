@@ -65,9 +65,15 @@ opt.formatoptions:append(wanted_format_opts)
 -- opt.spelloptions = "camel"
 opt.spell = false
 
-local UiUtils = require("ditsuke.utils.ui")
-UiUtils.mini_indentscope_enabled(false)
-UiUtils.indent_blankline_enabled(false)
+vim.api.nvim_create_autocmd("User", {
+  pattern = { "VeryLazy" },
+  group = vim.api.nvim_create_augroup("disable_indents", { clear = true }),
+  callback = function()
+    local UiUtils = require("ditsuke.utils.ui")
+    UiUtils.mini_indentscope_enabled(false)
+    -- UiUtils.indent_blankline_enabled(false)
+  end,
+})
 
 if os.getenv("SSH_TTY") ~= nil then
   vim.g.clipboard = {

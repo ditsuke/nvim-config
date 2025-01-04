@@ -11,11 +11,13 @@ function M.mini_indentscope_enabled(set_to)
 end
 
 function M.indent_blankline_enabled(set_to)
-  local ibl = require("ibl")
-  if set_to ~= nil then
-    ibl.update({ enabled = set_to })
-  end
-  return require("ibl.config").get_config(0).enabled
+  return false
+  -- return true
+  -- local ibl = require("ibl")
+  -- if set_to ~= nil then
+  --   ibl.setup_buffer(0, { enabled = set_to })
+  -- end
+  -- return require("ibl.config").get_config(0).enabled
 end
 
 local SPECIAL_FLOAT_FTS = {

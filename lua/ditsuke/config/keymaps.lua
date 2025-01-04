@@ -121,69 +121,18 @@ vim.keymap.set({ "i", "n" }, "<esc>", function()
   return "<esc>"
 end, { expr = true, desc = "Escape, clear hlsearch and close floats" })
 
--- Toggle mouse
-local state__mouse = "a"
-vim.keymap.set("n", "<leader>um", function()
-  local now = vim.opt.mouse["_value"]
-  vim.opt.mouse = state__mouse
-  vim.notify('Set mouse to "' .. state__mouse .. '"')
-  state__mouse = now
-end, { desc = "Toggle [m]ouse support" })
-
-vim.keymap.set("n", "<leader>ut", function()
-  local to = vim.opt.showtabline["_value"] == 0 and 2 or 0
-  vim.opt.showtabline = to
-  vim.notify('Set showtabline to "' .. to .. '"')
-end, { desc = "Toggle [t]abline" })
-
-vim.keymap.set("n", "<leader>uII", function()
-  if UIUtils.indent_blankline_enabled() then
-    UIUtils.indent_blankline_enabled(false)
-    vim.notify("Disabled indent_blankline")
-  else
-    UIUtils.indent_blankline_enabled(true)
-    vim.notify("Enabled indent_blankline")
-  end
-end, { desc = "Toggle indent_blankline" })
-
-vim.keymap.set("n", "<leader>uIi", function()
-  if UIUtils.mini_indentscope_enabled() then
-    UIUtils.mini_indentscope_enabled(false)
-    vim.notify("Disabled mini.indentscope")
-  else
-    UIUtils.mini_indentscope_enabled(true)
-    vim.notify("Enabled mini.indentscope")
-  end
-end, { desc = "Toggle mini.indentscope" })
-
-local state__wrap_enabled = false
-vim.keymap.set("n", "<leader>uw", function()
-  if state__wrap_enabled then
-    UIUtils.set_wrap_with_keybindings(false)
-    state__wrap_enabled = false
-    vim.notify("Disabled wrap")
-  else
-    UIUtils.set_wrap_with_keybindings(true)
-    state__wrap_enabled = true
-    vim.notify("Enabled wrap")
-  end
-end, { desc = "Toggle word wrap (with keybindings)" })
-
-local state__statusline_enabled = true
-if true then
-  pcall(function() vim.keymap.del("n", "<leader>us") end)
-  vim.keymap.set("n", "<leader>us", function()
-    if state__statusline_enabled then
-      state__statusline_enabled = false
-      UIUtils.set_lualine_statusline(false)
-      vim.notify("Disabled statusline")
-    else
-      state__statusline_enabled = true
-      UIUtils.set_lualine_statusline(true)
-      vim.notify("Enabled statusline")
-    end
-  end, { desc = "Toggle [s]tatusline (lualine)" })
-end
+-- local state__wrap_enabled = false
+-- vim.keymap.set("n", "<leader>uw", function()
+--   if state__wrap_enabled then
+--     UIUtils.set_wrap_with_keybindings(false)
+--     state__wrap_enabled = false
+--     vim.notify("Disabled wrap")
+--   else
+--     UIUtils.set_wrap_with_keybindings(true)
+--     state__wrap_enabled = true
+--     vim.notify("Enabled wrap")
+--   end
+-- end, { desc = "Toggle word wrap (with keybindings)" })
 
 -- ============
 -- OSX-compat
