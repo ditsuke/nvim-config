@@ -33,5 +33,5 @@ vim.api.nvim_create_autocmd("User", {
 
 return {
   "folke/snacks.nvim",
-  optiona = true,
+  optional = true,
 }
