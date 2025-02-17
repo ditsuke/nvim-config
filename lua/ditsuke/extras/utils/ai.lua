@@ -2,7 +2,7 @@ return {
   -- > Fully featured & enhanced replacement for copilot.vim complete with API for interacting with Github Copilot
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     event = "InsertEnter",
     cmd = "Copilot",
     dependencies = {
@@ -60,6 +60,7 @@ return {
   },
   {
     "supermaven-inc/supermaven-nvim",
+    enabled = false,
     opts = {
       keymaps = {
         accept_suggestion = "<M-;>",
