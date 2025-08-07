@@ -17,17 +17,17 @@ return {
     { "javascript", "typescript", "jsx" }
   ),
 
-  {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      util.list_insert_unique(opts.sources, {
-        nls.builtins.code_actions.eslint_d,
-        nls.builtins.formatting.prettier,
-      })
-      return opts
-    end,
-  },
+  -- {
+  --   "nvimtools/none-ls.nvim",
+  --   opts = function(_, opts)
+  --     local nls = require("null-ls")
+  --     util.list_insert_unique(opts.sources, {
+  --       nls.builtins.code_actions.eslint_d,
+  --       nls.builtins.formatting.prettier,
+  --     })
+  --     return opts
+  --   end,
+  -- },
   {
     "neovim/nvim-lspconfig",
     dependencies = { "yioneko/nvim-vtsls" },

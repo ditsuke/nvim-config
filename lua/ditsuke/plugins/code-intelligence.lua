@@ -36,7 +36,7 @@ return {
         null_ls.builtins.diagnostics.selene,
         -- bash
         null_ls.builtins.formatting.shfmt,
-        null_ls.builtins.diagnostics.shellcheck,
+        --null_ls.builtins.diagnostics.shellcheck,
       }
       return opts
     end,

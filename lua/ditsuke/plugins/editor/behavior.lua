@@ -67,6 +67,7 @@ return {
   -- Escape from insert mode with `jk` or `jj`, without delay or lag when typing
   {
     "max397574/better-escape.nvim",
+    enabled = false,
     opts = {
       default_mappings = false,
       mappings = {
