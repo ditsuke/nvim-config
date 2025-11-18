@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, _)
       -- NOTE: since we're using mason-null-ls, get rid of
       -- ensure_installed directives for linters/formatters
@@ -66,15 +66,17 @@ return {
       inlay_hints = {
         enabled = true,
       },
-      capabilities = {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
+      servers = {
+        ["*"] = {
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
           },
         },
-      },
-      servers = {
         -- For markdown
         marksman = {
           ---@type lsp.ClientCapabilities

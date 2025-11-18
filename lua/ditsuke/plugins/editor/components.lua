@@ -181,9 +181,13 @@ return {
         "neovim/nvim-lspconfig",
         -- NOTE: This is the lazyvim way of customizing lsp keymaps
         -- Ref: https://github.com/lazyVim/lazyVim/issues/93
-        opts = function(_, _)
-          local Keys = require("lazyvim.plugins.lsp.keymaps").get()
-          vim.list_extend(Keys, {
+        opts = function(_, opts)
+          opts.servers = opts.servers or {}
+          opts.servers["*"] = opts.servers["*"] or {}
+          opts.servers["*"].keys = opts.servers["*"].keys or {}
+
+          local keys = opts.servers["*"].keys
+          vim.list_extend(keys, {
             {
               "gd",
               function() vim.cmd("Glance definitions") end,

@@ -33,7 +33,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.bufremove",
+    "nvim-mini/mini.bufremove",
     keys = {
       -- <C-F4>
       { "<F28>", function() require("mini.bufremove").delete(0, false) end, desc = "Delete buffer" },
@@ -45,7 +45,7 @@ return {
     config = true,
   },
   {
-    "echasnovski/mini.indentscope",
+    "nvim-mini/mini.indentscope",
     opts = function(_, og)
       local overrides = {
         draw = {

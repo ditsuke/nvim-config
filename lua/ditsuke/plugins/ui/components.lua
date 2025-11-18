@@ -43,7 +43,8 @@ return {
       "MunifTanjim/nui.nvim",
     },
     init = function()
-      require("lazyvim.util").lsp.on_attach(function(client, buffer)
+      local Snacks = require("snacks")
+      Snacks.util.lsp.on(function(buffer, client)
         if client.server_capabilities.documentSymbolProvider then
           require("nvim-navbuddy").attach(client, buffer)
         end

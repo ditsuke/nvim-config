@@ -4,9 +4,9 @@ local disable_on_large_buffers_fn = function(threshold)
   return function(_, bufnr) return vim.api.nvim_buf_line_count(bufnr) > threshold end
 end
 
--- if true then
---   return {}
--- end
+if true then
+  return {}
+end
 
 return {
   "nvim-treesitter/nvim-treesitter",
