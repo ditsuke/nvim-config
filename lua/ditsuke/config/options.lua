@@ -102,4 +102,4 @@ vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, {
 })
 
 -- Lazyvim ops
-vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_lsp = "pyright"

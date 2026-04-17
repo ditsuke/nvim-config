@@ -2,7 +2,7 @@ return {
   -- > Fully featured & enhanced replacement for copilot.vim complete with API for interacting with Github Copilot
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     event = "InsertEnter",
     cmd = "Copilot",
     dependencies = {
@@ -114,6 +114,7 @@ return {
       {
         -- Make sure to set this up properly if you have lazy=true
         "MeanderingProgrammer/render-markdown.nvim",
+        enabled = false,
         opts = {
           file_types = { "markdown", "Avante" },
         },
