@@ -151,3 +151,7 @@ local cmd_key_combos_to_map_to_c_leaders = {
 for _, key in ipairs(cmd_key_combos_to_map_to_c_leaders) do
   vim.keymap.set("n", "<D-" .. key .. ">", "<C-" .. key .. ">", { remap = true })
 end
+
+-- <leader>tr -> LazyVim's picker resume. Since a function is not exposed abstracting
+-- over the choice of picker, we resolve to sR (search-Resume).
+vim.keymap.set("n", "<leader>tr", "<leader>sR", { remap = true })

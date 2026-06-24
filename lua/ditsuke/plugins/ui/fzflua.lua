@@ -2,7 +2,6 @@ return {
   "ibhagwan/fzf-lua",
   keys = {
     { "<C-`>", LazyVim.pick("colorschemes"), desc = "Colorscheme with Preview" },
-    { "<leader>tr", "<cmd>FzfLua resume<cr>", desc = "Resume" },
   },
   opts = function(_, opts)
     -- Override on_create to add my up/down binds
