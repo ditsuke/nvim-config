@@ -155,3 +155,21 @@ end
 -- <leader>tr -> LazyVim's picker resume. Since a function is not exposed abstracting
 -- over the choice of picker, we resolve to sR (search-Resume).
 vim.keymap.set("n", "<leader>tr", "<leader>sR", { remap = true })
+
+-- Yank relative path with line or line range reference
+local function yank_path_ref(start_line, end_line)
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
+  local ref = start_line == end_line and (path .. ":" .. start_line) or (path .. ":" .. start_line .. "-" .. end_line)
+  vim.fn.setreg("+", ref)
+  vim.notify("Yanked: " .. ref)
+end
+
+vim.keymap.set("n", "<leader>r", function()
+  local line = vim.fn.line(".")
+  yank_path_ref(line, line)
+end, { desc = "Yank relative path:line to clipboard" })
+
+vim.keymap.set("v", "<leader>r", function()
+  local s, e = vim.fn.line("v"), vim.fn.line(".")
+  yank_path_ref(math.min(s, e), math.max(s, e))
+end, { desc = "Yank relative path:line-range to clipboard" })
