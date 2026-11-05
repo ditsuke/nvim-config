@@ -57,8 +57,8 @@ There are 2 ways:
    --
    -- -- Language extensions
    -- { import = "ditsuke.extras.lang.go" },
-   -- { import = "ditsuke.extras.lang.java" },
-   -- { import = "ditsuke.extras.lang.typescript" }, -- vs `lazyvim.plugins.extras.lang.typescript`, this one uses vtsls instead
+   -- { import = "lazyvim.plugins.extras.lang.java" },
+   -- { import = "lazyvim.plugins.extras.lang.typescript" },
    -- { import = "ditsuke.extras.lang.python" },
    -- { import = "ditsuke.extras.lang.rust" },
    ```
