@@ -1,15 +1,5 @@
 return {
   {
-    "mason-org/mason.nvim",
-    opts = function(_, _)
-      -- NOTE: since we're using mason-null-ls, get rid of
-      -- ensure_installed directives for linters/formatters
-      return {
-        ensure_installed = {},
-      }
-    end,
-  },
-  {
     "jay-babu/mason-null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
