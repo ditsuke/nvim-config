@@ -11,14 +11,17 @@ return {
       persistence.setup(opts)
 
       vim.api.nvim_create_user_command(CMD_NO_SESSION, function(_) end, {}) -- Is the requirement mis-documented in Neodev?
+      -- File arguments indicate a one-off edit: preserve the saved session by
+      -- disabling both automatic restoration and saving for this invocation.
+      if vim.fn.argc(-1) > 0 or vim.tbl_contains(vim.v.argv, "+" .. CMD_NO_SESSION) then
+        persistence.stop()
+        return
+      end
+
       vim.api.nvim_create_autocmd("User", {
         pattern = { "LazyDone" },
         group = vim.api.nvim_create_augroup("LoadSession", { clear = true }),
         callback = function()
-          if vim.tbl_contains(vim.v.argv, "+" .. CMD_NO_SESSION) then
-            require("persistence").stop()
-            return
-          end
           -- Apparently I don't even have to delay it with `timer_start`, just send it to main vim loop.
           -- If I load it right here, the session loads fine but buffers don't have treesitter etc
           -- To me this indicates that Lazyvim's `started` event is fired while plugins are
