@@ -15,8 +15,8 @@ return {
     },
     keymap = {
       ["<C-j>"] = { "select_next", "fallback" },
-      ["C-k>"] = { "select_prev", "fallback" },
-      ["<Tab>"] = { "select_next" },
+      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
     },
   },
 }
