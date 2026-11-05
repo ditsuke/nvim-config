@@ -107,8 +107,8 @@ return {
       triggers = {
         { "<auto>", mode = "nxso" },
       },
-      window = {
-        winblend = 10,
+      win = {
+        wo = { winblend = 10 },
       },
       layout = {
         height = { min = 4, max = 15 },
