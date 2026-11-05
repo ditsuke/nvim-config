@@ -180,7 +180,9 @@ return {
 
   {
     "Wansmer/treesj",
-    keys = { "<space>m", "<space>j", "<space>s" },
-    config = {},
+    keys = {
+      { "<space>m", function() require("treesj").toggle() end, desc = "Toggle split/join" },
+    },
+    opts = { use_default_keymaps = false },
   },
 }
