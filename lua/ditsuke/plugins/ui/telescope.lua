@@ -266,9 +266,8 @@ M.opts = function(_, opts)
   return vim.tbl_deep_extend("force", opts, overrides)
 end
 
---- Custom setup function to load extensions after telescope setup.
---- Side effect: some extensions will be loaded twice, but that's okay (I guess).
-M.setup = function(_, opts)
+-- Load extensions after Telescope has been configured.
+M.config = function(_, opts)
   local telescope = require("telescope")
   telescope.setup(opts)
   for _, e in ipairs(telescope_extensions) do
