@@ -30,29 +30,15 @@ local SPECIAL_FLOAT_FTS = {
 -- Close floating windows
 -- Source: https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi
 function M.close_floats()
-  local needs_hack = false
-  local inactive_floating_wins = vim.fn.filter(vim.api.nvim_list_wins(), function(_, v)
-    local file_type = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(v), "filetype")
-    if file_type == "noice" then
-      needs_hack = true
+  local current_win = vim.api.nvim_get_current_win()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_is_valid(win) and win ~= current_win and vim.api.nvim_win_get_config(win).relative ~= "" then
+      local file_type = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+      if not vim.tbl_contains(SPECIAL_FLOAT_FTS, file_type) then
+        pcall(vim.api.nvim_win_close, win, false)
+      end
     end
-
-    return vim.api.nvim_win_get_config(v).relative ~= ""
-      and v ~= vim.api.nvim_get_current_win()
-      and not vim.tbl_contains(SPECIAL_FLOAT_FTS, file_type)
-  end)
-
-  -- If we're closing a noice float, we need to employ a hack
-  -- to prevent the float to reopen on the top left under some scenarios (e.g., when we reopen it witout moving our cursor)
-  vim.api.nvim_feedkeys("hl", "nt", true)
-  -- if needs_hack then
-  -- end
-  -- for _, w in ipairs(inactive_floating_wins) do
-  --   local file_type = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(w), "filetype")
-  --   local buftype = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(w), "buftype")
-  --   require("ditsuke.utils").logger("Closing float: " .. file_type .. " (" .. buftype .. ")")
-  --   pcall(vim.api.nvim_win_close, w, false)
-  -- end
+  end
 end
 
 -- Set smart jk navigation

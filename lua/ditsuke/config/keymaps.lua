@@ -116,8 +116,11 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection, send to 
 -- ====
 
 vim.keymap.set({ "i", "n" }, "<esc>", function()
-  vim.cmd.noh()
-  UIUtils.close_floats()
+  -- Expression mappings run under textlock; close windows after Escape is handled.
+  vim.schedule(function()
+    vim.cmd.noh()
+    UIUtils.close_floats()
+  end)
   return "<esc>"
 end, { expr = true, desc = "Escape, clear hlsearch and close floats" })
 
