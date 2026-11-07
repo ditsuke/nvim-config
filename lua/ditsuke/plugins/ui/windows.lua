@@ -22,22 +22,6 @@ return {
     end,
   },
 
-  -- > Dim inactive windows in Neovim using window-local highlight namespaces.
-  {
-    "levouh/tint.nvim",
-    -- enabled = false,
-    dependencies = { "lualine.nvim" },
-    event = "BufWinEnter",
-    opts = {
-      highlight_ignore_patterns = { "WinSeparator", "Status.*", "Lualine.*" },
-    },
-    config = function(_, opts)
-      require("tint").setup(opts)
-      vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-        callback = function() require("tint").refresh() end,
-      })
-    end,
-  },
   -- {
   --   "nvim-zh/colorful-winsep.nvim",
   --   config = true,
