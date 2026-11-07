@@ -1,33 +1,47 @@
 return {
   {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    "mason-org/mason.nvim",
+    opts = { ensure_installed = { "stylua", "shfmt", "selene", "buf", "proselint" } },
+  },
+  {
+    "stevearc/conform.nvim",
     opts = {
-      automatic_setup = true,
-      automatic_installation = true,
+      formatters_by_ft = {
+        lua = { "stylua" },
+        sh = { "shfmt" },
+      },
     },
-    config = function(_, opts)
-      local mnls = require("mason-null-ls")
-      mnls.setup(opts)
-    end,
+  },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        lua = { "selene" },
+        luau = { "selene" },
+        proto = { "buf_lint" },
+      },
+    },
   },
   {
     "nvimtools/none-ls.nvim",
+    event = "LazyFile",
     dependencies = {
       -- The Refactoring library based off the Refactoring book by Martin Fowler
       "ThePrimeagen/refactoring.nvim",
     },
     opts = function(_, opts)
       local null_ls = require("null-ls")
-      opts.sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.diagnostics.buf,
-        null_ls.builtins.code_actions.refactoring,
-        null_ls.builtins.diagnostics.selene,
-        -- bash
-        null_ls.builtins.formatting.shfmt,
-        --null_ls.builtins.diagnostics.shellcheck,
-      }
+      -- None-ls supplies code actions only; Conform and nvim-lint own
+      -- formatting and diagnostics respectively.
+      local code_action = require("null-ls.methods").internal.CODE_ACTION
+      opts.sources = vim.tbl_filter(
+        function(source)
+          return source.method == code_action
+            or (type(source.method) == "table" and vim.tbl_contains(source.method, code_action))
+        end,
+        opts.sources or {}
+      )
+      table.insert(opts.sources, null_ls.builtins.code_actions.refactoring)
       return opts
     end,
   },
