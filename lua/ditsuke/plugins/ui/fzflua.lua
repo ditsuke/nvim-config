@@ -4,6 +4,9 @@ return {
     { "<C-`>", LazyVim.pick("colorschemes"), desc = "Colorscheme with Preview" },
   },
   opts = function(_, opts)
+    opts.fzf_opts = opts.fzf_opts or {}
+    opts.fzf_opts["--cycle"] = true
+
     -- Override on_create to add my up/down binds
     local old_on_create = opts.on_create
     opts.on_create = function()
