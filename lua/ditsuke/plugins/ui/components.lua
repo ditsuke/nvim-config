@@ -1,10 +1,9 @@
 return {
   {
-    "rcarriga/nvim-notify",
+    "folke/snacks.nvim",
     opts = {
-      top_down = false,
-      render = "compact",
-      stages = "static",
+      input = { enabled = true },
+      notifier = { enabled = true, top_down = false },
     },
   },
   {
