@@ -7,7 +7,7 @@ local opt = vim.opt
 vim.o.sessionoptions = "buffers,curdir,tabpages,winsize,help,terminal,globals"
 
 opt.clipboard = "" -- **Do not** sync with the system clipboard
-opt.mouse = "v" -- Disable mouse support by default
+opt.mouse = "a" -- Enable mouse support in all modes
 
 opt.laststatus = 3 -- Global statusline
 
