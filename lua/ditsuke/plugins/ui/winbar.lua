@@ -1,29 +1,17 @@
--- A VS Code like winbar that uses nvim-navic in order to get LSP context from your language server.
---
--- FIXME: despite the fix from #35, `navic` still refuses to work
---  with barbecue.
---  After further investigation, I found that the bug is reproducible in my older
---  _lualine_ winbar, which begs the question if it's a navic bug or a bug
---  with lazyvim's handling of navic (particularly, how it attaches to a
---  LSP/buf).
 return {
-  "utilyre/barbecue.nvim", -- Wait for my PR to get merged
-  dependencies = {
-    "SmiteshP/nvim-navic",
-    "nvim-tree/nvim-web-devicons", -- optional dependency
-  },
+  "Bekaboo/dropbar.nvim",
+  lazy = false,
   opts = {
-    -- The navic config that ships with Lazyvim already attaches
-    -- for us, besides `barbecue/issue#35`
-    attach_navic = true,
-    -- Window number as leading section
-    lead_custom_section = function(_, winnr) return string.format("  %d 󱋱 ", vim.api.nvim_win_get_number(winnr)) end,
-
-    exclude_filetypes = {
-      "DressingInput",
-      "neo-tree",
-      "toggleterm",
-      "Trouble",
+    bar = {
+      enable = function(buf, win)
+        return vim.bo[buf].buftype == ""
+          and vim.api.nvim_buf_get_name(buf) ~= ""
+          and vim.api.nvim_win_get_config(win).relative == ""
+          and not vim.tbl_contains({ "neo-tree", "toggleterm", "Trouble" }, vim.bo[buf].filetype)
+      end,
     },
+  },
+  keys = {
+    { "<leader>;", function() require("dropbar.api").pick() end, desc = "Pick breadcrumb" },
   },
 }
