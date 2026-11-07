@@ -8,12 +8,9 @@ local Icons = require("ditsuke.utils.icons")
 
 local M = {
   "nvim-lualine/lualine.nvim",
-  depedencies = {
-    "nvim-navic",
-  },
 }
 
-local uv = vim.loop
+local uv = vim.uv
 
 --#region colors
 local COLORS = {
@@ -56,9 +53,8 @@ local MODE_COLOR_MAP = {
 
 local function fg(name)
   return function()
-    ---@type {foreground?:number}?
-    local hl = vim.api.nvim_get_hl_by_name(name, true)
-    return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+    local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+    return hl.fg and { fg = string.format("#%06x", hl.fg) }
   end
 end
 
@@ -121,8 +117,10 @@ local components = {
 --#endregion
 
 M.opts = function()
+  vim.o.laststatus = 3
   return {
     options = {
+      globalstatus = true,
       -- Disable sections and component separators
       component_separators = "",
       section_separators = "",
@@ -235,7 +233,7 @@ M.opts = function()
             --
             -- return bg_syntax .. "%#white# " .. "%*" -- Move %* to end of string
           end,
-          -- cond = function() return require("lazyvim.util").has("copilot.lua") and package.loaded["copilot"] ~= nil end,
+          cond = function() return package.loaded["copilot.client"] ~= nil end,
           color = function(_)
             local copilot_client = require("lazyvim.util").has("copilot.lua") and require("copilot.client")
             if not copilot_client then
