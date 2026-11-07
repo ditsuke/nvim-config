@@ -32,7 +32,6 @@
   "fzf": { "branch": "master", "commit": "99bfd5aa0f66133d7dcfbf18f8044eb765f04649" },
   "fzf-lua": { "branch": "main", "commit": "07fce8ac8dffba4e11f1cbe5490d730a2cc5ec7a" },
   "git-conflict.nvim": { "branch": "main", "commit": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4" },
-  "git-worktree.nvim": { "branch": "master", "commit": "f247308e68dab9f1133759b05d944569ad054546" },
   "github-nvim-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
   "gitlinker.nvim": { "branch": "master", "commit": "b710fe0e0c997236104f43db49905ab67f8d1f64" },
   "gitsigns.nvim": { "branch": "main", "commit": "4bcd99167c265f135886b282baad77afe06206b2" },
