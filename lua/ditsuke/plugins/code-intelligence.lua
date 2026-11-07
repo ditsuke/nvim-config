@@ -67,6 +67,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = { virtual_text = false, virtual_lines = false },
       inlay_hints = {
         enabled = true,
       },

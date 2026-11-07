@@ -92,11 +92,14 @@ end, { desc = "Toggle [b]ackground (dark/light)" })
 
 pcall(function() vim.keymap.del("n", "<leader>ud") end)
 vim.keymap.set("n", "<leader>ud", function()
-  vim.ui.select({ "lsp_lines", "stock", "none" }, { prompt = "Select style:" }, function(style)
+  vim.ui.select({ "lines", "text", "none" }, { prompt = "Select style:" }, function(style)
+    if style == nil then
+      return
+    end
     vim.diagnostic.config({ virtual_text = false, virtual_lines = false })
-    if style == "lsp_lines" then
+    if style == "lines" then
       vim.diagnostic.config({ virtual_lines = true })
-    elseif style == "stock" then
+    elseif style == "text" then
       vim.diagnostic.config({ virtual_text = true })
     end
   end)

@@ -99,26 +99,6 @@ return {
     keys = { { "<leader>z", function() require("zen-mode").toggle() end, desc = "Toggle [z]enmode"} },
   },
   {
-    -- Diagnostics with virtual text. Does multiline well
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    event = "LspAttach",
-    dependencies = {
-      {
-        "neovim/nvim-lspconfig",
-        opts = {
-          diagnostics = {
-            virtual_text = false, -- Managed by `lsp_lines`
-          },
-        },
-      },
-    },
-    opts = {},
-    config = function(_, _)
-      require("lsp_lines").setup()
-      vim.diagnostic.config({ virtual_lines = false }) -- disable by default
-    end,
-  },
-  {
     -- >  LSP diagnostics in virtual text at the top right of your screen
     -- NOTE: Promising but not quite there yet. Last I updated this the plugin worked but the generated
     -- text has too big a right offset to be very visible. This is configurable but I don't see
