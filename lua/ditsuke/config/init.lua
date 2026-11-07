@@ -5,10 +5,13 @@ function M.init()
   if M.did_init then
     return
   end
+  M.did_init = true
+
+  -- Options must also apply when opening a file or directory from the command
+  -- line, including cmdheight=0 so no blank command row sits below the statusline.
+  require("ditsuke.config.options")
 
   if vim.fn.argc(-1) == 0 then
-    require("ditsuke.config.options")
-
     -- autocmds and keymaps can wait to load
     vim.api.nvim_create_autocmd("User", {
       group = vim.api.nvim_create_augroup("d2kvim", { clear = true }),
