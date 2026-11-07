@@ -77,6 +77,8 @@ UIUtils.set_smart_visual_nav(true)
 -- ============
 --Utility
 -- ============
+vim.keymap.set("n", "<leader>uR", "<cmd>restart<cr>", { desc = "Restart Neovim" })
+
 vim.keymap.set("n", "<leader>ub", function()
   local background = vim.opt.background["_value"]
   if background == "dark" then
