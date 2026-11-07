@@ -36,7 +36,9 @@ return {
   -- - `:DiffviewOpen` to open the diff view
   -- - `:DiffviewFileHistory` to open the file history view
   {
-    "sindrets/diffview.nvim",
+    "dlyongemallo/diffview-plus.nvim",
+    main = "diffview",
+    opts = {},
   },
 
   -- > A lua neovim plugin to generate shareable file permalinks (with line ranges) for several git web frontend
